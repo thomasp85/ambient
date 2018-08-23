@@ -1,0 +1,5 @@
+interpolators <- c('linear', 'hermite', 'quintic')
+pertubations <- c('none', 'normal', 'fractal')
+fractals <- c('none', 'fbm', 'billow', 'rigid-multi')
+distances <- c('euclidean', 'manhattan', 'natural')
+values <- c('cell', 'noise', 'distance', 'distance2', 'distance2add', 'distance2sub', 'distance2mul', 'distance2div')

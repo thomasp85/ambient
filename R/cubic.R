@@ -1,0 +1,44 @@
+#' Cubic noise generator
+#'
+#' Cubic noise is a pretty simple alternative to perlin and simplex noise. In
+#' essence it takes a low resolution white noise and scales it up using cubic
+#' interpolation. This approach means that while cubic noise is smooth, it is
+#' much more random than perlin and simplex noise.
+#'
+#' @inheritParams noise_perlin
+#'
+#' @return If `length(dim) == 2` a matrix, if `length(dim) == 3` a 3-dimensional
+#' array.
+#'
+#' @export
+#'
+#' @examples
+#' # Basic use
+#' noise <- noise_cubic(c(100, 100))
+#'
+#' image(noise, col = grey.colors(256, 0, 1))
+#'
+noise_cubic <- function(dim, frequency = 0.01, fractal = 'fbm', octaves = 3,
+                        lacunarity = 2, gain = 0.5, pertubation = 'none',
+                        pertubation_amplitude = 1) {
+  fractal <- match.arg(fractal, fractals)
+  fractal <- match(fractal, fractals) - 1
+  pertubation <- match.arg(pertubation, pertubations)
+  pertubation <- match(pertubation, pertubations) - 1
+
+  if (length(dim) == 2) {
+    noise <- cubic_2d_c(dim[1], dim[2], seed = sample(.Machine$integer.max, size = 1),
+                        freq = frequency, fractal = fractal,
+                        octaves = octaves, lacunarity = lacunarity, gain = gain,
+                        pertube = pertubation, pertube_amp = pertubation_amplitude)
+  } else if (length(dim) == 3) {
+    noise <- cubic_3d_c(dim[1], dim[2], dim[3], seed = sample(.Machine$integer.max, size = 1),
+                        freq = frequency, fractal = fractal,
+                        octaves = octaves, lacunarity = lacunarity, gain = gain,
+                        pertube = pertubation, pertube_amp = pertubation_amplitude)
+    noise <- array(noise, dim)
+  } else {
+    stop('Cubic noise only supports two or three dimensions', call. = FALSE)
+  }
+  noise
+}

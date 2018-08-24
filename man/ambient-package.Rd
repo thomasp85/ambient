@@ -6,6 +6,8 @@
 \alias{ambient-package}
 \title{ambient: A Generator of Multidimensional Noise}
 \description{
+\if{html}{\figure{logo.png}{options: align='right'}}
+
 Generation of natural looking noise has many application within 
     simulation, procedural generation, and art, to name a few. The 'ambient' 
     package provides an interface to the 'FastNoise' C++ library and allows for
@@ -15,6 +17,14 @@ Generation of natural looking noise has many application within
 }
 \references{
 \url{https://github.com/Auburns/FastNoise}
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/thomasp85/ambient}
+  \item Report bugs at \url{https://github.com/thomasp85/ambient/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Thomas Lin Pedersen \email{thomasp85@gmail.com}

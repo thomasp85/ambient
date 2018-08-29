@@ -49,11 +49,11 @@ white_4d_c <- function(height, width, depth, time, seed, freq, pertube, pertube_
     .Call('_ambient_white_4d_c', PACKAGE = 'ambient', height, width, depth, time, seed, freq, pertube, pertube_amp)
 }
 
-worley_2d_c <- function(height, width, seed, freq, dist, value, dist2ind, jitter, pertube, pertube_amp) {
-    .Call('_ambient_worley_2d_c', PACKAGE = 'ambient', height, width, seed, freq, dist, value, dist2ind, jitter, pertube, pertube_amp)
+worley_2d_c <- function(height, width, seed, freq, fractal, octaves, lacunarity, gain, dist, value, dist2ind, jitter, pertube, pertube_amp) {
+    .Call('_ambient_worley_2d_c', PACKAGE = 'ambient', height, width, seed, freq, fractal, octaves, lacunarity, gain, dist, value, dist2ind, jitter, pertube, pertube_amp)
 }
 
-worley_3d_c <- function(height, width, depth, seed, freq, dist, value, dist2ind, jitter, pertube, pertube_amp) {
-    .Call('_ambient_worley_3d_c', PACKAGE = 'ambient', height, width, depth, seed, freq, dist, value, dist2ind, jitter, pertube, pertube_amp)
+worley_3d_c <- function(height, width, depth, seed, freq, fractal, octaves, lacunarity, gain, dist, value, dist2ind, jitter, pertube, pertube_amp) {
+    .Call('_ambient_worley_3d_c', PACKAGE = 'ambient', height, width, depth, seed, freq, fractal, octaves, lacunarity, gain, dist, value, dist2ind, jitter, pertube, pertube_amp)
 }
 

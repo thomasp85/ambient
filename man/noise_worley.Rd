@@ -5,6 +5,7 @@
 \title{Worley (cell) noise generator}
 \usage{
 noise_worley(dim, frequency = 0.01, distance = "euclidean",
+  fractal = "none", octaves = 3, lacunarity = 2, gain = 0.5,
   value = "cell", distance_ind = c(1, 2), jitter = 0.45,
   pertubation = "none", pertubation_amplitude = 1)
 }
@@ -16,6 +17,19 @@ generated. The length determines the dimensionality of the noise.}
 
 \item{distance}{The distance measure to use, either \code{'euclidean'} (default),
 \code{'manhattan'}, or \code{'natural'} (a mix of the two)}
+
+\item{fractal}{The fractal type to use. Either \code{'none'}, \code{'fbm'} (default),
+\code{'billow'}, or \code{'rigid-multi'}. It is suggested that you experiment with the
+different types to get a feel for how they behaves.}
+
+\item{octaves}{The number of noise layers used to create the fractal noise.
+Ignored if \code{fractal = 'none'}. Defaults to \code{3}.}
+
+\item{lacunarity}{The frequency multiplier between successive noise layers
+when building fractal noise. Ignored if \code{fractal = 'none'}. Defaults to \code{2}.}
+
+\item{gain}{The relative strength between successive noise layers when
+building fractal noise. Ignored if \code{fractal = 'none'}. Defaults to \code{0.5}.}
 
 \item{value}{The noise value to return. Either
 \itemize{

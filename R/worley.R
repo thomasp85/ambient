@@ -39,6 +39,7 @@
 #' image(noise, col = grey.colors(256, 0, 1))
 #'
 noise_worley <- function(dim, frequency = 0.01, distance = 'euclidean',
+                         fractal = 'none', octaves = 3, lacunarity = 2, gain = 0.5,
                    value = 'cell', distance_ind = c(1, 2), jitter = 0.45,
                    pertubation = 'none', pertubation_amplitude = 1) {
   distance <- match.arg(distance, distances)
@@ -46,18 +47,22 @@ noise_worley <- function(dim, frequency = 0.01, distance = 'euclidean',
   distance_ind <- distance_ind - 1
   value <- match.arg(value, values)
   value <- match(value, values) - 1
+  fractal <- match.arg(fractal, fractals)
+  fractal <- match(fractal, fractals) - 1
   pertubation <- match.arg(pertubation, pertubations)
   pertubation <- match(pertubation, pertubations) - 1
 
   if (length(dim) == 2) {
     noise <- worley_2d_c(dim[1], dim[2], seed = sample(.Machine$integer.max, size = 1),
-                         freq = frequency, dist = distance, value = value,
-                         dist2ind = distance_ind, jitter = jitter,
+                         freq = frequency, fractal = fractal, octaves = octaves,
+                         lacunarity = lacunarity, gain = gain,dist = distance,
+                         value = value, dist2ind = distance_ind, jitter = jitter,
                          pertube = pertubation, pertube_amp = pertubation_amplitude)
   } else if (length(dim) == 3) {
     noise <- worley_3d_c(dim[1], dim[2], dim[3], seed = sample(.Machine$integer.max, size = 1),
-                         freq = frequency, dist = distance, value = value,
-                         dist2ind = distance_ind, jitter = jitter,
+                         freq = frequency, fractal = fractal, octaves = octaves,
+                         lacunarity = lacunarity, gain = gain,dist = distance,
+                         value = value, dist2ind = distance_ind, jitter = jitter,
                          pertube = pertubation, pertube_amp = pertubation_amplitude)
     noise <- array(noise, dim)
   } else {

@@ -247,8 +247,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // worley_2d_c
-NumericMatrix worley_2d_c(int height, int width, int seed, double freq, int dist, int value, IntegerVector dist2ind, double jitter, int pertube, double pertube_amp);
-RcppExport SEXP _ambient_worley_2d_c(SEXP heightSEXP, SEXP widthSEXP, SEXP seedSEXP, SEXP freqSEXP, SEXP distSEXP, SEXP valueSEXP, SEXP dist2indSEXP, SEXP jitterSEXP, SEXP pertubeSEXP, SEXP pertube_ampSEXP) {
+NumericMatrix worley_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int dist, int value, IntegerVector dist2ind, double jitter, int pertube, double pertube_amp);
+RcppExport SEXP _ambient_worley_2d_c(SEXP heightSEXP, SEXP widthSEXP, SEXP seedSEXP, SEXP freqSEXP, SEXP fractalSEXP, SEXP octavesSEXP, SEXP lacunaritySEXP, SEXP gainSEXP, SEXP distSEXP, SEXP valueSEXP, SEXP dist2indSEXP, SEXP jitterSEXP, SEXP pertubeSEXP, SEXP pertube_ampSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -256,19 +256,23 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type width(widthSEXP);
     Rcpp::traits::input_parameter< int >::type seed(seedSEXP);
     Rcpp::traits::input_parameter< double >::type freq(freqSEXP);
+    Rcpp::traits::input_parameter< int >::type fractal(fractalSEXP);
+    Rcpp::traits::input_parameter< int >::type octaves(octavesSEXP);
+    Rcpp::traits::input_parameter< double >::type lacunarity(lacunaritySEXP);
+    Rcpp::traits::input_parameter< double >::type gain(gainSEXP);
     Rcpp::traits::input_parameter< int >::type dist(distSEXP);
     Rcpp::traits::input_parameter< int >::type value(valueSEXP);
     Rcpp::traits::input_parameter< IntegerVector >::type dist2ind(dist2indSEXP);
     Rcpp::traits::input_parameter< double >::type jitter(jitterSEXP);
     Rcpp::traits::input_parameter< int >::type pertube(pertubeSEXP);
     Rcpp::traits::input_parameter< double >::type pertube_amp(pertube_ampSEXP);
-    rcpp_result_gen = Rcpp::wrap(worley_2d_c(height, width, seed, freq, dist, value, dist2ind, jitter, pertube, pertube_amp));
+    rcpp_result_gen = Rcpp::wrap(worley_2d_c(height, width, seed, freq, fractal, octaves, lacunarity, gain, dist, value, dist2ind, jitter, pertube, pertube_amp));
     return rcpp_result_gen;
 END_RCPP
 }
 // worley_3d_c
-NumericMatrix worley_3d_c(int height, int width, int depth, int seed, double freq, int dist, int value, IntegerVector dist2ind, double jitter, int pertube, double pertube_amp);
-RcppExport SEXP _ambient_worley_3d_c(SEXP heightSEXP, SEXP widthSEXP, SEXP depthSEXP, SEXP seedSEXP, SEXP freqSEXP, SEXP distSEXP, SEXP valueSEXP, SEXP dist2indSEXP, SEXP jitterSEXP, SEXP pertubeSEXP, SEXP pertube_ampSEXP) {
+NumericMatrix worley_3d_c(int height, int width, int depth, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int dist, int value, IntegerVector dist2ind, double jitter, int pertube, double pertube_amp);
+RcppExport SEXP _ambient_worley_3d_c(SEXP heightSEXP, SEXP widthSEXP, SEXP depthSEXP, SEXP seedSEXP, SEXP freqSEXP, SEXP fractalSEXP, SEXP octavesSEXP, SEXP lacunaritySEXP, SEXP gainSEXP, SEXP distSEXP, SEXP valueSEXP, SEXP dist2indSEXP, SEXP jitterSEXP, SEXP pertubeSEXP, SEXP pertube_ampSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -277,13 +281,17 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type depth(depthSEXP);
     Rcpp::traits::input_parameter< int >::type seed(seedSEXP);
     Rcpp::traits::input_parameter< double >::type freq(freqSEXP);
+    Rcpp::traits::input_parameter< int >::type fractal(fractalSEXP);
+    Rcpp::traits::input_parameter< int >::type octaves(octavesSEXP);
+    Rcpp::traits::input_parameter< double >::type lacunarity(lacunaritySEXP);
+    Rcpp::traits::input_parameter< double >::type gain(gainSEXP);
     Rcpp::traits::input_parameter< int >::type dist(distSEXP);
     Rcpp::traits::input_parameter< int >::type value(valueSEXP);
     Rcpp::traits::input_parameter< IntegerVector >::type dist2ind(dist2indSEXP);
     Rcpp::traits::input_parameter< double >::type jitter(jitterSEXP);
     Rcpp::traits::input_parameter< int >::type pertube(pertubeSEXP);
     Rcpp::traits::input_parameter< double >::type pertube_amp(pertube_ampSEXP);
-    rcpp_result_gen = Rcpp::wrap(worley_3d_c(height, width, depth, seed, freq, dist, value, dist2ind, jitter, pertube, pertube_amp));
+    rcpp_result_gen = Rcpp::wrap(worley_3d_c(height, width, depth, seed, freq, fractal, octaves, lacunarity, gain, dist, value, dist2ind, jitter, pertube, pertube_amp));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -301,8 +309,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_ambient_white_2d_c", (DL_FUNC) &_ambient_white_2d_c, 6},
     {"_ambient_white_3d_c", (DL_FUNC) &_ambient_white_3d_c, 7},
     {"_ambient_white_4d_c", (DL_FUNC) &_ambient_white_4d_c, 8},
-    {"_ambient_worley_2d_c", (DL_FUNC) &_ambient_worley_2d_c, 10},
-    {"_ambient_worley_3d_c", (DL_FUNC) &_ambient_worley_3d_c, 11},
+    {"_ambient_worley_2d_c", (DL_FUNC) &_ambient_worley_2d_c, 14},
+    {"_ambient_worley_3d_c", (DL_FUNC) &_ambient_worley_3d_c, 15},
     {NULL, NULL, 0}
 };
 

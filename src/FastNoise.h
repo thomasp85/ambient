@@ -174,6 +174,7 @@ public:
   FN_DECIMAL GetSimplexFractal(FN_DECIMAL x, FN_DECIMAL y) const;
 
   FN_DECIMAL GetCellular(FN_DECIMAL x, FN_DECIMAL y) const;
+  FN_DECIMAL GetCellularFractal(FN_DECIMAL x, FN_DECIMAL y) const;
 
   FN_DECIMAL GetWhiteNoise(FN_DECIMAL x, FN_DECIMAL y) const;
   FN_DECIMAL GetWhiteNoiseInt(int x, int y) const;
@@ -197,6 +198,7 @@ public:
   FN_DECIMAL GetSimplexFractal(FN_DECIMAL x, FN_DECIMAL y, FN_DECIMAL z) const;
 
   FN_DECIMAL GetCellular(FN_DECIMAL x, FN_DECIMAL y, FN_DECIMAL z) const;
+  FN_DECIMAL GetCellularFractal(FN_DECIMAL x, FN_DECIMAL y, FN_DECIMAL z) const;
 
   FN_DECIMAL GetWhiteNoise(FN_DECIMAL x, FN_DECIMAL y, FN_DECIMAL z) const;
   FN_DECIMAL GetWhiteNoiseInt(int x, int y, int z) const;
@@ -265,8 +267,12 @@ private:
   FN_DECIMAL SingleCubicFractalRigidMulti(FN_DECIMAL x, FN_DECIMAL y) const;
   FN_DECIMAL SingleCubic(unsigned char offset, FN_DECIMAL x, FN_DECIMAL y) const;
 
-  FN_DECIMAL SingleCellular(FN_DECIMAL x, FN_DECIMAL y) const;
-  FN_DECIMAL SingleCellular2Edge(FN_DECIMAL x, FN_DECIMAL y) const;
+  FN_DECIMAL SingleCellularBase(unsigned char offset, FN_DECIMAL x, FN_DECIMAL y) const;
+  FN_DECIMAL SingleCellular(unsigned char offset, FN_DECIMAL x, FN_DECIMAL y) const;
+  FN_DECIMAL SingleCellular2Edge(unsigned char offset, FN_DECIMAL x, FN_DECIMAL y) const;
+  FN_DECIMAL SingleCellularFractalFBM(FN_DECIMAL x, FN_DECIMAL y) const;
+  FN_DECIMAL SingleCellularFractalBillow(FN_DECIMAL x, FN_DECIMAL y) const;
+  FN_DECIMAL SingleCellularFractalRigidMulti(FN_DECIMAL x, FN_DECIMAL y) const;
 
   void SingleGradientPerturb(unsigned char offset, FN_DECIMAL warpAmp, FN_DECIMAL frequency, FN_DECIMAL& x, FN_DECIMAL& y) const;
 
@@ -291,8 +297,12 @@ private:
   FN_DECIMAL SingleCubicFractalRigidMulti(FN_DECIMAL x, FN_DECIMAL y, FN_DECIMAL z) const;
   FN_DECIMAL SingleCubic(unsigned char offset, FN_DECIMAL x, FN_DECIMAL y, FN_DECIMAL z) const;
 
-  FN_DECIMAL SingleCellular(FN_DECIMAL x, FN_DECIMAL y, FN_DECIMAL z) const;
-  FN_DECIMAL SingleCellular2Edge(FN_DECIMAL x, FN_DECIMAL y, FN_DECIMAL z) const;
+  FN_DECIMAL SingleCellularBase(unsigned char offset, FN_DECIMAL x, FN_DECIMAL y, FN_DECIMAL z) const;
+  FN_DECIMAL SingleCellular(unsigned char offset, FN_DECIMAL x, FN_DECIMAL y, FN_DECIMAL z) const;
+  FN_DECIMAL SingleCellular2Edge(unsigned char offset, FN_DECIMAL x, FN_DECIMAL y, FN_DECIMAL z) const;
+  FN_DECIMAL SingleCellularFractalFBM(FN_DECIMAL x, FN_DECIMAL y, FN_DECIMAL z) const;
+  FN_DECIMAL SingleCellularFractalBillow(FN_DECIMAL x, FN_DECIMAL y, FN_DECIMAL z) const;
+  FN_DECIMAL SingleCellularFractalRigidMulti(FN_DECIMAL x, FN_DECIMAL y, FN_DECIMAL z) const;
 
   void SingleGradientPerturb(unsigned char offset, FN_DECIMAL warpAmp, FN_DECIMAL frequency, FN_DECIMAL& x, FN_DECIMAL& y, FN_DECIMAL& z) const;
 

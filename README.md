@@ -38,8 +38,9 @@ devtools::install_github('thomasp85/ambient')
 Examples
 --------
 
-Following is a couple of examples of the noise patterns possible with
-`ambient`:
+ambient provides a direct interface to the FastNoise functions by
+requesting a matrix/array of noise values, with a range of settings for
+pertubation and fractals:
 
 ``` r
 library(ambient)
@@ -47,33 +48,39 @@ plot_raster <- function(mat) {
   mat <- (mat - min(mat)) / diff(range(mat))
   plot(as.raster(mat))
 }
-
-# Simplex
-plot_raster(noise_simplex(c(500, 500)))
+simplex <- noise_simplex(c(500, 500), pertubation = 'normal', 
+                         pertubation_amplitude = 40)
+plot_raster(simplex)
 ```
 
 ![](man/figures/README-unnamed-chunk-3-1.png)
 
-``` r
-
-# Simplex - No fractality
-plot_raster(noise_simplex(c(500, 500), fractal = 'none'))
-```
-
-![](man/figures/README-unnamed-chunk-3-2.png)
+much more powerful, however, is the tidy interface that allows full
+control of how the values should be calculated and combined:
 
 ``` r
+library(dplyr)
+#> 
+#> Attaching package: 'dplyr'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     filter, lag
+#> The following objects are masked from 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 
-# Worley (cellular)
-plot_raster(noise_worley(c(500, 500)))
+long_grid(x = seq(0, 10, length.out = 1000), 
+          y = seq(0, 10, length.out = 1000)) %>% 
+  mutate(
+    x1 = x + gen_simplex(x, y) / 2, 
+    y1 = y + gen_simplex(x, y) / 2,
+    worley = gen_worley(x, y, value = 'distance', seed = 5),
+    worley_frac = fracture(gen_worley, ridged, octaves = 8, x = x, y = y, 
+                           value = 'distance', seed = 5),
+    full = blend(normalise(worley), normalise(worley_frac), gen_spheres(x1, y1))
+  ) %>% 
+  as.raster(value = full) %>% 
+  plot()
 ```
 
-![](man/figures/README-unnamed-chunk-3-3.png)
-
-``` r
-
-# Worley - with pertubation
-plot_raster(noise_worley(c(500, 500), pertubation = 'normal', pertubation_amplitude = 40))
-```
-
-![](man/figures/README-unnamed-chunk-3-4.png)
+![](man/figures/README-unnamed-chunk-4-1.png)

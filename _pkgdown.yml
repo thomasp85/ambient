@@ -22,3 +22,39 @@ navbar:
   right:
     - icon: fa-github fa-lg
       href: https://github.com/thomasp85/ambient
+
+reference:
+  - title: "Noise"
+    desc: >
+      Noise is the bread and butter of ambient, and the package provides a long
+      range of different noise functions, both for creating matrices and arrays
+      of noise and for taking full control with the tidy interface.
+    contents:
+      - gen_perlin
+      - gen_simplex
+      - gen_worley
+      - gen_cubic
+      - gen_value
+      - gen_white
+  - title: "Patterns"
+    desc: >
+      Pattern generators are useful for modifying noise values and get
+      interesting effects, such as marble, and wood rings.
+    contents:
+      - gen_spheres
+      - gen_waves
+      - gen_checkerboard
+  - title: "Noise modifiers"
+    desc: >
+      The raw noise values are not the end of it. ambient provides a range of
+      functions to either modify the input, output or the generators themselves
+      for new effects such as fractal noise.
+    contents:
+      - fracture
+      - fbm
+      - billow
+      - ridges
+      - clamped
+      - curl_noise
+      - trans_affine
+      - blend

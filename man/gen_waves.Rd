@@ -4,7 +4,7 @@
 \alias{gen_waves}
 \title{Generate a wave pattern}
 \usage{
-gen_waves(x, y = NULL, z = NULL, frequency = 1)
+gen_waves(x, y = NULL, z = NULL, t = NULL, frequency = 1)
 }
 \arguments{
 \item{x, y, z, t}{The coordinates to get pattern from}

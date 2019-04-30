@@ -24,10 +24,11 @@
 #' plot(as.raster(grid, normalise(ripple)))
 #' plot(as.raster(grid, normalise(wave)))
 #'
-gen_waves <- function(x, y = NULL, z = NULL, frequency = 1) {
+gen_waves <- function(x, y = NULL, z = NULL, t = NULL, frequency = 1) {
   all <- (x * frequency)^2 +
     ((y %||% 0 * frequency))^2 +
-    ((z %||% 0 * frequency))^2
+    ((z %||% 0 * frequency))^2 +
+    ((t %||% 0 * frequency))^2
   dist <- sqrt(all)
   cos(dist * pi * 2)
 }

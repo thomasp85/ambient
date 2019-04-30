@@ -12,7 +12,8 @@ template:
 figures:
   dev: grDevices::png
   dpi: 96
-  dev.args: [bg: NA]
+  dev.args:
+    bg: #00000000
   fig.ext: png
   fig.width: 10
   fig.height: ~

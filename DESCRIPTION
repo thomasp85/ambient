@@ -1,8 +1,8 @@
 Package: ambient
 Type: Package
 Title: A Generator of Multidimensional Noise
-Version: 0.1.0
-Date: 2018-08-24
+Version: 0.1.0.9000
+Date: 2019-04-30
 Authors@R:
     c(person(given = "Thomas Lin",
              family = "Pedersen",
@@ -23,9 +23,12 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 SystemRequirements: C++11
 LazyData: true
-Imports: Rcpp (>= 0.12.18)
+Imports: 
+    Rcpp (>= 0.12.18),
+    rlang,
+    grDevices
 LinkingTo: Rcpp
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
 URL: https://github.com/thomasp85/ambient
 BugReports: https://github.com/thomasp85/ambient/issues

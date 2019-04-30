@@ -2,4 +2,5 @@
 #'
 #' @useDynLib ambient
 #' @importFrom Rcpp sourceCpp
+#' @import rlang
 '_PACKAGE'

@@ -4,6 +4,8 @@ language: R
 cache: packages
 sudo: true
 
+r_packages: dplyr
+
 before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
 deploy:
   provider: script

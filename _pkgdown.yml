@@ -9,6 +9,16 @@ template:
   params:
     bootswatch: darkly
 
+figures:
+  dev: grDevices::png
+  dpi: 96
+  dev.args: [bg: NA]
+  fig.ext: png
+  fig.width: 10
+  fig.height: ~
+  fig.retina: 2
+  fig.asp: 1
+
 navbar:
   left:
     - icon: fa-home fa-lg

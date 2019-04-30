@@ -60,7 +60,7 @@ plot(as.raster(normalise(simplex)))
 much more powerful, however, is the tidy interface that allows full control of
 how the values should be calculated and combined:
 
-```{r, fig.asp=1}
+```{r, fig.asp=1, message=FALSE, warning=FALSE}
 library(dplyr)
 
 long_grid(x = seq(0, 10, length.out = 1000), 

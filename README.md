@@ -56,14 +56,6 @@ control of how the values should be calculated and combined:
 
 ``` r
 library(dplyr)
-#> 
-#> Attaching package: 'dplyr'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     filter, lag
-#> The following objects are masked from 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 
 long_grid(x = seq(0, 10, length.out = 1000), 
           y = seq(0, 10, length.out = 1000)) %>% 

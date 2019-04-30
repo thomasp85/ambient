@@ -9,6 +9,9 @@ template:
   params:
     bootswatch: darkly
 
+pkgdown:
+  highlight: zenburn
+
 navbar:
   left:
     - icon: fa-home fa-lg

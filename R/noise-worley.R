@@ -25,8 +25,9 @@
 #' @param jitter The maximum distance a point can move from its start position
 #' during sampling of cell points.
 #'
-#' @return If `length(dim) == 2` a matrix, if `length(dim) == 3` a 3-dimensional
-#' array.
+#' @return For `noise_worley()` a matrix if `length(dim) == 2` or an array if
+#' `length(dim) == 3`. For `gen_worley()` a numeric vector matching the length of
+#' the input.
 #'
 #' @references Worley, Steven (1996). *A cellular texture basis function*. Proceedings of the 23rd annual conference on computer graphics and interactive techniques. pp. 291–294. ISBN 0-89791-746-4
 #'
@@ -36,9 +37,9 @@
 #' # Basic use
 #' noise <- noise_worley(c(100, 100))
 #'
-#' image(noise, col = grey.colors(256, 0, 1))
+#' plot(as.raster(normalise(noise)))
 #'
-#' # Using the generator
+#' # Using the generator and another value metric
 #' grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
 #' grid$noise <- gen_worley(grid$x, grid$y, value = 'distance')
 #' plot(as.raster(grid, normalise(noise)))

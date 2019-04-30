@@ -44,8 +44,9 @@ origin. Ignored if \code{pertubation = 'none'}. Defaults to \code{1}.}
 used}
 }
 \value{
-If \code{length(dim) == 2} a matrix, if \code{length(dim) == 3} a 3-dimensional
-array.
+For \code{noise_cubic()} a matrix if \code{length(dim) == 2} or an array if
+\code{length(dim) == 3}. For \code{gen_cubic()} a numeric vector matching the length of
+the input.
 }
 \description{
 Cubic noise is a pretty simple alternative to perlin and simplex noise. In
@@ -57,7 +58,7 @@ much more random than perlin and simplex noise.
 # Basic use
 noise <- noise_cubic(c(100, 100))
 
-image(noise, col = grey.colors(256, 0, 1))
+plot(as.raster(normalise(noise)))
 
 # Using the generator
 grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))

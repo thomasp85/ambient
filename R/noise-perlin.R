@@ -28,8 +28,9 @@
 #' @param pertubation_amplitude The maximal pertubation distance from the
 #' origin. Ignored if `pertubation = 'none'`. Defaults to `1`.
 #'
-#' @return If `length(dim) == 2` a matrix, if `length(dim) == 3` a 3-dimensional
-#' array.
+#' @return For `noise_perlin()` a matrix if `length(dim) == 2` or an array if
+#' `length(dim) == 3`. For `gen_perlin()` a numeric vector matching the length of
+#' the input.
 #'
 #' @references
 #' Perlin, Ken (1985). *An Image Synthesizer*. SIGGRAPH Comput. Graph. 19
@@ -41,7 +42,7 @@
 #' # Basic use
 #' noise <- noise_perlin(c(100, 100))
 #'
-#' image(noise, col = grey.colors(256, 0, 1))
+#' plot(as.raster(normalise(noise)))
 #'
 #' # Using the generator
 #' grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))

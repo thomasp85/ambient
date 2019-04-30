@@ -6,8 +6,9 @@
 #'
 #' @inheritParams noise_simplex
 #'
-#' @return If `length(dim) == 2` a matrix, if `length(dim) %in% c(3, 4)` a 3- or
-#' 4-dimensional array.
+#' @return For `noise_white()` a matrix if `length(dim) == 2` or an array if
+#' `length(dim) >= 3`. For `gen_white()` a numeric vector matching the length of
+#' the input.
 #'
 #' @export
 #'
@@ -15,7 +16,7 @@
 #' # Basic use
 #' noise <- noise_white(c(100, 100))
 #'
-#' image(noise, col = grey.colors(256, 0, 1))
+#' plot(as.raster(normalise(noise)))
 #'
 #' # Using the generator
 #' grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))

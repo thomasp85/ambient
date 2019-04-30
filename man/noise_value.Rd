@@ -49,8 +49,9 @@ origin. Ignored if \code{pertubation = 'none'}. Defaults to \code{1}.}
 used}
 }
 \value{
-If \code{length(dim) == 2} a matrix, if \code{length(dim) == 3} a 3-dimensional
-array.
+For \code{noise_value()} a matrix if \code{length(dim) == 2} or an array if
+\code{length(dim) == 3}. For \code{gen_value()} a numeric vector matching the length of
+the input.
 }
 \description{
 Value noise is a simpler version of cubic noise that uses linear
@@ -62,7 +63,7 @@ the surrounding grid points into accout.
 # Basic use
 noise <- noise_value(c(100, 100))
 
-image(noise, col = grey.colors(256, 0, 1))
+plot(as.raster(normalise(noise)))
 
 # Using the generator
 grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))

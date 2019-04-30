@@ -49,8 +49,9 @@ origin. Ignored if \code{pertubation = 'none'}. Defaults to \code{1}.}
 used}
 }
 \value{
-If \code{length(dim) == 2} a matrix, if \code{length(dim) \%in\% c(3, 4)} a 3- or
-4-dimensional array.
+For \code{noise_simplex()} a matrix if \code{length(dim) == 2} or an array if
+\code{length(dim) >= 3}. For \code{gen_simplex()} a numeric vector matching the length of
+the input.
 }
 \description{
 Simplex noise has been developed by Ken Perlin, the inventor of perlin noise,
@@ -62,7 +63,7 @@ feasable for dimensions above 3 and has no directional artifacts.
 # Basic use
 noise <- noise_simplex(c(100, 100))
 
-image(noise, col = grey.colors(256, 0, 1))
+plot(as.raster(normalise(noise)))
 
 # Using the generator
 grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))

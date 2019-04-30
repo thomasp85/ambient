@@ -84,3 +84,10 @@ long_grid(x = seq(0, 10, length.out = 1000),
 ```
 
 ![](man/figures/README-unnamed-chunk-4-1.png)
+
+Code of Conduct
+---------------
+
+Please note that the ‘ambient’ project is released with a [Contributor
+Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project,
+you agree to abide by its terms.

@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   dev.args = list(bg = NA)
 )
+set.seed(1)
 ```
 
 # ambient <img src="man/figures/logo.png" align="right" />
@@ -80,3 +81,7 @@ long_grid(x = seq(0, 10, length.out = 1000),
   plot()
 ```
 
+## Code of Conduct
+Please note that the 'ambient' project is released with a
+[Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+By contributing to this project, you agree to abide by its terms.

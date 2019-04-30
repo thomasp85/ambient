@@ -33,10 +33,10 @@ a.sourceLine:hover {
   text-decoration: none;
 }
 
-.fl      {color: #1514b5;}
+.fl      {color: #6ab825;}
 .fu      {color: #447fcf;} /* function */
 .ch,.st  {color: #ed9d13;} /* string */
-.kw      {color: #6ab825;} /* keyword */
+.kw      {color: #24909d;} /* keyword */
 .co      {color: #999999;} /* comment */
 
 .message { color: #24909d;   font-weight: bolder;}

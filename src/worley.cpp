@@ -74,13 +74,33 @@ NumericMatrix worley_3d_c(int height, int width, int depth, int seed, double fre
           noise_gen.GradientPerturbFractal(new_j, new_i, new_k);
         }
         if (fractal == 0) {
-          noise(i, j) = noise_gen.GetCellular(new_j, new_i, new_k);
+          noise(i, j + k * width) = noise_gen.GetCellular(new_j, new_i, new_k);
         } else {
-          noise(i, j) = noise_gen.GetCellularFractal(new_j, new_i, new_k);
+          noise(i, j + k * width) = noise_gen.GetCellularFractal(new_j, new_i, new_k);
         }
       }
     }
   }
 
+  return noise;
+}
+
+//[[Rcpp::export]]
+NumericVector gen_worley2d_c(NumericVector x, NumericVector y, double freq, int seed, int dist, int value, IntegerVector dist2ind, double jitter) {
+  NumericVector noise(x.size());
+  FastNoise generator = worley_c(seed, freq, 0, 0, 0.0, 0.0, dist, value, dist2ind, jitter, 0, 0.0);
+  for (int i = 0; i < x.size(); i++) {
+    noise[i] = generator.GetCellular(x[i], y[i]);
+  }
+  return noise;
+}
+
+//[[Rcpp::export]]
+NumericVector gen_worley3d_c(NumericVector x, NumericVector y, NumericVector z, double freq, int seed, int dist, int value, IntegerVector dist2ind, double jitter) {
+  NumericVector noise(x.size());
+  FastNoise generator = worley_c(seed, freq, 0, 0, 0.0, 0.0, dist, value, dist2ind, jitter, 0, 0.0);
+  for (int i = 0; i < x.size(); i++) {
+    noise[i] = generator.GetCellular(x[i], y[i], z[i]);
+  }
   return noise;
 }

@@ -86,3 +86,39 @@ NumericMatrix white_4d_c(int height, int width, int depth, int time, int seed, d
 
   return noise;
 }
+
+//[[Rcpp::export]]
+NumericVector gen_white2d_c(NumericVector x, NumericVector y, double freq, int seed) {
+  NumericVector noise(x.size());
+  FastNoise generator;
+  generator.SetSeed(seed);
+  generator.SetFrequency(freq);
+  for (int i = 0; i < x.size(); i++) {
+    noise[i] = generator.GetWhiteNoise(x[i], y[i]);
+  }
+  return noise;
+}
+
+//[[Rcpp::export]]
+NumericVector gen_white3d_c(NumericVector x, NumericVector y, NumericVector z, double freq, int seed) {
+  NumericVector noise(x.size());
+  FastNoise generator;
+  generator.SetSeed(seed);
+  generator.SetFrequency(freq);
+  for (int i = 0; i < x.size(); i++) {
+    noise[i] = generator.GetWhiteNoise(x[i], y[i], z[i]);
+  }
+  return noise;
+}
+
+//[[Rcpp::export]]
+NumericVector gen_white4d_c(NumericVector x, NumericVector y, NumericVector z, NumericVector t, double freq, int seed) {
+  NumericVector noise(x.size());
+  FastNoise generator;
+  generator.SetSeed(seed);
+  generator.SetFrequency(freq);
+  for (int i = 0; i < x.size(); i++) {
+    noise[i] = generator.GetWhiteNoise(x[i], y[i], z[i], t[i]);
+  }
+  return noise;
+}

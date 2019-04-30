@@ -78,3 +78,23 @@ NumericMatrix value_3d_c(int height, int width, int depth, int seed, double freq
 
   return noise;
 }
+
+//[[Rcpp::export]]
+NumericVector gen_value2d_c(NumericVector x, NumericVector y, double freq, int seed, int interp) {
+  NumericVector noise(x.size());
+  FastNoise generator = value_c(seed, freq, interp, 0, 0, 0.0, 0.0, 0, 0.0);
+  for (int i = 0; i < x.size(); i++) {
+    noise[i] = generator.GetValue(x[i], y[i]);
+  }
+  return noise;
+}
+
+//[[Rcpp::export]]
+NumericVector gen_value3d_c(NumericVector x, NumericVector y, NumericVector z, double freq, int seed, int interp) {
+  NumericVector noise(x.size());
+  FastNoise generator = value_c(seed, freq, interp, 0, 0, 0.0, 0.0, 0, 0.0);
+  for (int i = 0; i < x.size(); i++) {
+    noise[i] = generator.GetValue(x[i], y[i], z[i]);
+  }
+  return noise;
+}

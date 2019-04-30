@@ -102,3 +102,33 @@ NumericMatrix simplex_4d_c(int height, int width, int depth, int time, int seed,
 
   return noise;
 }
+
+//[[Rcpp::export]]
+NumericVector gen_simplex2d_c(NumericVector x, NumericVector y, double freq, int seed) {
+  NumericVector noise(x.size());
+  FastNoise generator = simplex_c(seed, freq, 0, 0, 0.0, 0.0, 0, 0.0);
+  for (int i = 0; i < x.size(); i++) {
+    noise[i] = generator.GetSimplex(x[i], y[i]);
+  }
+  return noise;
+}
+
+//[[Rcpp::export]]
+NumericVector gen_simplex3d_c(NumericVector x, NumericVector y, NumericVector z, double freq, int seed) {
+  NumericVector noise(x.size());
+  FastNoise generator = simplex_c(seed, freq, 0, 0, 0.0, 0.0, 0, 0.0);
+  for (int i = 0; i < x.size(); i++) {
+    noise[i] = generator.GetSimplex(x[i], y[i], z[i]);
+  }
+  return noise;
+}
+
+//[[Rcpp::export]]
+NumericVector gen_simplex4d_c(NumericVector x, NumericVector y, NumericVector z, NumericVector t, double freq, int seed) {
+  NumericVector noise(x.size());
+  FastNoise generator = simplex_c(seed, freq, 0, 0, 0.0, 0.0, 0, 0.0);
+  for (int i = 0; i < x.size(); i++) {
+    noise[i] = generator.GetSimplex(x[i], y[i], z[i], t[i]);
+  }
+  return noise;
+}

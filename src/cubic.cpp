@@ -76,3 +76,23 @@ NumericMatrix cubic_3d_c(int height, int width, int depth, int seed, double freq
 
   return noise;
 }
+
+//[[Rcpp::export]]
+NumericVector gen_cubic2d_c(NumericVector x, NumericVector y, double freq, int seed) {
+  NumericVector noise(x.size());
+  FastNoise generator = cubic_c(seed, freq, 0, 0, 0.0, 0.0, 0, 0.0);
+  for (int i = 0; i < x.size(); i++) {
+    noise[i] = generator.GetCubic(x[i], y[i]);
+  }
+  return noise;
+}
+
+//[[Rcpp::export]]
+NumericVector gen_cubic3d_c(NumericVector x, NumericVector y, NumericVector z, double freq, int seed) {
+  NumericVector noise(x.size());
+  FastNoise generator = cubic_c(seed, freq, 0, 0, 0.0, 0.0, 0, 0.0);
+  for (int i = 0; i < x.size(); i++) {
+    noise[i] = generator.GetCubic(x[i], y[i], z[i]);
+  }
+  return noise;
+}

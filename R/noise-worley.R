@@ -38,6 +38,11 @@
 #'
 #' image(noise, col = grey.colors(256, 0, 1))
 #'
+#' # Using the generator
+#' grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
+#' grid$noise <- gen_worley(grid$x, grid$y, value = 'distance')
+#' plot(as.raster(grid, normalise(noise)))
+#'
 noise_worley <- function(dim, frequency = 0.01, distance = 'euclidean',
                          fractal = 'none', octaves = 3, lacunarity = 2, gain = 0.5,
                    value = 'cell', distance_ind = c(1, 2), jitter = 0.45,
@@ -69,4 +74,26 @@ noise_worley <- function(dim, frequency = 0.01, distance = 'euclidean',
     stop('Worley noise only supports two or three dimensions', call. = FALSE)
   }
   noise
+}
+
+#' @rdname noise_worley
+#' @param x,y,z Coordinates to get noise value from
+#' @export
+gen_worley <- function(x, y = NULL, z = NULL, frequency = 1, seed = NULL,
+                       distance = 'euclidean', value = 'cell',
+                       distance_ind = c(1, 2), jitter = 0.45) {
+  dims <- check_dims(x, y, z)
+  distance <- match.arg(distance, distances)
+  distance <- match(distance, distances) - 1
+  distance_ind <- distance_ind - 1
+  value <- match.arg(value, values)
+  value <- match(value, values) - 1
+  if (is.null(seed)) seed <- random_seed()
+  if (is.null(z)) {
+    gen_worley2d_c(dims$x, dims$y, frequency, seed, distance, value,
+                   distance_ind, jitter)
+  } else {
+    gen_worley3d_c(dims$x, dims$y, dims$z, frequency, seed, distance, value,
+                   distance_ind, jitter)
+  }
 }

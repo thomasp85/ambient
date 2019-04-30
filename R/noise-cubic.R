@@ -18,6 +18,11 @@
 #'
 #' image(noise, col = grey.colors(256, 0, 1))
 #'
+#' # Using the generator
+#' grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
+#' grid$noise <- gen_cubic(grid$x, grid$y)
+#' plot(as.raster(grid, normalise(noise)))
+#'
 noise_cubic <- function(dim, frequency = 0.01, fractal = 'fbm', octaves = 3,
                         lacunarity = 2, gain = 0.5, pertubation = 'none',
                         pertubation_amplitude = 1) {
@@ -41,4 +46,17 @@ noise_cubic <- function(dim, frequency = 0.01, fractal = 'fbm', octaves = 3,
     stop('Cubic noise only supports two or three dimensions', call. = FALSE)
   }
   noise
+}
+
+#' @rdname noise_cubic
+#' @param x,y,z Coordinates to get noise value from
+#' @export
+gen_cubic <- function(x, y = NULL, z = NULL, frequency = 1, seed = NULL) {
+  dims <- check_dims(x, y, z)
+  if (is.null(seed)) seed <- random_seed()
+  if (is.null(z)) {
+    gen_cubic2d_c(dims$x, dims$y, frequency, seed)
+  } else {
+    gen_cubic3d_c(dims$x, dims$y, dims$z, frequency, seed)
+  }
 }

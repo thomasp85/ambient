@@ -80,3 +80,23 @@ NumericMatrix perlin_3d_c(int height, int width, int depth, int seed, double fre
 
   return noise;
 }
+
+//[[Rcpp::export]]
+NumericVector gen_perlin2d_c(NumericVector x, NumericVector y, double freq, int seed, int interp) {
+  NumericVector noise(x.size());
+  FastNoise generator = perlin_c(seed, freq, interp, 0, 0, 0.0, 0.0, 0, 0.0);
+  for (int i = 0; i < x.size(); i++) {
+    noise[i] = generator.GetPerlin(x[i], y[i]);
+  }
+  return noise;
+}
+
+//[[Rcpp::export]]
+NumericVector gen_perlin3d_c(NumericVector x, NumericVector y, NumericVector z, double freq, int seed, int interp) {
+  NumericVector noise(x.size());
+  FastNoise generator = perlin_c(seed, freq, interp, 0, 0, 0.0, 0.0, 0, 0.0);
+  for (int i = 0; i < x.size(); i++) {
+    noise[i] = generator.GetPerlin(x[i], y[i], z[i]);
+  }
+  return noise;
+}

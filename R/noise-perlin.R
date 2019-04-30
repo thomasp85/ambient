@@ -43,6 +43,11 @@
 #'
 #' image(noise, col = grey.colors(256, 0, 1))
 #'
+#' # Using the generator
+#' grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
+#' grid$noise <- gen_perlin(grid$x, grid$y)
+#' plot(as.raster(grid, normalise(noise)))
+#'
 noise_perlin <- function(dim, frequency = 0.01, interpolator = 'quintic',
                    fractal = 'fbm', octaves = 3, lacunarity = 2, gain = 0.5,
                    pertubation = 'none', pertubation_amplitude = 1) {
@@ -68,4 +73,22 @@ noise_perlin <- function(dim, frequency = 0.01, interpolator = 'quintic',
     stop('Perlin noise only supports two or three dimensions', call. = FALSE)
   }
   noise
+}
+
+#' @rdname noise_perlin
+#' @param x,y,z Coordinates to get noise value from
+#' @param seed The seed to use for the noise. If `NULL` a random seed will be
+#' used
+#' @export
+gen_perlin <- function(x, y = NULL, z = NULL, frequency = 1, seed = NULL,
+                       interpolator = 'quintic') {
+  dims <- check_dims(x, y, z)
+  interpolator <- match.arg(interpolator, interpolators)
+  interpolator <- match(interpolator, interpolators) - 1
+  if (is.null(seed)) seed <- random_seed()
+  if (is.null(z)) {
+    gen_perlin2d_c(dims$x, dims$y, frequency, seed, interpolator)
+  } else {
+    gen_perlin3d_c(dims$x, dims$y, dims$z, frequency, seed, interpolator)
+  }
 }

@@ -22,6 +22,11 @@
 #'
 #' image(noise, col = grey.colors(256, 0, 1))
 #'
+#' # Using the generator
+#' grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
+#' grid$noise <- gen_simplex(grid$x, grid$y)
+#' plot(as.raster(grid, normalise(noise)))
+#'
 noise_simplex <- function(dim, frequency = 0.01, interpolator = 'quintic',
                    fractal = 'fbm', octaves = 3, lacunarity = 2, gain = 0.5,
                    pertubation = 'none', pertubation_amplitude = 1) {
@@ -54,4 +59,21 @@ noise_simplex <- function(dim, frequency = 0.01, interpolator = 'quintic',
     stop('Simplex noise only supports two, three, or four dimensions', call. = FALSE)
   }
   noise
+}
+
+#' @rdname noise_simplex
+#' @param x,y,z,t Coordinates to get noise value from
+#' @export
+gen_simplex <- function(x, y = NULL, z = NULL, t = NULL, frequency = 1, seed = NULL) {
+  dims <- check_dims(x, y, z, t)
+  if (is.null(seed)) seed <- random_seed()
+  if (is.null(t)) {
+    if (is.null(z)) {
+      gen_simplex2d_c(dims$x, dims$y, frequency, seed)
+    } else {
+      gen_simplex3d_c(dims$x, dims$y, dims$z, frequency, seed)
+    }
+  } else {
+    gen_simplex4d_c(dims$x, dims$y, dims$z, dims$t, frequency, seed)
+  }
 }

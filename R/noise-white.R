@@ -17,6 +17,11 @@
 #'
 #' image(noise, col = grey.colors(256, 0, 1))
 #'
+#' # Using the generator
+#' grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
+#' grid$noise <- gen_white(grid$x, grid$y)
+#' plot(as.raster(grid, normalise(noise)))
+#'
 noise_white <- function(dim, frequency = 0.01, pertubation = 'none', pertubation_amplitude = 1) {
   pertubation <- match.arg(pertubation, pertubations)
   pertubation <- match(pertubation, pertubations) - 1
@@ -40,4 +45,21 @@ noise_white <- function(dim, frequency = 0.01, pertubation = 'none', pertubation
     stop('White noise only supports two, three, or four dimensions', call. = FALSE)
   }
   noise
+}
+
+#' @rdname noise_white
+#' @param x,y,z,t Coordinates to get noise value from
+#' @export
+gen_white <- function(x, y = NULL, z = NULL, t = NULL, frequency = 1, seed = NULL) {
+  dims <- check_dims(x, y, z, t)
+  if (is.null(seed)) seed <- random_seed()
+  if (is.null(t)) {
+    if (is.null(z)) {
+      gen_white2d_c(dims$x, dims$y, frequency, seed)
+    } else {
+      gen_white3d_c(dims$x, dims$y, dims$z, frequency, seed)
+    }
+  } else {
+    gen_white4d_c(dims$x, dims$y, dims$z, dims$t, frequency, seed)
+  }
 }

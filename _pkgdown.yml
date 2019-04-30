@@ -7,7 +7,7 @@ authors:
 
 template:
   params:
-    bootswatch: superhero
+    bootswatch: solar
 
 navbar:
   left:

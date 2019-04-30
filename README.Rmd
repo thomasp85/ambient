@@ -46,7 +46,7 @@ devtools::install_github('thomasp85/ambient')
 ## Examples
 Following is a couple of examples of the noise patterns possible with `ambient`:
 
-```{r}
+```{r, dev.args=list(bg = NA)}
 library(ambient)
 plot_raster <- function(mat) {
   mat <- (mat - min(mat)) / diff(range(mat))

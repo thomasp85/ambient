@@ -7,7 +7,7 @@ authors:
 
 template:
   params:
-    bootswatch: solar
+    bootswatch: darkly
 
 navbar:
   left:
@@ -53,8 +53,16 @@ reference:
       - fracture
       - fbm
       - billow
-      - ridges
+      - ridged
       - clamped
       - curl_noise
       - trans_affine
       - blend
+  - title: "Utilities"
+    desc: >
+      While ambient is mostly about generating noise patterns it does come with
+      a few utilities, wrapped around the long_grid class, which make it easy
+      to work flexibly with the generated values
+    contents:
+      - long_grid
+      - ambient-package

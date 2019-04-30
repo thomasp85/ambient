@@ -117,7 +117,7 @@
 <a class="sourceLine" id="cb2-2" data-line-number="2">simplex &lt;-<span class="st"> </span><span class="kw"><a href="reference/noise_simplex.html">noise_simplex</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">500</span>, <span class="dv">500</span>), <span class="dt">pertubation =</span> <span class="st">'normal'</span>, </a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">                         <span class="dt">pertubation_amplitude =</span> <span class="dv">40</span>)</a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/as.raster">as.raster</a></span>(<span class="kw"><a href="reference/modifications.html">normalise</a></span>(simplex)))</a></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="700"></p>
+<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="960"></p>
 <p>much more powerful, however, is the tidy interface that allows full control of how the values should be calculated and combined:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2"></a>
@@ -133,7 +133,7 @@
 <a class="sourceLine" id="cb3-12" data-line-number="12">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb3-13" data-line-number="13"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/as.raster">as.raster</a></span>(<span class="dt">value =</span> full) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb3-14" data-line-number="14"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>()</a></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="700"></p>
+<p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="960"></p>
 </div>
 <div id="code-of-conduct" class="section level2">
 <h2 class="hasAnchor">

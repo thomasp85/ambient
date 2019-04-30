@@ -44,13 +44,9 @@ pertubation and fractals:
 
 ``` r
 library(ambient)
-plot_raster <- function(mat) {
-  mat <- (mat - min(mat)) / diff(range(mat))
-  plot(as.raster(mat))
-}
 simplex <- noise_simplex(c(500, 500), pertubation = 'normal', 
                          pertubation_amplitude = 40)
-plot_raster(simplex)
+plot(as.raster(normalise(simplex)))
 ```
 
 ![](man/figures/README-unnamed-chunk-3-1.png)

@@ -50,21 +50,17 @@ ambient provides a direct interface to the FastNoise functions by requesting a
 matrix/array of noise values, with a range of settings for pertubation and 
 fractals:
 
-```{r}
+```{r, fig.asp=1}
 library(ambient)
-plot_raster <- function(mat) {
-  mat <- (mat - min(mat)) / diff(range(mat))
-  plot(as.raster(mat))
-}
 simplex <- noise_simplex(c(500, 500), pertubation = 'normal', 
                          pertubation_amplitude = 40)
-plot_raster(simplex)
+plot(as.raster(normalise(simplex)))
 ```
 
 much more powerful, however, is the tidy interface that allows full control of
 how the values should be calculated and combined:
 
-```{r}
+```{r, fig.asp=1}
 library(dplyr)
 
 long_grid(x = seq(0, 10, length.out = 1000), 

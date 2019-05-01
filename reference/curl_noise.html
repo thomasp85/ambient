@@ -147,16 +147,11 @@ thus modelling fluid dynamics quite well.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>curl_noise</span>(<span class='no'>grid</span>, <span class='no'>generator</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>z</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>delta</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>curl_noise</span>(<span class='no'>generator</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>z</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>delta</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>grid</th>
-      <td><p>A long_grid object or a data.frame</p></td>
-    </tr>
     <tr>
       <th>generator</th>
       <td><p>The noise generating function, such as <a href='noise_simplex.html'>gen_simplex</a>, or
@@ -181,12 +176,6 @@ seeds will be random.</p></td>
       <td><p>The offset to use for the partial derivative of the <code>generator</code>.
 If <code>NULL</code>, it will be set as 1e-4 of the largest range of the dimensions.</p></td>
     </tr>
-    <tr>
-      <th>output</th>
-      <td><p>The name to save the generated fields in. Must be a character
-vector with 2 or 3 strings in, for 2D and 3D curl respectively. If <code>NULL</code>
-they will be derived from <code>x</code>, <code>y</code> (, and <code>z</code>)</p></td>
-    </tr>
     </table>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -199,12 +188,12 @@ ACM Transactions on Graphics 26(3): 46. doi:10.1145/1275808.1276435.</p>
     <pre class="examples"><div class='input'><span class='no'>grid</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='long_grid.html'>long_grid</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, <span class='kw'>l</span> <span class='kw'>=</span> <span class='fl'>100</span>), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/seq'>seq</a></span>(<span class='fl'>0</span>, <span class='fl'>1</span>, <span class='kw'>l</span> <span class='kw'>=</span> <span class='fl'>100</span>))
 
 <span class='co'># Use one of the generators</span>
-<span class='no'>grid</span> <span class='kw'>&lt;-</span> <span class='fu'>curl_noise</span>(<span class='no'>grid</span>, <span class='no'>gen_simplex</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'x1'</span>, <span class='st'>'y1'</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>grid</span>$<span class='no'>x</span>, <span class='no'>grid</span>$<span class='no'>y</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>'n'</span>)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/segments'>segments</a></span>(<span class='no'>grid</span>$<span class='no'>x</span>, <span class='no'>grid</span>$<span class='no'>y</span>, <span class='no'>grid</span>$<span class='no'>x</span> + <span class='no'>grid</span>$<span class='no'>x1</span> / <span class='fl'>100</span>, <span class='no'>grid</span>$<span class='no'>y</span> + <span class='no'>grid</span>$<span class='no'>y1</span> / <span class='fl'>100</span>)</div><div class='img'><img src='curl_noise-1.png' alt='' width='960' height='960' /></div><div class='input'>
+<span class='no'>grid</span>$<span class='no'>curl</span> <span class='kw'>&lt;-</span> <span class='fu'>curl_noise</span>(<span class='no'>gen_simplex</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>grid</span>$<span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>grid</span>$<span class='no'>y</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>grid</span>$<span class='no'>x</span>, <span class='no'>grid</span>$<span class='no'>y</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>'n'</span>)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/segments'>segments</a></span>(<span class='no'>grid</span>$<span class='no'>x</span>, <span class='no'>grid</span>$<span class='no'>y</span>, <span class='no'>grid</span>$<span class='no'>x</span> + <span class='no'>grid</span>$<span class='no'>curl</span>$<span class='no'>x</span> / <span class='fl'>100</span>, <span class='no'>grid</span>$<span class='no'>y</span> + <span class='no'>grid</span>$<span class='no'>curl</span>$<span class='no'>y</span> / <span class='fl'>100</span>)</div><div class='img'><img src='curl_noise-1.png' alt='' width='960' height='960' /></div><div class='input'>
 <span class='co'># If the curl of fractal noise is needed, pass in `fracture` instead</span>
-<span class='no'>grid</span> <span class='kw'>&lt;-</span> <span class='fu'>curl_noise</span>(<span class='no'>grid</span>, <span class='no'>fracture</span>, <span class='kw'>noise</span> <span class='kw'>=</span> <span class='no'>gen_simplex</span>, <span class='kw'>fractal</span> <span class='kw'>=</span> <span class='no'>fbm</span>,
-                   <span class='kw'>octaves</span> <span class='kw'>=</span> <span class='fl'>4</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'x1'</span>, <span class='st'>'y1'</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>grid</span>$<span class='no'>x</span>, <span class='no'>grid</span>$<span class='no'>y</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>'n'</span>)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/segments'>segments</a></span>(<span class='no'>grid</span>$<span class='no'>x</span>, <span class='no'>grid</span>$<span class='no'>y</span>, <span class='no'>grid</span>$<span class='no'>x</span> + <span class='no'>grid</span>$<span class='no'>x1</span> / <span class='fl'>500</span>, <span class='no'>grid</span>$<span class='no'>y</span> + <span class='no'>grid</span>$<span class='no'>y1</span> / <span class='fl'>500</span>)</div><div class='img'><img src='curl_noise-2.png' alt='' width='960' height='960' /></div><div class='input'>
+<span class='no'>grid</span>$<span class='no'>curl</span> <span class='kw'>&lt;-</span> <span class='fu'>curl_noise</span>(<span class='no'>fracture</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>grid</span>$<span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>grid</span>$<span class='no'>y</span>, <span class='kw'>noise</span> <span class='kw'>=</span> <span class='no'>gen_simplex</span>,
+                        <span class='kw'>fractal</span> <span class='kw'>=</span> <span class='no'>fbm</span>, <span class='kw'>octaves</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>grid</span>$<span class='no'>x</span>, <span class='no'>grid</span>$<span class='no'>y</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>'n'</span>)</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/segments'>segments</a></span>(<span class='no'>grid</span>$<span class='no'>x</span>, <span class='no'>grid</span>$<span class='no'>y</span>, <span class='no'>grid</span>$<span class='no'>x</span> + <span class='no'>grid</span>$<span class='no'>curl</span>$<span class='no'>x</span> / <span class='fl'>500</span>, <span class='no'>grid</span>$<span class='no'>y</span> + <span class='no'>grid</span>$<span class='no'>curl</span>$<span class='no'>y</span> / <span class='fl'>500</span>)</div><div class='img'><img src='curl_noise-2.png' alt='' width='960' height='960' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

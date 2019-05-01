@@ -4,7 +4,15 @@ fractals <- c('none', 'fbm', 'billow', 'rigid-multi')
 distances <- c('euclidean', 'manhattan', 'natural')
 values <- c('cell', 'noise', 'distance', 'distance2', 'distance2add', 'distance2sub', 'distance2mul', 'distance2div')
 
-random_seed <- function() sample(.Machine$integer.max, size = 1)
+random_seed <- function(n = 1, seed = NULL) {
+  if (!is.null(seed)) {
+    next_seed <- random_seed()
+    set.seed(as.integer(seed))
+    on.exit(set.seed(next_seed))
+  }
+  sample(.Machine$integer.max, size = n)
+}
+
 check_dims <- function(x, y = NULL, z = NULL, t = NULL) {
   l <- max(length(x), length(y), length(z), length(t))
   if (length(x) == 1) x <- rep(x, l)

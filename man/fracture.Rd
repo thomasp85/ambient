@@ -4,8 +4,8 @@
 \alias{fracture}
 \title{Create fractals of a noise or pattern}
 \usage{
-fracture(noise, fractal, octaves, gain = ~./2, frequency = ~. * 2, ...,
-  fractal_args = list())
+fracture(noise, fractal, octaves, gain = ~./2, frequency = ~. * 2,
+  seed = NULL, ..., fractal_args = list())
 }
 \arguments{
 \item{noise}{The noise function to create a fractal from. Must have a
@@ -35,6 +35,9 @@ e.g. \code{~ . / 2}. The default is often a good starting point though e.g.
 \item{frequency}{The frequency to use at each octave. Can either be a vector
 of values or a function that returns a new value based on the prior. See
 \code{gain}.}
+
+\item{seed}{A seed for the noise generator. Will be expanded to the number of
+octaves so each gets a unique seed.}
 
 \item{...}{arguments to pass on to \code{generator}}
 

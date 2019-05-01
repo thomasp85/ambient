@@ -26,6 +26,8 @@
 #' @param frequency The frequency to use at each octave. Can either be a vector
 #' of values or a function that returns a new value based on the prior. See
 #' `gain`.
+#' @param seed A seed for the noise generator. Will be expanded to the number of
+#' octaves so each gets a unique seed.
 #' @param ... arguments to pass on to `generator`
 #' @param fractal_args Additional arguments to `fractal` as a named list
 #'
@@ -47,7 +49,7 @@
 #' plot(as.raster(grid, normalise(fractal_perlin)))
 #'
 fracture <- function(noise, fractal, octaves, gain = ~ . / 2,
-                     frequency = ~ . * 2, ..., fractal_args = list()) {
+                     frequency = ~ . * 2, seed = NULL, ..., fractal_args = list()) {
   if (is.function(gain) || is_formula(gain)) {
     gain <- as_function(gain)
     gain <- Reduce(function(l, r) gain(l), seq_len(octaves), accumulate = TRUE)
@@ -61,6 +63,7 @@ fracture <- function(noise, fractal, octaves, gain = ~ . / 2,
     frequency <- rep_len(frequency, octaves)
   }
 
+  seed <- random_seed(octaves, seed)
   frac <- 0
   for (i in seq_len(octaves)) {
     frac <- do.call(
@@ -68,7 +71,7 @@ fracture <- function(noise, fractal, octaves, gain = ~ . / 2,
       c(
         list(
           base = frac,
-          new = noise(..., frequency = frequency[i]),
+          new = noise(..., frequency = frequency[i], seed = seed[i]),
           strength = gain[i],
           octave = i
         ),

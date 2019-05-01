@@ -6,11 +6,8 @@
 #' easy to stack multiple transformations into one, but require the ggforce
 #' package.
 #'
-#' @param grid A long_grid object
+#' @param x,y The coordinates to transform
 #' @param ... A sequence of transformations
-#' @param x,y The unquoted columns holding the x and y coordinates to transform
-#' @param output The column names to save the transformed coordinates in. If
-#' `NULL` the names will be derived from `x` and `y`.
 #'
 #' @section Linear Transformations:
 #' The following transformation matrix constructors are supplied, but you can
@@ -29,25 +26,15 @@
 #'
 #' @examples
 #' grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
-#' grid <- trans_affine(grid, rotate(pi/3), shear(-2), rotate(-pi/3), x = x, y = y)
-#' grid$chess <- gen_checkerboard(grid$x, grid$y)
+#' grid$trans <- trans_affine(grid$x, grid$y, rotate(pi/3), shear(-2), rotate(-pi/3))
+#' grid$chess <- gen_checkerboard(grid$trans$x, grid$trans$y)
 #'
 #' plot(as.raster(grid, chess))
 #'
-trans_affine <- function(grid, ..., x, y, output = NULL) {
-  x <- enquo(x)
-  y <- enquo(y)
-  if (!inherits(grid, 'long_grid')) {
-    stop('grid must be a long_grid object', call. = FALSE)
-  }
-  if (is.null(output)) {
-    output <- c(quo_name(x), quo_name(y))
-  }
+trans_affine <- function(x, y, ...) {
   trans_mat <- Reduce(function(l, r) r %*% l, list(...))
-  trans <- trans_mat %*% rbind(eval_tidy(x, grid), eval_tidy(y, grid), z = 1)
-  grid[[output[1]]] <- trans[1, ]
-  grid[[output[2]]] <- trans[2, ]
-  grid
+  trans <- trans_mat %*% rbind(x, y, z = 1)
+  data.frame(x = trans[1,], y = trans[2,])
 }
 
 #' @rdname trans_affine

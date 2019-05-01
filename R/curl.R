@@ -9,19 +9,15 @@
 #' simplex and perlin noise. The end result is a field that is incompressible,
 #' thus modelling fluid dynamics quite well.
 #'
-#' @param grid A long_grid object or a data.frame
+#' @param x,y,z The coordinates to generate the curl for as unquoted expressions
 #' @param generator The noise generating function, such as [gen_simplex], or
 #' [fracture()]
-#' @param x,y,z The coordinates to generate the curl for as unquoted expressions
 #' @param ... Further arguments to `generator`
 #' @param seed A seed for the generator. For 2D curl the seed is a single
 #' integer and for 3D curl it must be a vector of 3 integers. If `NULL` the
 #' seeds will be random.
 #' @param delta The offset to use for the partial derivative of the `generator`.
 #' If `NULL`, it will be set as 1e-4 of the largest range of the dimensions.
-#' @param output The name to save the generated fields in. Must be a character
-#' vector with 2 or 3 strings in, for 2D and 3D curl respectively. If `NULL`
-#' they will be derived from `x`, `y` (, and `z`)
 #'
 #' @export
 #'
@@ -33,40 +29,22 @@
 #' grid <- long_grid(seq(0, 1, l = 100), seq(0, 1, l = 100))
 #'
 #' # Use one of the generators
-#' grid <- curl_noise(grid, gen_simplex, x = x, y = y, output = c('x1', 'y1'))
+#' grid$curl <- curl_noise(gen_simplex, x = grid$x, y = grid$y)
 #' plot(grid$x, grid$y, type = 'n')
-#' segments(grid$x, grid$y, grid$x + grid$x1 / 100, grid$y + grid$y1 / 100)
+#' segments(grid$x, grid$y, grid$x + grid$curl$x / 100, grid$y + grid$curl$y / 100)
 #'
 #' # If the curl of fractal noise is needed, pass in `fracture` instead
-#' grid <- curl_noise(grid, fracture, noise = gen_simplex, fractal = fbm,
-#'                    octaves = 4, x = x, y = y, output = c('x1', 'y1'))
+#' grid$curl <- curl_noise(fracture, x = grid$x, y = grid$y, noise = gen_simplex,
+#'                         fractal = fbm, octaves = 4)
 #' plot(grid$x, grid$y, type = 'n')
-#' segments(grid$x, grid$y, grid$x + grid$x1 / 500, grid$y + grid$y1 / 500)
+#' segments(grid$x, grid$y, grid$x + grid$curl$x / 500, grid$y + grid$curl$y / 500)
 #'
-curl_noise <- function(grid, generator, x, y, z = NULL, ..., seed = NULL, delta = NULL, output = NULL) {
-  x <- enquo(x)
-  y <- enquo(y)
-  z <- enquo(z)
-  if (is.null(output)) {
-    output <- c(quo_name(x), quo_name(y), quo_name(z))
-  }
-  x <- eval_tidy(x, grid)
-  y <- eval_tidy(y, grid)
-  z <- eval_tidy(z, grid)
-
+curl_noise <- function(generator, x, y, z = NULL, ..., seed = NULL, delta = NULL) {
   if (is.null(z) || length(z) == 1) {
-    vel <- .curl_noise2d(generator, x, y, z = z, ...,
-                         seed = seed, delta = delta)
-    grid[[output[1]]] <- vel$x
-    grid[[output[2]]] <- vel$y
+    .curl_noise2d(generator, x, y, z = z, ..., seed = seed, delta = delta)
   } else {
-    vel <- .curl_noise3d(generator, eval_tidy(x, grid), eval_tidy(y, grid),
-                         eval_tidy(z, grid), ..., seed = seed, delta = delta)
-    grid[[output[1]]] <- vel$x
-    grid[[output[2]]] <- vel$y
-    grid[[output[3]]] <- vel$z
+    .curl_noise3d(generator, x, y, z, ..., seed = seed, delta = delta)
   }
-  grid
 }
 
 .curl_noise2d <- function(generator, x, y, ..., seed = NULL, delta = NULL) {
@@ -81,7 +59,7 @@ curl_noise <- function(grid, generator, x, y, z = NULL, ..., seed = NULL, delta 
   velocity_y <- generator(x = x + delta, y = y, seed = seed, ...) -
     generator(x = x - delta, y = y, seed = seed, ...)
   velocity_y <- velocity_y / (2 * delta)
-  list(x = velocity_x, y = velocity_y)
+  data.frame(x = velocity_x, y = velocity_y)
 }
 
 .curl_noise3d <- function(generator, x, y, z, ..., seed = NULL, delta = NULL) {
@@ -113,5 +91,5 @@ curl_noise <- function(grid, generator, x, y, z = NULL, ..., seed = NULL, delta 
     generator(x = x, y = y - delta, z = z, seed = seed[1], ...)
   )) / (2 * delta)
 
-  list(x = velocity_x, y = velocity_y, z = velocity_z)
+  data.frame(x = velocity_x, y = velocity_y, z = velocity_z)
 }

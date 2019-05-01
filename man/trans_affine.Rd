@@ -9,7 +9,7 @@
 \alias{reflect}
 \title{Apply linear transformation to a long_grid}
 \usage{
-trans_affine(grid, ..., x, y, output = NULL)
+trans_affine(x, y, ...)
 
 rotate(angle = 0)
 
@@ -22,14 +22,9 @@ translate(x0 = 0, y0 = 0)
 reflect(x0 = 0, y0 = 0)
 }
 \arguments{
-\item{grid}{A long_grid object}
+\item{x, y}{The coordinates to transform}
 
 \item{...}{A sequence of transformations}
-
-\item{x, y}{The unquoted columns holding the x and y coordinates to transform}
-
-\item{output}{The column names to save the transformed coordinates in. If
-\code{NULL} the names will be derived from \code{x} and \code{y}.}
 
 \item{angle}{An angle in radians}
 
@@ -62,8 +57,8 @@ and \code{x0, y0}.
 
 \examples{
 grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
-grid <- trans_affine(grid, rotate(pi/3), shear(-2), rotate(-pi/3), x = x, y = y)
-grid$chess <- gen_checkerboard(grid$x, grid$y)
+grid$trans <- trans_affine(grid$x, grid$y, rotate(pi/3), shear(-2), rotate(-pi/3))
+grid$chess <- gen_checkerboard(grid$trans$x, grid$trans$y)
 
 plot(as.raster(grid, chess))
 

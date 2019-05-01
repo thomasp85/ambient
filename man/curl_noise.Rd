@@ -4,12 +4,9 @@
 \alias{curl_noise}
 \title{Generate curl noise}
 \usage{
-curl_noise(grid, generator, x, y, z = NULL, ..., seed = NULL,
-  delta = NULL, output = NULL)
+curl_noise(generator, x, y, z = NULL, ..., seed = NULL, delta = NULL)
 }
 \arguments{
-\item{grid}{A long_grid object or a data.frame}
-
 \item{generator}{The noise generating function, such as \link{gen_simplex}, or
 \code{\link[=fracture]{fracture()}}}
 
@@ -23,10 +20,6 @@ seeds will be random.}
 
 \item{delta}{The offset to use for the partial derivative of the \code{generator}.
 If \code{NULL}, it will be set as 1e-4 of the largest range of the dimensions.}
-
-\item{output}{The name to save the generated fields in. Must be a character
-vector with 2 or 3 strings in, for 2D and 3D curl respectively. If \code{NULL}
-they will be derived from \code{x}, \code{y} (, and \code{z})}
 }
 \description{
 One of the use cases for fractal noise is to simulate natural phenomena.
@@ -42,15 +35,15 @@ thus modelling fluid dynamics quite well.
 grid <- long_grid(seq(0, 1, l = 100), seq(0, 1, l = 100))
 
 # Use one of the generators
-grid <- curl_noise(grid, gen_simplex, x = x, y = y, output = c('x1', 'y1'))
+grid$curl <- curl_noise(gen_simplex, x = grid$x, y = grid$y)
 plot(grid$x, grid$y, type = 'n')
-segments(grid$x, grid$y, grid$x + grid$x1 / 100, grid$y + grid$y1 / 100)
+segments(grid$x, grid$y, grid$x + grid$curl$x / 100, grid$y + grid$curl$y / 100)
 
 # If the curl of fractal noise is needed, pass in `fracture` instead
-grid <- curl_noise(grid, fracture, noise = gen_simplex, fractal = fbm,
-                   octaves = 4, x = x, y = y, output = c('x1', 'y1'))
+grid$curl <- curl_noise(fracture, x = grid$x, y = grid$y, noise = gen_simplex,
+                        fractal = fbm, octaves = 4)
 plot(grid$x, grid$y, type = 'n')
-segments(grid$x, grid$y, grid$x + grid$x1 / 500, grid$y + grid$y1 / 500)
+segments(grid$x, grid$y, grid$x + grid$curl$x / 500, grid$y + grid$curl$y / 500)
 
 }
 \references{

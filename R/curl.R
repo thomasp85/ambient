@@ -63,7 +63,7 @@ curl_noise <- function(generator, x, y, z = NULL, ..., seed = NULL, delta = NULL
 }
 
 .curl_noise3d <- function(generator, x, y, z, ..., seed = NULL, delta = NULL) {
-  if (is.null(seed)) seed <- c(random_seed(), random_seed(), random_seed())
+  seed <- random_seed(3, seed)
   if (is.null(delta)) {
     delta <- max(diff(range(x)), diff(range(y)), diff(range(z))) * 1e-4
   }

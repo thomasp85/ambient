@@ -18,6 +18,15 @@
 #' seeds will be random.
 #' @param delta The offset to use for the partial derivative of the `generator`.
 #' If `NULL`, it will be set as 1e-4 of the largest range of the dimensions.
+#' @param mod A modification function taking the coordinates along with the
+#' output of the `generator` call and allow modifications of it prior to
+#' calculating the curl. The function will get the coordinates as well as a
+#' `value` holding the generator output for each coordinate. If the curl is
+#' requested in 2D the value will be a numeric vector and `mod()` should return
+#' a numeric vector of the same length. IF the curl is requested in 3D the value
+#' is a list of three numeric vectors (x, y, and z) and `mod()` should return a
+#' list of three vectors of the same length. Passing NULL will use the generator
+#' values unmodified.
 #'
 #' @export
 #'
@@ -39,57 +48,62 @@
 #' plot(grid$x, grid$y, type = 'n')
 #' segments(grid$x, grid$y, grid$x + grid$curl$x / 500, grid$y + grid$curl$y / 500)
 #'
-curl_noise <- function(generator, x, y, z = NULL, ..., seed = NULL, delta = NULL) {
+curl_noise <- function(generator, x, y, z = NULL, ..., seed = NULL, delta = NULL, mod = NULL) {
   if (is.null(z) || length(z) == 1) {
-    .curl_noise2d(generator, x, y, z = z, ..., seed = seed, delta = delta)
+    .curl_noise2d(generator, x, y, z = z, ..., seed = seed, delta = delta, mod = mod)
   } else {
-    .curl_noise3d(generator, x, y, z, ..., seed = seed, delta = delta)
+    .curl_noise3d(generator, x, y, z, ..., seed = seed, delta = delta, mod = mod)
   }
 }
 
-.curl_noise2d <- function(generator, x, y, ..., seed = NULL, delta = NULL) {
+.curl_noise2d <- function(generator, x, y, ..., seed = NULL, delta = NULL, mod = NULL) {
   if (is.null(seed)) seed <- random_seed()
   if (is.null(delta)) {
     delta <- max(diff(range(x)), diff(range(y))) * 1e-4
   }
-  velocity_x <- generator(x = x, y = y + delta, seed = seed, ...) -
-    generator(x = x, y = y - delta, seed = seed, ...)
-  velocity_x <- -velocity_x / (2 * delta)
 
-  velocity_y <- generator(x = x + delta, y = y, seed = seed, ...) -
-    generator(x = x - delta, y = y, seed = seed, ...)
-  velocity_y <- velocity_y / (2 * delta)
+  valx1 <- with_mod2(x = x + delta, y = y, generator, mod, seed = seed, ...)
+  valx2 <- with_mod2(x = x - delta, y = y, generator, mod, seed = seed, ...)
+  valy1 <- with_mod2(x = x, y = y + delta, generator, mod, seed = seed, ...)
+  valy2 <- with_mod2(x = x, y = y - delta, generator, mod, seed = seed, ...)
+
+  velocity_x <- -(valy1 - valy2) / (2 * delta)
+  velocity_y <- (valx1 - valx2)  / (2 * delta)
+
   data.frame(x = velocity_x, y = velocity_y)
 }
+with_mod2 <- function(x, y, gen, mod, ...) {
+  value <- gen(x = x, y = y, ...)
+  if (is.null(mod)) return(value)
+  mod(x = x, y = y, value)
+}
 
-.curl_noise3d <- function(generator, x, y, z, ..., seed = NULL, delta = NULL) {
+
+.curl_noise3d <- function(generator, x, y, z, ..., seed = NULL, delta = NULL, mod = NULL) {
   seed <- random_seed(3, seed)
   if (is.null(delta)) {
     delta <- max(diff(range(x)), diff(range(y)), diff(range(z))) * 1e-4
   }
-  velocity_x <- ((
-    generator(x = x, y = y + delta, z = z, seed = seed[3], ...) -
-    generator(x = x, y = y - delta, z = z, seed = seed[3], ...)
-  ) - (
-    generator(x = x, y = y, z = z + delta, seed = seed[2], ...) -
-    generator(x = x, y = y, z = z - delta, seed = seed[2], ...)
-  )) / (2 * delta)
 
-  velocity_y <- ((
-    generator(x = x, y = y, z = z + delta, seed = seed[1], ...) -
-    generator(x = x, y = y, z = z - delta, seed = seed[1], ...)
-  ) - (
-    generator(x = x + delta, y = y, z = z, seed = seed[3], ...) -
-    generator(x = x - delta, y = y, z = z, seed = seed[3], ...)
-  )) / (2 * delta)
+  valx1 <- with_mod3(x = x + delta, y = y, z = z, seed = seed, generator, mod, seed = seed, ...)
+  valx2 <- with_mod3(x = x - delta, y = y, z = z, seed = seed, generator, mod, seed = seed, ...)
+  valy1 <- with_mod3(x = x, y = y + delta, z = z, seed = seed, generator, mod, seed = seed, ...)
+  valy2 <- with_mod3(x = x, y = y - delta, z = z, seed = seed, generator, mod, seed = seed, ...)
+  valz1 <- with_mod3(x = x, y = y, z = z + delta, seed = seed, generator, mod, seed = seed, ...)
+  valz2 <- with_mod3(x = x, y = y, z = z - delta, seed = seed, generator, mod, seed = seed, ...)
 
-  velocity_z <- ((
-    generator(x = x + delta, y = y, z = z, seed = seed[2], ...) -
-    generator(x = x - delta, y = y, z = z, seed = seed[2], ...)
-  ) - (
-    generator(x = x, y = y + delta, z = z, seed = seed[1], ...) -
-    generator(x = x, y = y - delta, z = z, seed = seed[1], ...)
-  )) / (2 * delta)
+  velocity_x <- ((valy1[[3]] - valy2[[3]]) - (valz1[[2]] - valz2[[2]])) / (2 * delta)
+  velocity_y <- ((valz1[[1]] - valz2[[1]]) - (valx1[[3]] - valx2[[3]])) / (2 * delta)
+  velocity_z <- ((valx1[[2]] - valx2[[2]]) - (valy1[[1]] - valy2[[1]])) / (2 * delta)
 
   data.frame(x = velocity_x, y = velocity_y, z = velocity_z)
+}
+with_mod3 <- function(x, y, z, seed, gen, mod, ...) {
+  value <- list(
+    gen(x = x, y = y, z = z, seed = seed[1], ...),
+    gen(x = x, y = y, z = z, seed = seed[2], ...),
+    gen(x = x, y = y, z = z, seed = seed[3], ...)
+  )
+  if (is.null(mod)) return(value)
+  mod(x = x, y = y, z = z, value)
 }

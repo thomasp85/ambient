@@ -4,7 +4,8 @@
 \alias{curl_noise}
 \title{Generate curl noise}
 \usage{
-curl_noise(generator, x, y, z = NULL, ..., seed = NULL, delta = NULL)
+curl_noise(generator, x, y, z = NULL, ..., seed = NULL, delta = NULL,
+  mod = NULL)
 }
 \arguments{
 \item{generator}{The noise generating function, such as \link{gen_simplex}, or
@@ -20,6 +21,16 @@ seeds will be random.}
 
 \item{delta}{The offset to use for the partial derivative of the \code{generator}.
 If \code{NULL}, it will be set as 1e-4 of the largest range of the dimensions.}
+
+\item{mod}{A modification function taking the coordinates along with the
+output of the \code{generator} call and allow modifications of it prior to
+calculating the curl. The function will get the coordinates as well as a
+\code{value} holding the generator output for each coordinate. If the curl is
+requested in 2D the value will be a numeric vector and \code{mod()} should return
+a numeric vector of the same length. IF the curl is requested in 3D the value
+is a list of three numeric vectors (x, y, and z) and \code{mod()} should return a
+list of three vectors of the same length. Passing NULL will use the generator
+values unmodified.}
 }
 \description{
 One of the use cases for fractal noise is to simulate natural phenomena.

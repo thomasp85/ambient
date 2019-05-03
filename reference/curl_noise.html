@@ -147,7 +147,8 @@ thus modelling fluid dynamics quite well.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>curl_noise</span>(<span class='no'>generator</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>z</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>delta</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>curl_noise</span>(<span class='no'>generator</span>, <span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>z</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>delta</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>mod</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -175,6 +176,18 @@ seeds will be random.</p></td>
       <th>delta</th>
       <td><p>The offset to use for the partial derivative of the <code>generator</code>.
 If <code>NULL</code>, it will be set as 1e-4 of the largest range of the dimensions.</p></td>
+    </tr>
+    <tr>
+      <th>mod</th>
+      <td><p>A modification function taking the coordinates along with the
+output of the <code>generator</code> call and allow modifications of it prior to
+calculating the curl. The function will get the coordinates as well as a
+<code>value</code> holding the generator output for each coordinate. If the curl is
+requested in 2D the value will be a numeric vector and <code>mod()</code> should return
+a numeric vector of the same length. IF the curl is requested in 3D the value
+is a list of three numeric vectors (x, y, and z) and <code>mod()</code> should return a
+list of three vectors of the same length. Passing NULL will use the generator
+values unmodified.</p></td>
     </tr>
     </table>
     

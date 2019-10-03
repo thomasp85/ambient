@@ -30,5 +30,5 @@ Imports:
 LinkingTo: Rcpp
 RoxygenNote: 6.1.1
 Roxygen: list(markdown = TRUE)
-URL: https://github.com/thomasp85/ambient
+URL: https://ambient.data-imaginist.com, https://github.com/thomasp85/ambient
 BugReports: https://github.com/thomasp85/ambient/issues

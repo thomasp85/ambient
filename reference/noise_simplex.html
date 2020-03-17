@@ -142,12 +142,19 @@ to perlin noise, simplex noise has lower computational complexity, making it
 feasable for dimensions above 3 and has no directional artifacts.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>noise_simplex</span>(<span class='no'>dim</span>, <span class='kw'>frequency</span> <span class='kw'>=</span> <span class='fl'>0.01</span>, <span class='kw'>interpolator</span> <span class='kw'>=</span> <span class='st'>"quintic"</span>,
-  <span class='kw'>fractal</span> <span class='kw'>=</span> <span class='st'>"fbm"</span>, <span class='kw'>octaves</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>lacunarity</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>gain</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
-  <span class='kw'>pertubation</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>pertubation_amplitude</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+    <pre class="usage"><span class='fu'>noise_simplex</span>(
+  <span class='no'>dim</span>,
+  <span class='kw'>frequency</span> <span class='kw'>=</span> <span class='fl'>0.01</span>,
+  <span class='kw'>interpolator</span> <span class='kw'>=</span> <span class='st'>"quintic"</span>,
+  <span class='kw'>fractal</span> <span class='kw'>=</span> <span class='st'>"fbm"</span>,
+  <span class='kw'>octaves</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>lacunarity</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>gain</span> <span class='kw'>=</span> <span class='fl'>0.5</span>,
+  <span class='kw'>pertubation</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
+  <span class='kw'>pertubation_amplitude</span> <span class='kw'>=</span> <span class='fl'>1</span>
+)
 
-<span class='fu'>gen_simplex</span>(<span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>z</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>frequency</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+<span class='fu'>gen_simplex</span>(<span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>z</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>t</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>frequency</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

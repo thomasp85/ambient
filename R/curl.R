@@ -85,12 +85,12 @@ with_mod2 <- function(x, y, gen, mod, ...) {
     delta <- max(diff(range(x)), diff(range(y)), diff(range(z))) * 1e-4
   }
 
-  valx1 <- with_mod3(x = x + delta, y = y, z = z, seed = seed, generator, mod, seed = seed, ...)
-  valx2 <- with_mod3(x = x - delta, y = y, z = z, seed = seed, generator, mod, seed = seed, ...)
-  valy1 <- with_mod3(x = x, y = y + delta, z = z, seed = seed, generator, mod, seed = seed, ...)
-  valy2 <- with_mod3(x = x, y = y - delta, z = z, seed = seed, generator, mod, seed = seed, ...)
-  valz1 <- with_mod3(x = x, y = y, z = z + delta, seed = seed, generator, mod, seed = seed, ...)
-  valz2 <- with_mod3(x = x, y = y, z = z - delta, seed = seed, generator, mod, seed = seed, ...)
+  valx1 <- with_mod3(x = x + delta, y = y, z = z, generator, mod, seed = seed, ...)
+  valx2 <- with_mod3(x = x - delta, y = y, z = z, generator, mod, seed = seed, ...)
+  valy1 <- with_mod3(x = x, y = y + delta, z = z, generator, mod, seed = seed, ...)
+  valy2 <- with_mod3(x = x, y = y - delta, z = z, generator, mod, seed = seed, ...)
+  valz1 <- with_mod3(x = x, y = y, z = z + delta, generator, mod, seed = seed, ...)
+  valz2 <- with_mod3(x = x, y = y, z = z - delta, generator, mod, seed = seed, ...)
 
   velocity_x <- ((valy1[[3]] - valy2[[3]]) - (valz1[[2]] - valz2[[2]])) / (2 * delta)
   velocity_y <- ((valz1[[1]] - valz2[[1]]) - (valx1[[3]] - valx2[[3]])) / (2 * delta)

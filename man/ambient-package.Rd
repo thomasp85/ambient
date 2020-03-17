@@ -6,7 +6,7 @@
 \alias{ambient-package}
 \title{ambient: A Generator of Multidimensional Noise}
 \description{
-\if{html}{\figure{logo.png}{options: align='right'}}
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
 Generation of natural looking noise has many application within 
     simulation, procedural generation, and art, to name a few. The 'ambient' 
@@ -21,6 +21,7 @@ Generation of natural looking noise has many application within
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://ambient.data-imaginist.com}
   \item \url{https://github.com/thomasp85/ambient}
   \item Report bugs at \url{https://github.com/thomasp85/ambient/issues}
 }

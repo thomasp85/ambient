@@ -32,7 +32,8 @@ plot(as.raster(grid, normalise(wave)))
 
 }
 \seealso{
-Other Pattern generators: \code{\link{gen_checkerboard}},
-  \code{\link{gen_spheres}}
+Other Pattern generators: 
+\code{\link{gen_checkerboard}()},
+\code{\link{gen_spheres}()}
 }
 \concept{Pattern generators}

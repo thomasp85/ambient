@@ -5,12 +5,19 @@
 \alias{gen_simplex}
 \title{Simplex noise generator}
 \usage{
-noise_simplex(dim, frequency = 0.01, interpolator = "quintic",
-  fractal = "fbm", octaves = 3, lacunarity = 2, gain = 0.5,
-  pertubation = "none", pertubation_amplitude = 1)
+noise_simplex(
+  dim,
+  frequency = 0.01,
+  interpolator = "quintic",
+  fractal = "fbm",
+  octaves = 3,
+  lacunarity = 2,
+  gain = 0.5,
+  pertubation = "none",
+  pertubation_amplitude = 1
+)
 
-gen_simplex(x, y = NULL, z = NULL, t = NULL, frequency = 1,
-  seed = NULL)
+gen_simplex(x, y = NULL, z = NULL, t = NULL, frequency = 1, seed = NULL)
 }
 \arguments{
 \item{dim}{The dimensions (height, width, (and depth, (and time))) of the

@@ -27,7 +27,8 @@ plot(as.raster(grid, chess))
 
 }
 \seealso{
-Other Pattern generators: \code{\link{gen_spheres}},
-  \code{\link{gen_waves}}
+Other Pattern generators: 
+\code{\link{gen_spheres}()},
+\code{\link{gen_waves}()}
 }
 \concept{Pattern generators}

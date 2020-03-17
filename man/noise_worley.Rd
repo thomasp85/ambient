@@ -5,14 +5,32 @@
 \alias{gen_worley}
 \title{Worley (cell) noise generator}
 \usage{
-noise_worley(dim, frequency = 0.01, distance = "euclidean",
-  fractal = "none", octaves = 3, lacunarity = 2, gain = 0.5,
-  value = "cell", distance_ind = c(1, 2), jitter = 0.45,
-  pertubation = "none", pertubation_amplitude = 1)
+noise_worley(
+  dim,
+  frequency = 0.01,
+  distance = "euclidean",
+  fractal = "none",
+  octaves = 3,
+  lacunarity = 2,
+  gain = 0.5,
+  value = "cell",
+  distance_ind = c(1, 2),
+  jitter = 0.45,
+  pertubation = "none",
+  pertubation_amplitude = 1
+)
 
-gen_worley(x, y = NULL, z = NULL, frequency = 1, seed = NULL,
-  distance = "euclidean", value = "cell", distance_ind = c(1, 2),
-  jitter = 0.45)
+gen_worley(
+  x,
+  y = NULL,
+  z = NULL,
+  frequency = 1,
+  seed = NULL,
+  distance = "euclidean",
+  value = "cell",
+  distance_ind = c(1, 2),
+  jitter = 0.45
+)
 }
 \arguments{
 \item{dim}{The dimensions (height, width, (and depth)) of the noise to be

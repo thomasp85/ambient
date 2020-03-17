@@ -31,7 +31,9 @@ plot(as.raster(grid, normalise(simplex)))
 
 }
 \seealso{
-Other Fractal functions: \code{\link{billow}},
-  \code{\link{fbm}}, \code{\link{ridged}}
+Other Fractal functions: 
+\code{\link{billow}()},
+\code{\link{fbm}()},
+\code{\link{ridged}()}
 }
 \concept{Fractal functions}

@@ -4,8 +4,16 @@
 \alias{fracture}
 \title{Create fractals of a noise or pattern}
 \usage{
-fracture(noise, fractal, octaves, gain = ~./2, frequency = ~. * 2,
-  seed = NULL, ..., fractal_args = list())
+fracture(
+  noise,
+  fractal,
+  octaves,
+  gain = ~./2,
+  frequency = ~. * 2,
+  seed = NULL,
+  ...,
+  fractal_args = list()
+)
 }
 \arguments{
 \item{noise}{The noise function to create a fractal from. Must have a

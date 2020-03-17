@@ -50,8 +50,8 @@ counter-clockwise.
 \code{x0}/\code{y0}.
 \item \code{shear()}: Shears the x and/or y dimension by \code{x0}/\code{y0}.
 \item \code{translate()}: Moves coordinates by \code{x0}/\code{y0}.
-\item \code{reflect()}: Reflects coordinates through the line that goes through \code{0, 0}
-and \code{x0, y0}.
+\item \code{reflect()}: Reflects coordinates through the line that goes through \verb{0, 0}
+and \verb{x0, y0}.
 }
 }
 

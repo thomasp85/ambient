@@ -5,12 +5,26 @@
 \alias{gen_perlin}
 \title{Perlin noise generator}
 \usage{
-noise_perlin(dim, frequency = 0.01, interpolator = "quintic",
-  fractal = "fbm", octaves = 3, lacunarity = 2, gain = 0.5,
-  pertubation = "none", pertubation_amplitude = 1)
+noise_perlin(
+  dim,
+  frequency = 0.01,
+  interpolator = "quintic",
+  fractal = "fbm",
+  octaves = 3,
+  lacunarity = 2,
+  gain = 0.5,
+  pertubation = "none",
+  pertubation_amplitude = 1
+)
 
-gen_perlin(x, y = NULL, z = NULL, frequency = 1, seed = NULL,
-  interpolator = "quintic")
+gen_perlin(
+  x,
+  y = NULL,
+  z = NULL,
+  frequency = 1,
+  seed = NULL,
+  interpolator = "quintic"
+)
 }
 \arguments{
 \item{dim}{The dimensions (height, width, (and depth)) of the noise to be

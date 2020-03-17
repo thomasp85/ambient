@@ -5,9 +5,16 @@
 \alias{gen_cubic}
 \title{Cubic noise generator}
 \usage{
-noise_cubic(dim, frequency = 0.01, fractal = "fbm", octaves = 3,
-  lacunarity = 2, gain = 0.5, pertubation = "none",
-  pertubation_amplitude = 1)
+noise_cubic(
+  dim,
+  frequency = 0.01,
+  fractal = "fbm",
+  octaves = 3,
+  lacunarity = 2,
+  gain = 0.5,
+  pertubation = "none",
+  pertubation_amplitude = 1
+)
 
 gen_cubic(x, y = NULL, z = NULL, frequency = 1, seed = NULL)
 }

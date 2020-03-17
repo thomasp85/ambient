@@ -41,7 +41,7 @@ This function creates a 1-4 dimensional grid in long format, with the cell
 positions encoded in the \code{x}, \code{y}, \code{z}, and \code{t} columns. A long_cell object
 is the base class for the tidy interface to ambient, and allows a very
 flexible approach to pattern generation at the expense of slightly lower
-performance than the \code{noise_*} functions that maps directly to the underlying
+performance than the \verb{noise_*} functions that maps directly to the underlying
 C++ code.
 }
 \examples{

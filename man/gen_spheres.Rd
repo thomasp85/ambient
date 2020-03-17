@@ -31,7 +31,8 @@ plot(as.raster(grid, normalise(cylinders)))
 
 }
 \seealso{
-Other Pattern generators: \code{\link{gen_checkerboard}},
-  \code{\link{gen_waves}}
+Other Pattern generators: 
+\code{\link{gen_checkerboard}()},
+\code{\link{gen_waves}()}
 }
 \concept{Pattern generators}

@@ -55,7 +55,9 @@ plot(as.raster(grid, normalise(simplex)))
 
 }
 \seealso{
-Other Fractal functions: \code{\link{billow}},
-  \code{\link{clamped}}, \code{\link{fbm}}
+Other Fractal functions: 
+\code{\link{billow}()},
+\code{\link{clamped}()},
+\code{\link{fbm}()}
 }
 \concept{Fractal functions}

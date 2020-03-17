@@ -5,11 +5,14 @@
 \alias{gen_white}
 \title{White noise generator}
 \usage{
-noise_white(dim, frequency = 0.01, pertubation = "none",
-  pertubation_amplitude = 1)
+noise_white(
+  dim,
+  frequency = 0.01,
+  pertubation = "none",
+  pertubation_amplitude = 1
+)
 
-gen_white(x, y = NULL, z = NULL, t = NULL, frequency = 1,
-  seed = NULL)
+gen_white(x, y = NULL, z = NULL, t = NULL, frequency = 1, seed = NULL)
 }
 \arguments{
 \item{dim}{The dimensions (height, width, (and depth, (and time))) of the

@@ -4,8 +4,16 @@
 \alias{curl_noise}
 \title{Generate curl noise}
 \usage{
-curl_noise(generator, x, y, z = NULL, ..., seed = NULL, delta = NULL,
-  mod = NULL)
+curl_noise(
+  generator,
+  x,
+  y,
+  z = NULL,
+  ...,
+  seed = NULL,
+  delta = NULL,
+  mod = NULL
+)
 }
 \arguments{
 \item{generator}{The noise generating function, such as \link{gen_simplex}, or

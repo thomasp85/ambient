@@ -57,7 +57,7 @@ long_grid <- function(x, y = NULL, z = NULL, t = NULL) {
     class = c('long_grid', 'tbl_df', 'tbl', 'data.frame'),
     names = names(grid),
     row.names = .set_row_names(len),
-    dims = dims[dims != 0]
+    grid_dims = dims[dims != 0]
   )
   grid
 }
@@ -74,7 +74,7 @@ grid_cell.long_grid <- function(grid, dim, ...) {
   if (dim <= 0) {
     stop('dim must be positive or match x, y, z, or t', call. = FALSE)
   }
-  dims <- attr(grid, 'dims')
+  dims <- attr(grid, 'grid_dims')
   if (dim > length(dims)) {
     return(rep_len(NA, nrow(grid)))
   }
@@ -87,7 +87,7 @@ grid_cell.long_grid <- function(grid, dim, ...) {
 #' @export
 as.array.long_grid <- function(x, value, ...) {
   val <- eval_tidy(enquo(value), x)
-  dims <- rev(attr(x, 'dims'))
+  dims <- rev(attr(x, 'grid_dims'))
   dimnames <- rev(list(x = NULL, y = NULL, z = NULL, t = NULL)[seq_along(dims)])
   array(val, dims, dimnames)
 }
@@ -96,7 +96,7 @@ as.array.long_grid <- function(x, value, ...) {
 #' @export
 as.matrix.long_grid <- function(x, value, ...) {
   val <- eval_tidy(enquo(value), x)
-  dims <- attr(x, 'dims')
+  dims <- attr(x, 'grid_dims')
   if (sum(dims > 1) > 2) {
     stop('as.matrix can only be applied to 2-dimensional grids', call. = FALSE)
   }
@@ -124,7 +124,7 @@ slice_at <- function(grid, ...) {
 #' @export
 slice_at.long_grid <- function(grid, x = NULL, y = NULL, z = NULL, t = NULL, ...) {
   keep <- rep(TRUE, nrow(grid))
-  dims <- attr(grid, 'dims')
+  dims <- attr(grid, 'grid_dims')
   n_dims <- length(dims)
   if (!is.null(x)) {
     keep[grid_cell(grid, 1) != x] <- FALSE
@@ -143,6 +143,6 @@ slice_at.long_grid <- function(grid, x = NULL, y = NULL, z = NULL, t = NULL, ...
     dims[4] <- 1L
   }
   grid <- grid[keep, , drop = FALSE]
-  attr(grid, 'dims') <- dims
+  attr(grid, 'grid_dims') <- dims
   grid
 }

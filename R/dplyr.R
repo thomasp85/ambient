@@ -1,19 +1,19 @@
 mutate.long_grid <- function(.data, ...) {
-  dims <- attr(.data, 'dims')
+  dims <- attr(.data, 'grid_dims')
   .data <- NextMethod()
-  `attr<-`(.data, 'dims', dims)
+  `attr<-`(.data, 'grid_dims', dims)
 }
 
 transmute.long_grid <- function(.data, ...) {
-  dims <- attr(.data, 'dims')
+  dims <- attr(.data, 'grid_dims')
   .data <- NextMethod()
-  `attr<-`(.data, 'dims', dims)
+  `attr<-`(.data, 'grid_dims', dims)
 }
 
 select.long_grid <- function(.data, ...) {
-  dims <- attr(.data, 'dims')
+  dims <- attr(.data, 'grid_dims')
   .data <- NextMethod()
-  `attr<-`(.data, 'dims', dims)
+  `attr<-`(.data, 'grid_dims', dims)
 }
 
 arrange.long_grid <- function(.data, ...) {

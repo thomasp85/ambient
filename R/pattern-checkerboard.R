@@ -6,6 +6,7 @@
 #'
 #' @param x,y,z,t The coordinates to get pattern from
 #' @param frequency The frequency of the generator
+#' @param ... ignored
 #'
 #' @return A numeric vector
 #'
@@ -19,7 +20,7 @@
 #'
 #' plot(grid, chess)
 #'
-gen_checkerboard <- function(x, y = NULL, z = NULL, t = NULL, frequency = 1) {
+gen_checkerboard <- function(x, y = NULL, z = NULL, t = NULL, frequency = 1, ...) {
   dims <- check_dims(x, y, z, t)
   all <- floor(dims$x * frequency) +
     floor((dims$y %||% 0) * frequency) +

@@ -55,7 +55,7 @@ noise_value <- function(dim, frequency = 0.01, interpolator = 'quintic',
 #' @param x,y,z Coordinates to get noise value from
 #' @export
 gen_value <- function(x, y = NULL, z = NULL, frequency = 1, seed = NULL,
-                      interpolator = 'quintic') {
+                      interpolator = 'quintic', ...) {
   dims <- check_dims(x, y, z)
   interpolator <- match.arg(interpolator, interpolators)
   interpolator <- match(interpolator, interpolators) - 1

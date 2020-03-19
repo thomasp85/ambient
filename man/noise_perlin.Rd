@@ -23,7 +23,8 @@ gen_perlin(
   z = NULL,
   frequency = 1,
   seed = NULL,
-  interpolator = "quintic"
+  interpolator = "quintic",
+  ...
 )
 }
 \arguments{
@@ -61,6 +62,8 @@ origin. Ignored if \code{pertubation = 'none'}. Defaults to \code{1}.}
 
 \item{seed}{The seed to use for the noise. If \code{NULL} a random seed will be
 used}
+
+\item{...}{ignored}
 }
 \value{
 For \code{noise_perlin()} a matrix if \code{length(dim) == 2} or an array if

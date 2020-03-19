@@ -65,7 +65,7 @@ noise_simplex <- function(dim, frequency = 0.01, interpolator = 'quintic',
 #' @rdname noise_simplex
 #' @param x,y,z,t Coordinates to get noise value from
 #' @export
-gen_simplex <- function(x, y = NULL, z = NULL, t = NULL, frequency = 1, seed = NULL) {
+gen_simplex <- function(x, y = NULL, z = NULL, t = NULL, frequency = 1, seed = NULL, ...) {
   dims <- check_dims(x, y, z, t)
   if (is.null(seed)) seed <- random_seed()
   if (is.null(t)) {

@@ -9,6 +9,7 @@
 #'
 #' @param x,y,z,t The coordinates to get pattern from
 #' @param frequency The frequency of the generator
+#' @param ... ignored
 #'
 #' @return A numeric vector
 #'
@@ -24,7 +25,7 @@
 #' plot(grid, ripple)
 #' plot(grid, wave)
 #'
-gen_waves <- function(x, y = NULL, z = NULL, t = NULL, frequency = 1) {
+gen_waves <- function(x, y = NULL, z = NULL, t = NULL, frequency = 1, ...) {
   all <- (x * frequency)^2 +
     ((y %||% 0 * frequency))^2 +
     ((z %||% 0 * frequency))^2 +

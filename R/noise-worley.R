@@ -82,7 +82,7 @@ noise_worley <- function(dim, frequency = 0.01, distance = 'euclidean',
 #' @export
 gen_worley <- function(x, y = NULL, z = NULL, frequency = 1, seed = NULL,
                        distance = 'euclidean', value = 'cell',
-                       distance_ind = c(1, 2), jitter = 0.45) {
+                       distance_ind = c(1, 2), jitter = 0.45, ...) {
   dims <- check_dims(x, y, z)
   distance <- match.arg(distance, distances)
   distance <- match(distance, distances) - 1

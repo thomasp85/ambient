@@ -52,7 +52,7 @@ noise_cubic <- function(dim, frequency = 0.01, fractal = 'fbm', octaves = 3,
 #' @rdname noise_cubic
 #' @param x,y,z Coordinates to get noise value from
 #' @export
-gen_cubic <- function(x, y = NULL, z = NULL, frequency = 1, seed = NULL) {
+gen_cubic <- function(x, y = NULL, z = NULL, frequency = 1, seed = NULL, ...) {
   dims <- check_dims(x, y, z)
   if (is.null(seed)) seed <- random_seed()
   if (is.null(z)) {

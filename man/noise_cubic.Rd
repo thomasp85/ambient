@@ -16,7 +16,7 @@ noise_cubic(
   pertubation_amplitude = 1
 )
 
-gen_cubic(x, y = NULL, z = NULL, frequency = 1, seed = NULL)
+gen_cubic(x, y = NULL, z = NULL, frequency = 1, seed = NULL, ...)
 }
 \arguments{
 \item{dim}{The dimensions (height, width, (and depth)) of the noise to be
@@ -49,6 +49,8 @@ origin. Ignored if \code{pertubation = 'none'}. Defaults to \code{1}.}
 
 \item{seed}{The seed to use for the noise. If \code{NULL} a random seed will be
 used}
+
+\item{...}{ignored}
 }
 \value{
 For \code{noise_cubic()} a matrix if \code{length(dim) == 2} or an array if

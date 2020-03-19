@@ -29,7 +29,8 @@ gen_worley(
   distance = "euclidean",
   value = "cell",
   distance_ind = c(1, 2),
-  jitter = 0.45
+  jitter = 0.45,
+  ...
 )
 }
 \arguments{
@@ -84,6 +85,8 @@ origin. Ignored if \code{pertubation = 'none'}. Defaults to \code{1}.}
 
 \item{seed}{The seed to use for the noise. If \code{NULL} a random seed will be
 used}
+
+\item{...}{ignored}
 }
 \value{
 For \code{noise_worley()} a matrix if \code{length(dim) == 2} or an array if

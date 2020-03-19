@@ -4,12 +4,14 @@
 \alias{gen_checkerboard}
 \title{Generate a checkerboard pattern}
 \usage{
-gen_checkerboard(x, y = NULL, z = NULL, t = NULL, frequency = 1)
+gen_checkerboard(x, y = NULL, z = NULL, t = NULL, frequency = 1, ...)
 }
 \arguments{
 \item{x, y, z, t}{The coordinates to get pattern from}
 
 \item{frequency}{The frequency of the generator}
+
+\item{...}{ignored}
 }
 \value{
 A numeric vector

@@ -17,7 +17,7 @@ noise_simplex(
   pertubation_amplitude = 1
 )
 
-gen_simplex(x, y = NULL, z = NULL, t = NULL, frequency = 1, seed = NULL)
+gen_simplex(x, y = NULL, z = NULL, t = NULL, frequency = 1, seed = NULL, ...)
 }
 \arguments{
 \item{dim}{The dimensions (height, width, (and depth, (and time))) of the
@@ -54,6 +54,8 @@ origin. Ignored if \code{pertubation = 'none'}. Defaults to \code{1}.}
 
 \item{seed}{The seed to use for the noise. If \code{NULL} a random seed will be
 used}
+
+\item{...}{ignored}
 }
 \value{
 For \code{noise_simplex()} a matrix if \code{length(dim) == 2} or an array if

@@ -12,7 +12,9 @@ fracture(
   frequency = ~. * 2,
   seed = NULL,
   ...,
-  fractal_args = list()
+  fractal_args = list(),
+  gain_init = 1,
+  freq_init = 1
 )
 }
 \arguments{
@@ -50,6 +52,9 @@ octaves so each gets a unique seed.}
 \item{...}{arguments to pass on to \code{generator}}
 
 \item{fractal_args}{Additional arguments to \code{fractal} as a named list}
+
+\item{gain_init, freq_init}{The gain and frequency for the first octave if
+\code{gain} and/or \code{frequency} are given as a function.}
 }
 \description{
 This function allows you to create fractals of a given noise or pattern

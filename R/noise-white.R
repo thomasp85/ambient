@@ -51,7 +51,7 @@ noise_white <- function(dim, frequency = 0.01, pertubation = 'none', pertubation
 #' @rdname noise_white
 #' @param x,y,z,t Coordinates to get noise value from
 #' @export
-gen_white <- function(x, y = NULL, z = NULL, t = NULL, frequency = 1, seed = NULL) {
+gen_white <- function(x, y = NULL, z = NULL, t = NULL, frequency = 1, seed = NULL, ...) {
   dims <- check_dims(x, y, z, t)
   if (is.null(seed)) seed <- random_seed()
   if (is.null(t)) {

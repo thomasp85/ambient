@@ -67,6 +67,7 @@ reference:
       - ridged
       - clamped
       - curl_noise
+      - gradient_noise
       - trans_affine
       - blend
   - title: "Utilities"

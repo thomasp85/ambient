@@ -69,3 +69,8 @@ segments(grid$x, grid$y, grid$x + grid$curl$x / 500, grid$y + grid$curl$y / 500)
 Bridson, Robert. Hourihan, Jim. Nordenstam, Marcus (2007). \emph{Curl-noise for procedural fluid flow}.
 ACM Transactions on Graphics 26(3): 46. doi:10.1145/1275808.1276435.
 }
+\seealso{
+Other derived values: 
+\code{\link{gradient_noise}()}
+}
+\concept{derived values}

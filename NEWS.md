@@ -26,5 +26,7 @@
     manipulation.
   - A `curl_noise()` function that takes a generator and creates curl noise from
     it has been added.
+  - A `gradient_noise()` in the same vein as `curl_noise()` has been added for
+    calculating the gradient of scalar noise fields
     
 * A pkgdown site has been created at https://ambient.data-imaginist.com

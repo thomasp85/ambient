@@ -1,3 +1,5 @@
+# ambient 1.0.0
+
 # ambient 0.1.0.9000
 
 * Added a new tidy interface to noise generation, which will be the new 

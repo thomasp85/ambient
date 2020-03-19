@@ -9,6 +9,7 @@
 #' world.
 #'
 #' @inheritParams curl_noise
+#' @param x,y,z,t The coordinates to generate the gradient for as unquoted expressions
 #' @param seed A seed for the generator.
 #'
 #' @export

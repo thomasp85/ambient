@@ -19,11 +19,7 @@ gradient_noise(
 \item{generator}{The noise generating function, such as \link{gen_simplex}, or
 \code{\link[=fracture]{fracture()}}}
 
-\item{x}{The coordinates to generate the curl for as unquoted expressions}
-
-\item{y}{The coordinates to generate the curl for as unquoted expressions}
-
-\item{z}{The coordinates to generate the curl for as unquoted expressions}
+\item{x, y, z, t}{The coordinates to generate the gradient for as unquoted expressions}
 
 \item{...}{Further arguments to \code{generator}}
 

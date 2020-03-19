@@ -150,13 +150,14 @@ slice_at.long_grid <- function(grid, x = NULL, y = NULL, z = NULL, t = NULL, ...
 #' @importFrom graphics plot par
 #' @export
 plot.long_grid <- function(x, y, normalize = TRUE, ...) {
-  x <- slice_at(x, z = 1, t = 1)
+  xx <- slice_at(x, z = 1, t = 1)
   if (normalize) {
-    x <- as.raster(x, normalize({{ y }}))
+    xx <- as.raster(xx, normalize({{ y }}))
   } else {
-    x <- as.raster(x, {{ y }})
+    xx <- as.raster(xx, {{ y }})
   }
   old_par <- par(mai = c(0, 0, 0, 0))
   on.exit(par(old_par))
-  plot(x, ...)
+  plot(xx, ...)
+  invisible(x)
 }

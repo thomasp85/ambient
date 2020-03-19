@@ -29,7 +29,7 @@
 #' grid$trans <- trans_affine(grid$x, grid$y, rotate(pi/3), shear(-2), rotate(-pi/3))
 #' grid$chess <- gen_checkerboard(grid$trans$x, grid$trans$y)
 #'
-#' plot(as.raster(grid, chess))
+#' plot(grid, chess)
 #'
 trans_affine <- function(x, y, ...) {
   trans_mat <- Reduce(function(l, r) r %*% l, list(...))

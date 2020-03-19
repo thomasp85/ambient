@@ -28,7 +28,7 @@
 #'
 #' grid$simplex <- fracture(gen_simplex, ridged, octaves = 8,
 #'                          gain = spectral_gain(), x = grid$x, y = grid$y)
-#' plot(as.raster(grid, normalise(simplex)))
+#' plot(grid, simplex)
 #'
 ridged <- function(base, new, strength, octave, offset = 1, gain = 2, ...) {
   sig <- (offset - abs(new))^2

@@ -2,7 +2,6 @@ Package: ambient
 Type: Package
 Title: A Generator of Multidimensional Noise
 Version: 0.1.0.9000
-Date: 2019-04-30
 Authors@R:
     c(person(given = "Thomas Lin",
              family = "Pedersen",
@@ -26,7 +25,8 @@ LazyData: true
 Imports: 
     Rcpp (>= 0.12.18),
     rlang,
-    grDevices
+    grDevices,
+    graphics
 LinkingTo: Rcpp
 RoxygenNote: 7.1.0
 Roxygen: list(markdown = TRUE)

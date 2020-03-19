@@ -60,6 +60,6 @@ grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
 grid$trans <- trans_affine(grid$x, grid$y, rotate(pi/3), shear(-2), rotate(-pi/3))
 grid$chess <- gen_checkerboard(grid$trans$x, grid$trans$y)
 
-plot(as.raster(grid, chess))
+plot(grid, chess)
 
 }

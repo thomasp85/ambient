@@ -26,8 +26,8 @@ grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
 grid$circles <- gen_spheres(grid$x, grid$y)
 grid$cylinders <- gen_spheres(grid$x)
 
-plot(as.raster(grid, normalise(circles)))
-plot(as.raster(grid, normalise(cylinders)))
+plot(grid, circles)
+plot(grid, cylinders)
 
 }
 \seealso{

@@ -42,9 +42,9 @@ grid$ripple <- gen_waves(grid$x, grid$y)
 
 # Blend two values based on a third
 grid$mix <- blend(grid$noise, grid$ripple, grid$chess)
-plot(as.raster(grid, normalise(mix)))
+plot(grid, mix)
 
 # Cap values between 0 and 1
-plot(as.raster(grid, cap(noise)))
+plot(grid, cap(noise))
 
 }

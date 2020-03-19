@@ -82,6 +82,6 @@ plot(as.raster(normalise(noise)))
 # Using the generator
 grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
 grid$noise <- gen_value(grid$x, grid$y)
-plot(as.raster(grid, normalise(noise)))
+plot(grid, noise)
 
 }

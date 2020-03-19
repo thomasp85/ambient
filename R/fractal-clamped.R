@@ -16,7 +16,7 @@
 #'
 #' grid$simplex <- fracture(gen_simplex, clamped, octaves = 8, x = grid$x,
 #'                          y = grid$y)
-#' plot(as.raster(grid, normalise(simplex)))
+#' plot(grid, simplex)
 #'
 clamped <- function(base, new, strength, min = 0, max = Inf, ...) {
   new[new < min] <- min

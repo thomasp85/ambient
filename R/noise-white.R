@@ -21,7 +21,7 @@
 #' # Using the generator
 #' grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
 #' grid$noise <- gen_white(grid$x, grid$y)
-#' plot(as.raster(grid, normalise(noise)))
+#' plot(grid, noise)
 #'
 noise_white <- function(dim, frequency = 0.01, pertubation = 'none', pertubation_amplitude = 1) {
   pertubation <- match.arg(pertubation, pertubations)

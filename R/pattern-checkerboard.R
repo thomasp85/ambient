@@ -17,7 +17,7 @@
 #' grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
 #' grid$chess <- gen_checkerboard(grid$x, grid$y)
 #'
-#' plot(as.raster(grid, chess))
+#' plot(grid, chess)
 #'
 gen_checkerboard <- function(x, y = NULL, z = NULL, t = NULL, frequency = 1) {
   dims <- check_dims(x, y, z, t)

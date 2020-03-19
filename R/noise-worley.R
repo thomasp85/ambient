@@ -42,7 +42,7 @@
 #' # Using the generator and another value metric
 #' grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
 #' grid$noise <- gen_worley(grid$x, grid$y, value = 'distance')
-#' plot(as.raster(grid, normalise(noise)))
+#' plot(grid, noise)
 #'
 noise_worley <- function(dim, frequency = 0.01, distance = 'euclidean',
                          fractal = 'none', octaves = 3, lacunarity = 2, gain = 0.5,

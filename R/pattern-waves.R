@@ -21,8 +21,8 @@
 #' grid$ripple <- gen_waves(grid$x, grid$y)
 #' grid$wave <- gen_waves(grid$x)
 #'
-#' plot(as.raster(grid, normalise(ripple)))
-#' plot(as.raster(grid, normalise(wave)))
+#' plot(grid, ripple)
+#' plot(grid, wave)
 #'
 gen_waves <- function(x, y = NULL, z = NULL, t = NULL, frequency = 1) {
   all <- (x * frequency)^2 +

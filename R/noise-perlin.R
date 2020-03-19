@@ -47,7 +47,7 @@
 #' # Using the generator
 #' grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
 #' grid$noise <- gen_perlin(grid$x, grid$y)
-#' plot(as.raster(grid, normalise(noise)))
+#' plot(grid, noise)
 #'
 noise_perlin <- function(dim, frequency = 0.01, interpolator = 'quintic',
                    fractal = 'fbm', octaves = 3, lacunarity = 2, gain = 0.5,

@@ -20,8 +20,8 @@
 #' grid$circles <- gen_spheres(grid$x, grid$y)
 #' grid$cylinders <- gen_spheres(grid$x)
 #'
-#' plot(as.raster(grid, normalise(circles)))
-#' plot(as.raster(grid, normalise(cylinders)))
+#' plot(grid, circles)
+#' plot(grid, cylinders)
 #'
 gen_spheres <- function(x, y = NULL, z = NULL, t = NULL, frequency = 1) {
   all <- (x * frequency)^2 +

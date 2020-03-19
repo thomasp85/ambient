@@ -67,8 +67,7 @@ long_grid(x = seq(0, 10, length.out = 1000),
                            value = 'distance', seed = 5),
     full = blend(normalise(worley), normalise(worley_frac), gen_spheres(x1, y1))
   ) %>% 
-  as.raster(value = full) %>% 
-  plot()
+  plot(full)
 ```
 
 ![](man/figures/README-unnamed-chunk-4-1.png)

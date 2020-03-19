@@ -108,7 +108,7 @@ plot(as.raster(normalise(noise)))
 # Using the generator and another value metric
 grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
 grid$noise <- gen_worley(grid$x, grid$y, value = 'distance')
-plot(as.raster(grid, normalise(noise)))
+plot(grid, noise)
 
 }
 \references{

@@ -51,7 +51,7 @@ grid <- long_grid(seq(1, 10, length.out = 1000), seq(1, 10, length.out = 1000))
 
 grid$simplex <- fracture(gen_simplex, ridged, octaves = 8,
                          gain = spectral_gain(), x = grid$x, y = grid$y)
-plot(as.raster(grid, normalise(simplex)))
+plot(grid, simplex)
 
 }
 \seealso{

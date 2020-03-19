@@ -18,7 +18,7 @@
 #'
 #' grid$simplex <- fracture(gen_simplex, billow, octaves = 8, x = grid$x,
 #'                          y = grid$y)
-#' plot(as.raster(grid, normalise(simplex)))
+#' plot(grid, simplex)
 #'
 billow <- function(base, new, strength, ...) {
   base + (2 * abs(new) - 1) * strength

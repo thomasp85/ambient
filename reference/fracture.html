@@ -148,7 +148,9 @@ the results based on a fractal function.</p>
   <span class='kw'>frequency</span> <span class='kw'>=</span> ~<span class='no'>.</span> * <span class='fl'>2</span>,
   <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='no'>...</span>,
-  <span class='kw'>fractal_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>()
+  <span class='kw'>fractal_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
+  <span class='kw'>gain_init</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>freq_init</span> <span class='kw'>=</span> <span class='fl'>1</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -203,6 +205,11 @@ octaves so each gets a unique seed.</p></td>
     <tr>
       <th>fractal_args</th>
       <td><p>Additional arguments to <code>fractal</code> as a named list</p></td>
+    </tr>
+    <tr>
+      <th>gain_init, freq_init</th>
+      <td><p>The gain and frequency for the first octave if
+<code>gain</code> and/or <code>frequency</code> are given as a function.</p></td>
     </tr>
     </table>
 

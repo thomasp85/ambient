@@ -30,6 +30,8 @@
 #' octaves so each gets a unique seed.
 #' @param ... arguments to pass on to `generator`
 #' @param fractal_args Additional arguments to `fractal` as a named list
+#' @param gain_init,freq_init The gain and frequency for the first octave if
+#' `gain` and/or `frequency` are given as a function.
 #'
 #' @seealso ambient comes with a range of build in fractal functions: [fbm()],
 #' [billow()], [ridged()], [clamped()]
@@ -49,16 +51,17 @@
 #' plot(grid, fractal_perlin)
 #'
 fracture <- function(noise, fractal, octaves, gain = ~ . / 2,
-                     frequency = ~ . * 2, seed = NULL, ..., fractal_args = list()) {
+                     frequency = ~ . * 2, seed = NULL, ..., fractal_args = list(),
+                     gain_init = 1, freq_init = 1) {
   if (is.function(gain) || is_formula(gain)) {
     gain <- as_function(gain)
-    gain <- Reduce(function(l, r) gain(l), seq_len(octaves), accumulate = TRUE)
+    gain <- Reduce(function(l, r) gain(l), seq_len(octaves), accumulate = TRUE, init = gain_init)
   } else {
     gain <- rep_len(gain, octaves)
   }
   if (is.function(frequency) || is_formula(frequency)) {
     frequency <- as_function(frequency)
-    frequency <- Reduce(function(l, r) frequency(l), seq_len(octaves), accumulate = TRUE)
+    frequency <- Reduce(function(l, r) frequency(l), seq_len(octaves), accumulate = TRUE, init = freq_init)
   } else {
     frequency <- rep_len(frequency, octaves)
   }

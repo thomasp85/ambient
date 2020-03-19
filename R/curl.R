@@ -30,6 +30,8 @@
 #'
 #' @export
 #'
+#' @family derived values
+#'
 #' @references
 #' Bridson, Robert. Hourihan, Jim. Nordenstam, Marcus (2007). *Curl-noise for procedural fluid flow*.
 #' ACM Transactions on Graphics 26(3): 46. doi:10.1145/1275808.1276435.
@@ -57,15 +59,19 @@ curl_noise <- function(generator, x, y, z = NULL, ..., seed = NULL, delta = NULL
 }
 
 .curl_noise2d <- function(generator, x, y, ..., seed = NULL, delta = NULL, mod = NULL) {
-  if (is.null(seed)) seed <- random_seed()
+  if (is.null(seed)) {
+    seed <- rep(random_seed(), 2)
+  } else {
+    seed <- rep_len(seed, 2)
+  }
   if (is.null(delta)) {
     delta <- max(diff(range(x)), diff(range(y))) * 1e-4
   }
 
-  valx1 <- with_mod2(x = x + delta, y = y, generator, mod, seed = seed, ...)
-  valx2 <- with_mod2(x = x - delta, y = y, generator, mod, seed = seed, ...)
-  valy1 <- with_mod2(x = x, y = y + delta, generator, mod, seed = seed, ...)
-  valy2 <- with_mod2(x = x, y = y - delta, generator, mod, seed = seed, ...)
+  valx1 <- with_mod2(x = x + delta, y = y, generator, mod, seed = seed[1], ...)
+  valx2 <- with_mod2(x = x - delta, y = y, generator, mod, seed = seed[1], ...)
+  valy1 <- with_mod2(x = x, y = y + delta, generator, mod, seed = seed[2], ...)
+  valy2 <- with_mod2(x = x, y = y - delta, generator, mod, seed = seed[2], ...)
 
   velocity_x <- -(valy1 - valy2) / (2 * delta)
   velocity_y <- (valx1 - valx2)  / (2 * delta)

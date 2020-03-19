@@ -7,10 +7,10 @@ values <- c('cell', 'noise', 'distance', 'distance2', 'distance2add', 'distance2
 random_seed <- function(n = 1, seed = NULL) {
   if (!is.null(seed)) {
     next_seed <- random_seed()
-    set.seed(as.integer(seed))
+    set.seed(as.integer(seed[1]))
     on.exit(set.seed(next_seed))
   }
-  sample(.Machine$integer.max, size = n)
+  c(seed, sample(.Machine$integer.max, size = n))[seq_len(n)]
 }
 
 check_dims <- function(x, y = NULL, z = NULL, t = NULL) {

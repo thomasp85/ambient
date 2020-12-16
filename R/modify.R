@@ -4,7 +4,7 @@
 #' wealth of vectorised functions avaliable in R. ambient provides a little
 #' selection of handy functions to compliment these
 #'
-#' @param x,y Aalues to modify
+#' @param x,y Values to modify
 #' @param mask A vector of the same length as `x` and `y`. Assumed to be between
 #' 0 and 1 (values outside of this range is capped). The closer to 1 the more of
 #' `x` will be used and the closer to 0 the more of `y` will be used

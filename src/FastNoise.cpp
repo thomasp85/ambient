@@ -285,13 +285,13 @@ unsigned char FastNoise::Index4D_256(unsigned char offset, int x, int y, int z, 
 #define Z_PRIME 6971
 #define W_PRIME 1013
 
-static FN_DECIMAL ValCoord2D(int seed, long long x, long long y)
+static FN_DECIMAL ValCoord2D(int seed, int x, int y)
 {
-  long long n = seed;
+  int n = seed;
   n ^= X_PRIME * x;
   n ^= Y_PRIME * y;
 
-  return (double(n) * n * n * 60493) / FN_DECIMAL(2147483648);
+  return (n * n * n * 60493) / FN_DECIMAL(2147483648);
 }
 static FN_DECIMAL ValCoord3D(int seed, int x, int y, int z)
 {

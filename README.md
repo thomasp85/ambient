@@ -76,5 +76,6 @@ Code of Conduct
 ---------------
 
 Please note that the ‘ambient’ project is released with a [Contributor
-Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project,
-you agree to abide by its terms.
+Code of
+Conduct](https://ambient.data-imaginist.com/CODE_OF_CONDUCT.html). By
+contributing to this project, you agree to abide by its terms.

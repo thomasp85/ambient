@@ -285,13 +285,13 @@ unsigned char FastNoise::Index4D_256(unsigned char offset, int x, int y, int z, 
 #define Z_PRIME 6971
 #define W_PRIME 1013
 
-static FN_DECIMAL ValCoord2D(int seed, int x, int y)
+static FN_DECIMAL ValCoord2D(int seed, long long x, long long y)
 {
-  int n = seed;
+  long long n = seed;
   n ^= X_PRIME * x;
   n ^= Y_PRIME * y;
 
-  return (n * n * n * 60493) / FN_DECIMAL(2147483648);
+  return (double(n) * n * n * 60493) / FN_DECIMAL(2147483648);
 }
 static FN_DECIMAL ValCoord3D(int seed, int x, int y, int z)
 {
@@ -642,7 +642,7 @@ FN_DECIMAL FastNoise::SingleValue(unsigned char offset, FN_DECIMAL x, FN_DECIMAL
   int y1 = y0 + 1;
   int z1 = z0 + 1;
 
-  FN_DECIMAL xs, ys, zs;
+  FN_DECIMAL xs = 0.0, ys = 0.0, zs = 0.0;
   switch (m_interp)
   {
   case Linear:
@@ -776,7 +776,7 @@ FN_DECIMAL FastNoise::SingleValue(unsigned char offset, FN_DECIMAL x, FN_DECIMAL
   int x1 = x0 + 1;
   int y1 = y0 + 1;
 
-  FN_DECIMAL xs, ys;
+  FN_DECIMAL xs = 0.0, ys = 0.0;
   switch (m_interp)
   {
   case Linear:
@@ -910,7 +910,7 @@ FN_DECIMAL FastNoise::SinglePerlin(unsigned char offset, FN_DECIMAL x, FN_DECIMA
   int y1 = y0 + 1;
   int z1 = z0 + 1;
 
-  FN_DECIMAL xs, ys, zs;
+  FN_DECIMAL xs = 0.0, ys = 0.0, zs = 0.0;
   switch (m_interp)
   {
   case Linear:
@@ -1052,7 +1052,7 @@ FN_DECIMAL FastNoise::SinglePerlin(unsigned char offset, FN_DECIMAL x, FN_DECIMA
   int x1 = x0 + 1;
   int y1 = y0 + 1;
 
-  FN_DECIMAL xs, ys;
+  FN_DECIMAL xs = 0.0, ys = 0.0;
   switch (m_interp)
   {
   case Linear:
@@ -1872,7 +1872,7 @@ FN_DECIMAL FastNoise::SingleCellular(unsigned char offset, FN_DECIMAL x, FN_DECI
   int zr = FastRound(z);
 
   FN_DECIMAL distance = 999999;
-  int xc, yc, zc;
+  int xc = 0.0, yc = 0.0, zc = 0.0;
 
   switch (m_cellularDistanceFunction)
   {
@@ -2192,7 +2192,7 @@ FN_DECIMAL FastNoise::SingleCellular(unsigned char offset, FN_DECIMAL x, FN_DECI
   int yr = FastRound(y);
 
   FN_DECIMAL distance = 999999;
-  int xc, yc;
+  int xc = 0.0, yc = 0.0;
 
   switch (m_cellularDistanceFunction)
   {

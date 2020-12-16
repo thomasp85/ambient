@@ -10,7 +10,11 @@ random_seed <- function(n = 1, seed = NULL) {
     set.seed(as.integer(seed[1]))
     on.exit(set.seed(next_seed))
   }
-  c(seed, sample(.Machine$integer.max, size = n))[seq_len(n)]
+  if (isTRUE(getOption('ambient.old_seed'))) {
+    sample(.Machine$integer.max, size = n)
+  } else {
+    c(seed, sample(.Machine$integer.max, size = n))[seq_len(n)]
+  }
 }
 
 check_dims <- function(x, y = NULL, z = NULL, t = NULL) {

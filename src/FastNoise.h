@@ -228,7 +228,7 @@ private:
 
   int m_octaves = 3;
   FN_DECIMAL m_lacunarity = FN_DECIMAL(2);
-  std::vector<FN_DECIMAL> m_pSpectralWeights = {FN_DECIMAL(-1)};;
+  std::vector<FN_DECIMAL> m_pSpectralWeights = {FN_DECIMAL(-1)};
   FN_DECIMAL m_gain = FN_DECIMAL(0.5);
   FractalType m_fractalType = FBM;
   FN_DECIMAL m_fractalBounding;

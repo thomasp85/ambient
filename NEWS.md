@@ -1,7 +1,5 @@
 # ambient 1.0.0
 
-# ambient 0.1.0.9000
-
 * Added a new tidy interface to noise generation, which will be the new 
   recommended way of using ambient. The old array-based constructors will 
   continue to exist as direct interfaces to FastNoise, but the new interface is

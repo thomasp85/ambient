@@ -29,7 +29,7 @@ Imports:
     grDevices,
     graphics
 LinkingTo: Rcpp
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 URL: https://ambient.data-imaginist.com, https://github.com/thomasp85/ambient
 BugReports: https://github.com/thomasp85/ambient/issues

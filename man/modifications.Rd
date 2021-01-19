@@ -17,7 +17,7 @@ normalize(x, from = range(x), to = c(0, 1))
 cap(x, lower = 0, upper = 1)
 }
 \arguments{
-\item{x, y}{Aalues to modify}
+\item{x, y}{Values to modify}
 
 \item{mask}{A vector of the same length as \code{x} and \code{y}. Assumed to be between
 0 and 1 (values outside of this range is capped). The closer to 1 the more of

@@ -1,5 +1,8 @@
 # ambient (development version)
 
+* Added `noise_blue()` for generating blue noise texture based on 
+  Void-and-cluster algorithm.
+
 # ambient 1.0.0
 
 * Added a new tidy interface to noise generation, which will be the new 

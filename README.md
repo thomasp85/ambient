@@ -1,13 +1,14 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 ambient <img src="man/figures/logo.png" align="right" />
 ========================================================
 
-[![Travis-CI Build
-Status](https://travis-ci.org/thomasp85/ambient.svg?branch=master)](https://travis-ci.org/thomasp85/ambient)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/thomasp85/ambient?branch=master&svg=true)](https://ci.appveyor.com/project/thomasp85/ambient)
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/thomasp85/ambient/workflows/R-CMD-check/badge.svg)](https://github.com/thomasp85/ambient/actions)
 [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/ambient)](https://CRAN.R-project.org/package=ambient)
 [![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/ambient)](https://CRAN.R-project.org/package=ambient)
+<!-- badges: end -->
 
 `ambient` is a an R package that provides access to the
 [FastNoise](https://github.com/Auburns/FastNoise) C++ library for

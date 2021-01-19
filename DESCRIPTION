@@ -33,3 +33,5 @@ RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 URL: https://ambient.data-imaginist.com, https://github.com/thomasp85/ambient
 BugReports: https://github.com/thomasp85/ambient/issues
+Suggests: 
+    covr

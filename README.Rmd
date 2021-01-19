@@ -22,6 +22,7 @@ set.seed(1)
 [![R-CMD-check](https://github.com/thomasp85/ambient/workflows/R-CMD-check/badge.svg)](https://github.com/thomasp85/ambient/actions)
 [![CRAN_Release_Badge](http://www.r-pkg.org/badges/version-ago/ambient)](https://CRAN.R-project.org/package=ambient)
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/ambient)](https://CRAN.R-project.org/package=ambient)
+[![Codecov test coverage](https://codecov.io/gh/thomasp85/ambient/branch/master/graph/badge.svg)](https://codecov.io/gh/thomasp85/ambient?branch=master)
 <!-- badges: end -->
 
 `ambient` is a an R package that provides access to the 

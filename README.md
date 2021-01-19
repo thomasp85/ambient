@@ -8,6 +8,7 @@ ambient <img src="man/figures/logo.png" align="right" />
 [![R-CMD-check](https://github.com/thomasp85/ambient/workflows/R-CMD-check/badge.svg)](https://github.com/thomasp85/ambient/actions)
 [![CRAN\_Release\_Badge](http://www.r-pkg.org/badges/version-ago/ambient)](https://CRAN.R-project.org/package=ambient)
 [![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/ambient)](https://CRAN.R-project.org/package=ambient)
+[![Codecov test coverage](https://codecov.io/gh/thomasp85/ambient/branch/master/graph/badge.svg)](https://codecov.io/gh/thomasp85/ambient?branch=master)
 <!-- badges: end -->
 
 `ambient` is a an R package that provides access to the

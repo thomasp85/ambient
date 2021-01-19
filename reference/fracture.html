@@ -17,23 +17,27 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png" />
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/darkly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/darkly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -49,7 +53,6 @@
 generator by calculating it repeatedly at changing frequency and combining
 the results based on a fractal function." />
 <meta property="og:image" content="https://ambient.data-imaginist.com/logo.png" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -67,7 +70,7 @@ the results based on a fractal function." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -81,7 +84,7 @@ the results based on a fractal function." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ambient</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0.9000</span>
       </span>
     </div>
 
@@ -89,7 +92,7 @@ the results based on a fractal function." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -112,7 +115,7 @@ the results based on a fractal function." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/thomasp85/ambient">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -140,18 +143,18 @@ generator by calculating it repeatedly at changing frequency and combining
 the results based on a fractal function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>fracture</span>(
-  <span class='no'>noise</span>,
-  <span class='no'>fractal</span>,
-  <span class='no'>octaves</span>,
-  <span class='kw'>gain</span> <span class='kw'>=</span> ~<span class='no'>.</span>/<span class='fl'>2</span>,
-  <span class='kw'>frequency</span> <span class='kw'>=</span> ~<span class='no'>.</span> * <span class='fl'>2</span>,
-  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>,
-  <span class='kw'>fractal_args</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
-  <span class='kw'>gain_init</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>freq_init</span> <span class='kw'>=</span> <span class='fl'>1</span>
-)</pre>
+    <pre class="usage"><span class='fu'>fracture</span><span class='op'>(</span>
+  <span class='va'>noise</span>,
+  <span class='va'>fractal</span>,
+  <span class='va'>octaves</span>,
+  gain <span class='op'>=</span> <span class='op'>~</span><span class='va'>.</span><span class='op'>/</span><span class='fl'>2</span>,
+  frequency <span class='op'>=</span> <span class='op'>~</span><span class='va'>.</span> <span class='op'>*</span> <span class='fl'>2</span>,
+  seed <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>,
+  fractal_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>,
+  gain_init <span class='op'>=</span> <span class='fl'>1</span>,
+  freq_init <span class='op'>=</span> <span class='fl'>1</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -219,25 +222,23 @@ octaves so each gets a unique seed.</p></td>
 <code><a href='billow.html'>billow()</a></code>, <code><a href='ridged.html'>ridged()</a></code>, <code><a href='clamped.html'>clamped()</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>grid</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='long_grid.html'>long_grid</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>1</span>, <span class='fl'>10</span>, <span class='kw'>length.out</span> <span class='kw'>=</span> <span class='fl'>1000</span>), <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span>(<span class='fl'>1</span>, <span class='fl'>10</span>, <span class='kw'>length.out</span> <span class='kw'>=</span> <span class='fl'>1000</span>))
+    <pre class="examples"><div class='input'><span class='va'>grid</span> <span class='op'>&lt;-</span> <span class='fu'><a href='long_grid.html'>long_grid</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>10</span>, length.out <span class='op'>=</span> <span class='fl'>1000</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>10</span>, length.out <span class='op'>=</span> <span class='fl'>1000</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># When noise is generated by it's own it doesn't have fractal properties</span>
-<span class='no'>grid</span>$<span class='no'>clean_perlin</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='noise_perlin.html'>gen_perlin</a></span>(<span class='no'>grid</span>$<span class='no'>x</span>, <span class='no'>grid</span>$<span class='no'>y</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>grid</span>, <span class='no'>clean_perlin</span>)</div><div class='img'><img src='fracture-1.png' alt='' width='960' height='960' /></div><div class='input'>
+<span class='va'>grid</span><span class='op'>$</span><span class='va'>clean_perlin</span> <span class='op'>&lt;-</span> <span class='fu'><a href='noise_perlin.html'>gen_perlin</a></span><span class='op'>(</span><span class='va'>grid</span><span class='op'>$</span><span class='va'>x</span>, <span class='va'>grid</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>grid</span>, <span class='va'>clean_perlin</span><span class='op'>)</span>
+</div><div class='img'><img src='fracture-1.png' alt='' width='960' height='960' /></div><div class='input'>
 <span class='co'># Use fracture to apply a fractal algorithm to the noise</span>
-<span class='no'>grid</span>$<span class='no'>fractal_perlin</span> <span class='kw'>&lt;-</span> <span class='fu'>fracture</span>(<span class='no'>gen_perlin</span>, <span class='no'>fbm</span>, <span class='kw'>octaves</span> <span class='kw'>=</span> <span class='fl'>8</span>,
-                                <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>grid</span>$<span class='no'>x</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>grid</span>$<span class='no'>y</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>grid</span>, <span class='no'>fractal_perlin</span>)</div><div class='img'><img src='fracture-2.png' alt='' width='960' height='960' /></div><div class='input'>
+<span class='va'>grid</span><span class='op'>$</span><span class='va'>fractal_perlin</span> <span class='op'>&lt;-</span> <span class='fu'>fracture</span><span class='op'>(</span><span class='va'>gen_perlin</span>, <span class='va'>fbm</span>, octaves <span class='op'>=</span> <span class='fl'>8</span>,
+                                x <span class='op'>=</span> <span class='va'>grid</span><span class='op'>$</span><span class='va'>x</span>, y <span class='op'>=</span> <span class='va'>grid</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>grid</span>, <span class='va'>fractal_perlin</span><span class='op'>)</span>
+</div><div class='img'><img src='fracture-2.png' alt='' width='960' height='960' /></div><div class='input'>
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -248,7 +249,7 @@ octaves so each gets a unique seed.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

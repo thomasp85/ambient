@@ -47,6 +47,7 @@ reference:
       - gen_cubic
       - gen_value
       - gen_white
+      - noise_blue
   - title: "Patterns"
     desc: >
       Pattern generators are useful for modifying noise values and get

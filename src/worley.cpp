@@ -1,14 +1,14 @@
-#include <Rcpp.h>
+#include <cpp11/matrix.hpp>
+#include <cpp11/doubles.hpp>
+#include <cpp11/integers.hpp>
 #include "FastNoise.h"
 
-using namespace Rcpp;
-
-FastNoise worley_c(int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int dist, int value, IntegerVector dist2ind, double jitter, int pertube, double pertube_amp) {
+FastNoise worley_c(int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int dist, int value, cpp11::integers dist2ind, double jitter, int pertube, double pertube_amp) {
   FastNoise noise_gen;
   noise_gen.SetSeed(seed);
   noise_gen.SetFrequency(freq);
 
-  if (value == 1) stop("NoiseLookup is not supported");
+  if (value == 1) cpp11::stop("NoiseLookup is not supported");
   noise_gen.SetCellularDistanceFunction((FastNoise::CellularDistanceFunction) dist);
   noise_gen.SetCellularReturnType((FastNoise::CellularReturnType) value);
   noise_gen.SetCellularDistance2Indices(dist2ind[0], dist2ind[1]);
@@ -24,9 +24,9 @@ FastNoise worley_c(int seed, double freq, int fractal, int octaves, double lacun
   return noise_gen;
 }
 
-//[[Rcpp::export]]
-NumericMatrix worley_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int dist, int value, IntegerVector dist2ind, double jitter, int pertube, double pertube_amp) {
-  NumericMatrix noise(height, width);
+[[cpp11::register]]
+cpp11::writable::doubles_matrix worley_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int dist, int value, cpp11::integers dist2ind, double jitter, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix noise(height, width);
   int i,j;
   double new_i, new_j;
   FastNoise noise_gen = worley_c(seed, freq, fractal, octaves, lacunarity, gain, dist, value, dist2ind, jitter, pertube, pertube_amp);
@@ -53,9 +53,9 @@ NumericMatrix worley_2d_c(int height, int width, int seed, double freq, int frac
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericMatrix worley_3d_c(int height, int width, int depth, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int dist, int value, IntegerVector dist2ind, double jitter, int pertube, double pertube_amp) {
-  NumericMatrix noise(height, width * depth);
+[[cpp11::register]]
+cpp11::writable::doubles_matrix worley_3d_c(int height, int width, int depth, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int dist, int value, cpp11::integers dist2ind, double jitter, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix noise(height, width * depth);
   int i,j,k;
   double new_i, new_j, new_k;
 
@@ -85,9 +85,9 @@ NumericMatrix worley_3d_c(int height, int width, int depth, int seed, double fre
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericVector gen_worley2d_c(NumericVector x, NumericVector y, double freq, int seed, int dist, int value, IntegerVector dist2ind, double jitter) {
-  NumericVector noise(x.size());
+[[cpp11::register]]
+cpp11::writable::doubles gen_worley2d_c(cpp11::doubles x, cpp11::doubles y, double freq, int seed, int dist, int value, cpp11::integers dist2ind, double jitter) {
+  cpp11::writable::doubles noise(x.size());
   FastNoise generator = worley_c(seed, freq, 0, 0, 0.0, 0.0, dist, value, dist2ind, jitter, 0, 0.0);
   for (int i = 0; i < x.size(); i++) {
     noise[i] = generator.GetCellular(x[i], y[i]);
@@ -95,9 +95,9 @@ NumericVector gen_worley2d_c(NumericVector x, NumericVector y, double freq, int 
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericVector gen_worley3d_c(NumericVector x, NumericVector y, NumericVector z, double freq, int seed, int dist, int value, IntegerVector dist2ind, double jitter) {
-  NumericVector noise(x.size());
+[[cpp11::register]]
+cpp11::writable::doubles gen_worley3d_c(cpp11::doubles x, cpp11::doubles y, cpp11::doubles z, double freq, int seed, int dist, int value, cpp11::integers dist2ind, double jitter) {
+  cpp11::writable::doubles noise(x.size());
   FastNoise generator = worley_c(seed, freq, 0, 0, 0.0, 0.0, dist, value, dist2ind, jitter, 0, 0.0);
   for (int i = 0; i < x.size(); i++) {
     noise[i] = generator.GetCellular(x[i], y[i], z[i]);

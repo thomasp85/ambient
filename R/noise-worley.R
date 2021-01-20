@@ -49,14 +49,14 @@ noise_worley <- function(dim, frequency = 0.01, distance = 'euclidean',
                    value = 'cell', distance_ind = c(1, 2), jitter = 0.45,
                    pertubation = 'none', pertubation_amplitude = 1) {
   distance <- match.arg(distance, distances)
-  distance <- match(distance, distances) - 1
-  distance_ind <- distance_ind - 1
+  distance <- match(distance, distances) - 1L
+  distance_ind <- as.integer(distance_ind) - 1L
   value <- match.arg(value, values)
-  value <- match(value, values) - 1
+  value <- match(value, values) - 1L
   fractal <- match.arg(fractal, fractals)
-  fractal <- match(fractal, fractals) - 1
+  fractal <- match(fractal, fractals) - 1L
   pertubation <- match.arg(pertubation, pertubations)
-  pertubation <- match(pertubation, pertubations) - 1
+  pertubation <- match(pertubation, pertubations) - 1L
 
   if (length(dim) == 2) {
     noise <- worley_2d_c(dim[1], dim[2], seed = sample(.Machine$integer.max, size = 1),
@@ -85,10 +85,10 @@ gen_worley <- function(x, y = NULL, z = NULL, frequency = 1, seed = NULL,
                        distance_ind = c(1, 2), jitter = 0.45, ...) {
   dims <- check_dims(x, y, z)
   distance <- match.arg(distance, distances)
-  distance <- match(distance, distances) - 1
-  distance_ind <- distance_ind - 1
+  distance <- match(distance, distances) - 1L
+  distance_ind <- as.integer(distance_ind) - 1L
   value <- match.arg(value, values)
-  value <- match(value, values) - 1
+  value <- match(value, values) - 1L
   if (is.null(seed)) seed <- random_seed()
   if (is.null(z)) {
     gen_worley2d_c(dims$x, dims$y, frequency, seed, distance, value,

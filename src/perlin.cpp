@@ -1,7 +1,6 @@
-#include <Rcpp.h>
+#include <cpp11/matrix.hpp>
+#include <cpp11/doubles.hpp>
 #include "FastNoise.h"
-
-using namespace Rcpp;
 
 FastNoise perlin_c(int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
   FastNoise noise_gen;
@@ -19,10 +18,9 @@ FastNoise perlin_c(int seed, double freq, int interp, int fractal, int octaves, 
   return noise_gen;
 }
 
-
-//[[Rcpp::export]]
-NumericMatrix perlin_2d_c(int height, int width, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
-  NumericMatrix noise(height, width);
+[[cpp11::register]]
+cpp11::writable::doubles_matrix perlin_2d_c(int height, int width, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix noise(height, width);
   int i,j;
   double new_i, new_j;
 
@@ -49,9 +47,9 @@ NumericMatrix perlin_2d_c(int height, int width, int seed, double freq, int inte
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericMatrix perlin_3d_c(int height, int width, int depth, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
-  NumericMatrix noise(height, width * depth);
+[[cpp11::register]]
+cpp11::writable::doubles_matrix perlin_3d_c(int height, int width, int depth, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix noise(height, width * depth);
   int i,j,k;
   double new_i, new_j, new_k;
 
@@ -81,9 +79,9 @@ NumericMatrix perlin_3d_c(int height, int width, int depth, int seed, double fre
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericVector gen_perlin2d_c(NumericVector x, NumericVector y, double freq, int seed, int interp) {
-  NumericVector noise(x.size());
+[[cpp11::register]]
+cpp11::writable::doubles gen_perlin2d_c(cpp11::doubles x, cpp11::doubles y, double freq, int seed, int interp) {
+  cpp11::writable::doubles noise(x.size());
   FastNoise generator = perlin_c(seed, freq, interp, 0, 0, 0.0, 0.0, 0, 0.0);
   for (int i = 0; i < x.size(); i++) {
     noise[i] = generator.GetPerlin(x[i], y[i]);
@@ -91,9 +89,9 @@ NumericVector gen_perlin2d_c(NumericVector x, NumericVector y, double freq, int 
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericVector gen_perlin3d_c(NumericVector x, NumericVector y, NumericVector z, double freq, int seed, int interp) {
-  NumericVector noise(x.size());
+[[cpp11::register]]
+cpp11::writable::doubles gen_perlin3d_c(cpp11::doubles x, cpp11::doubles y, cpp11::doubles z, double freq, int seed, int interp) {
+  cpp11::writable::doubles noise(x.size());
   FastNoise generator = perlin_c(seed, freq, interp, 0, 0, 0.0, 0.0, 0, 0.0);
   for (int i = 0; i < x.size(); i++) {
     noise[i] = generator.GetPerlin(x[i], y[i], z[i]);

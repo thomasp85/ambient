@@ -1,7 +1,6 @@
-#include <Rcpp.h>
+#include <cpp11/matrix.hpp>
+#include <cpp11/doubles.hpp>
 #include "FastNoise.h"
-
-using namespace Rcpp;
 
 FastNoise cubic_c(int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
   FastNoise noise_gen;
@@ -18,9 +17,9 @@ FastNoise cubic_c(int seed, double freq, int fractal, int octaves, double lacuna
   return noise_gen;
 }
 
-//[[Rcpp::export]]
-NumericMatrix cubic_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
-  NumericMatrix noise(height, width);
+[[cpp11::register]]
+cpp11::writable::doubles_matrix cubic_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix noise(height, width);
   int i,j;
   double new_i, new_j;
   FastNoise noise_gen = cubic_c(seed, freq, fractal, octaves, lacunarity, gain, pertube, pertube_amp);
@@ -46,9 +45,9 @@ NumericMatrix cubic_2d_c(int height, int width, int seed, double freq, int fract
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericMatrix cubic_3d_c(int height, int width, int depth, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
-  NumericMatrix noise(height, width * depth);
+[[cpp11::register]]
+cpp11::writable::doubles_matrix cubic_3d_c(int height, int width, int depth, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix noise(height, width * depth);
   int i,j,k;
   double new_i, new_j, new_k;
   FastNoise noise_gen = cubic_c(seed, freq, fractal, octaves, lacunarity, gain, pertube, pertube_amp);
@@ -77,19 +76,20 @@ NumericMatrix cubic_3d_c(int height, int width, int depth, int seed, double freq
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericVector gen_cubic2d_c(NumericVector x, NumericVector y, double freq, int seed) {
-  NumericVector noise(x.size());
+[[cpp11::register]]
+cpp11::writable::doubles gen_cubic2d_c(cpp11::doubles x, cpp11::doubles y, double freq, int seed) {
+  cpp11::writable::doubles noise;
+  noise.reserve(x.size());
   FastNoise generator = cubic_c(seed, freq, 0, 0, 0.0, 0.0, 0, 0.0);
   for (int i = 0; i < x.size(); i++) {
-    noise[i] = generator.GetCubic(x[i], y[i]);
+    noise.push_back(generator.GetCubic(x[i], y[i]));
   }
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericVector gen_cubic3d_c(NumericVector x, NumericVector y, NumericVector z, double freq, int seed) {
-  NumericVector noise(x.size());
+[[cpp11::register]]
+cpp11::writable::doubles gen_cubic3d_c(cpp11::doubles x, cpp11::doubles y, cpp11::doubles z, double freq, int seed) {
+  cpp11::writable::doubles noise(x.size());
   FastNoise generator = cubic_c(seed, freq, 0, 0, 0.0, 0.0, 0, 0.0);
   for (int i = 0; i < x.size(); i++) {
     noise[i] = generator.GetCubic(x[i], y[i], z[i]);

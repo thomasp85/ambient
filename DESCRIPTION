@@ -24,12 +24,12 @@ Encoding: UTF-8
 SystemRequirements: C++11
 LazyData: true
 Imports: 
-    Rcpp (>= 0.12.18),
     rlang,
     grDevices,
     graphics,
     stats
-LinkingTo: Rcpp
+LinkingTo: 
+    cpp11
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 URL: https://ambient.data-imaginist.com, https://github.com/thomasp85/ambient

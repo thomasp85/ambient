@@ -1,7 +1,6 @@
-#include <Rcpp.h>
+#include <cpp11/matrix.hpp>
+#include <cpp11/doubles.hpp>
 #include "FastNoise.h"
-
-using namespace Rcpp;
 
 FastNoise value_c(int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
   FastNoise noise_gen;
@@ -19,9 +18,9 @@ FastNoise value_c(int seed, double freq, int interp, int fractal, int octaves, d
   return noise_gen;
 }
 
-//[[Rcpp::export]]
-NumericMatrix value_2d_c(int height, int width, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
-  NumericMatrix noise(height, width);
+[[cpp11::register]]
+cpp11::writable::doubles_matrix value_2d_c(int height, int width, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix noise(height, width);
   int i,j;
   double new_i, new_j;
   FastNoise noise_gen = value_c(seed, freq, interp, fractal, octaves, lacunarity, gain, pertube, pertube_amp);
@@ -47,9 +46,9 @@ NumericMatrix value_2d_c(int height, int width, int seed, double freq, int inter
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericMatrix value_3d_c(int height, int width, int depth, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
-  NumericMatrix noise(height, width * depth);
+[[cpp11::register]]
+cpp11::writable::doubles_matrix value_3d_c(int height, int width, int depth, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix noise(height, width * depth);
   int i,j,k;
   double new_i, new_j, new_k;
 
@@ -79,9 +78,9 @@ NumericMatrix value_3d_c(int height, int width, int depth, int seed, double freq
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericVector gen_value2d_c(NumericVector x, NumericVector y, double freq, int seed, int interp) {
-  NumericVector noise(x.size());
+[[cpp11::register]]
+cpp11::writable::doubles gen_value2d_c(cpp11::doubles x, cpp11::doubles y, double freq, int seed, int interp) {
+  cpp11::writable::doubles noise(x.size());
   FastNoise generator = value_c(seed, freq, interp, 0, 0, 0.0, 0.0, 0, 0.0);
   for (int i = 0; i < x.size(); i++) {
     noise[i] = generator.GetValue(x[i], y[i]);
@@ -89,9 +88,9 @@ NumericVector gen_value2d_c(NumericVector x, NumericVector y, double freq, int s
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericVector gen_value3d_c(NumericVector x, NumericVector y, NumericVector z, double freq, int seed, int interp) {
-  NumericVector noise(x.size());
+[[cpp11::register]]
+cpp11::writable::doubles gen_value3d_c(cpp11::doubles x, cpp11::doubles y, cpp11::doubles z, double freq, int seed, int interp) {
+  cpp11::writable::doubles noise(x.size());
   FastNoise generator = value_c(seed, freq, interp, 0, 0, 0.0, 0.0, 0, 0.0);
   for (int i = 0; i < x.size(); i++) {
     noise[i] = generator.GetValue(x[i], y[i], z[i]);

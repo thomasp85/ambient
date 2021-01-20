@@ -1,11 +1,10 @@
-#include <Rcpp.h>
+#include <cpp11/matrix.hpp>
+#include <cpp11/doubles.hpp>
 #include "FastNoise.h"
 
-using namespace Rcpp;
-
-//[[Rcpp::export]]
-NumericMatrix white_2d_c(int height, int width, int seed, double freq, int pertube, double pertube_amp) {
-  NumericMatrix noise(height, width);
+[[cpp11::register]]
+cpp11::writable::doubles_matrix white_2d_c(int height, int width, int seed, double freq, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix noise(height, width);
   int i,j;
   double new_i, new_j;
   FastNoise noise_gen;
@@ -30,9 +29,9 @@ NumericMatrix white_2d_c(int height, int width, int seed, double freq, int pertu
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericMatrix white_3d_c(int height, int width, int depth, int seed, double freq, int pertube, double pertube_amp) {
-  NumericMatrix noise(height, width * depth);
+[[cpp11::register]]
+cpp11::writable::doubles_matrix white_3d_c(int height, int width, int depth, int seed, double freq, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix noise(height, width * depth);
   int i,j,k;
   double new_i, new_j, new_k;
   FastNoise noise_gen;
@@ -60,9 +59,9 @@ NumericMatrix white_3d_c(int height, int width, int depth, int seed, double freq
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericMatrix white_4d_c(int height, int width, int depth, int time, int seed, double freq, int pertube, double pertube_amp) {
-  NumericMatrix noise(height, width * depth * time);
+[[cpp11::register]]
+cpp11::writable::doubles_matrix white_4d_c(int height, int width, int depth, int time, int seed, double freq, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix noise(height, width * depth * time);
   int i,j,k,l;
   double new_i, new_j, new_k, new_l;
   FastNoise noise_gen;
@@ -87,9 +86,9 @@ NumericMatrix white_4d_c(int height, int width, int depth, int time, int seed, d
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericVector gen_white2d_c(NumericVector x, NumericVector y, double freq, int seed) {
-  NumericVector noise(x.size());
+[[cpp11::register]]
+cpp11::writable::doubles gen_white2d_c(cpp11::doubles x, cpp11::doubles y, double freq, int seed) {
+  cpp11::writable::doubles noise(x.size());
   FastNoise generator;
   generator.SetSeed(seed);
   generator.SetFrequency(freq);
@@ -99,9 +98,9 @@ NumericVector gen_white2d_c(NumericVector x, NumericVector y, double freq, int s
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericVector gen_white3d_c(NumericVector x, NumericVector y, NumericVector z, double freq, int seed) {
-  NumericVector noise(x.size());
+[[cpp11::register]]
+cpp11::writable::doubles gen_white3d_c(cpp11::doubles x, cpp11::doubles y, cpp11::doubles z, double freq, int seed) {
+  cpp11::writable::doubles noise(x.size());
   FastNoise generator;
   generator.SetSeed(seed);
   generator.SetFrequency(freq);
@@ -111,9 +110,9 @@ NumericVector gen_white3d_c(NumericVector x, NumericVector y, NumericVector z, d
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericVector gen_white4d_c(NumericVector x, NumericVector y, NumericVector z, NumericVector t, double freq, int seed) {
-  NumericVector noise(x.size());
+[[cpp11::register]]
+cpp11::writable::doubles gen_white4d_c(cpp11::doubles x, cpp11::doubles y, cpp11::doubles z, cpp11::doubles t, double freq, int seed) {
+  cpp11::writable::doubles noise(x.size());
   FastNoise generator;
   generator.SetSeed(seed);
   generator.SetFrequency(freq);

@@ -1,7 +1,6 @@
-#include <Rcpp.h>
+#include <cpp11/matrix.hpp>
+#include <cpp11/doubles.hpp>
 #include "FastNoise.h"
-
-using namespace Rcpp;
 
 FastNoise simplex_c(int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
   FastNoise noise_gen;
@@ -18,9 +17,9 @@ FastNoise simplex_c(int seed, double freq, int fractal, int octaves, double lacu
   return noise_gen;
 }
 
-//[[Rcpp::export]]
-NumericMatrix simplex_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
-  NumericMatrix noise(height, width);
+[[cpp11::register]]
+cpp11::writable::doubles_matrix simplex_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix noise(height, width);
   int i,j;
   double new_i, new_j;
   FastNoise noise_gen = simplex_c(seed, freq, fractal, octaves, lacunarity, gain, pertube, pertube_amp);
@@ -46,9 +45,9 @@ NumericMatrix simplex_2d_c(int height, int width, int seed, double freq, int fra
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericMatrix simplex_3d_c(int height, int width, int depth, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
-  NumericMatrix noise(height, width * depth);
+[[cpp11::register]]
+cpp11::writable::doubles_matrix simplex_3d_c(int height, int width, int depth, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix noise(height, width * depth);
   int i,j,k;
   double new_i, new_j, new_k;
 
@@ -78,9 +77,9 @@ NumericMatrix simplex_3d_c(int height, int width, int depth, int seed, double fr
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericMatrix simplex_4d_c(int height, int width, int depth, int time, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
-  NumericMatrix noise(height, width * depth * time);
+[[cpp11::register]]
+cpp11::writable::doubles_matrix simplex_4d_c(int height, int width, int depth, int time, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix noise(height, width * depth * time);
   int i,j,k,l;
   double new_i, new_j, new_k, new_l;
 
@@ -103,9 +102,9 @@ NumericMatrix simplex_4d_c(int height, int width, int depth, int time, int seed,
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericVector gen_simplex2d_c(NumericVector x, NumericVector y, double freq, int seed) {
-  NumericVector noise(x.size());
+[[cpp11::register]]
+cpp11::writable::doubles gen_simplex2d_c(cpp11::doubles x, cpp11::doubles y, double freq, int seed) {
+  cpp11::writable::doubles noise(x.size());
   FastNoise generator = simplex_c(seed, freq, 0, 0, 0.0, 0.0, 0, 0.0);
   for (int i = 0; i < x.size(); i++) {
     noise[i] = generator.GetSimplex(x[i], y[i]);
@@ -113,9 +112,9 @@ NumericVector gen_simplex2d_c(NumericVector x, NumericVector y, double freq, int
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericVector gen_simplex3d_c(NumericVector x, NumericVector y, NumericVector z, double freq, int seed) {
-  NumericVector noise(x.size());
+[[cpp11::register]]
+cpp11::writable::doubles gen_simplex3d_c(cpp11::doubles x, cpp11::doubles y, cpp11::doubles z, double freq, int seed) {
+  cpp11::writable::doubles noise(x.size());
   FastNoise generator = simplex_c(seed, freq, 0, 0, 0.0, 0.0, 0, 0.0);
   for (int i = 0; i < x.size(); i++) {
     noise[i] = generator.GetSimplex(x[i], y[i], z[i]);
@@ -123,9 +122,9 @@ NumericVector gen_simplex3d_c(NumericVector x, NumericVector y, NumericVector z,
   return noise;
 }
 
-//[[Rcpp::export]]
-NumericVector gen_simplex4d_c(NumericVector x, NumericVector y, NumericVector z, NumericVector t, double freq, int seed) {
-  NumericVector noise(x.size());
+[[cpp11::register]]
+cpp11::writable::doubles gen_simplex4d_c(cpp11::doubles x, cpp11::doubles y, cpp11::doubles z, cpp11::doubles t, double freq, int seed) {
+  cpp11::writable::doubles noise(x.size());
   FastNoise generator = simplex_c(seed, freq, 0, 0, 0.0, 0.0, 0, 0.0);
   for (int i = 0; i < x.size(); i++) {
     noise[i] = generator.GetSimplex(x[i], y[i], z[i], t[i]);

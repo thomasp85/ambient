@@ -25,7 +25,7 @@
 #'
 noise_white <- function(dim, frequency = 0.01, pertubation = 'none', pertubation_amplitude = 1) {
   pertubation <- match.arg(pertubation, pertubations)
-  pertubation <- match(pertubation, pertubations) - 1
+  pertubation <- match(pertubation, pertubations) - 1L
 
   white_2d_c(dim[1], dim[2], seed = sample(.Machine$integer.max, size = 1),
              freq = frequency, pertube = pertubation, pertube_amp = pertubation_amplitude)

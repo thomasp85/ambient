@@ -1,13 +1,13 @@
 #' Blue noise generator
 #'
-#' Blue noise is a form of noise that has weak low-frewuencies. This means that
+#' Blue noise is a form of noise that has weak low-frequency. This means that
 #' it is devoid of larger structures and can be blurred to an even gray. Blue
 #' noise in ambient is calculated using the popular Void-and-cluster method
 #' developed by Ulichney. Calculating blue noise is much more computationally
 #' expensive than e.g. white noise so ambient does not provide a `gen_blue()`
 #' generator, only the `noise_blue()` texture function. Computation time
 #' increases linearly with the number of pixels in the texture and can get
-#' prohitly long very soon. However, blue noise is tile-able so a good
+#' prohibitly long very soon. However, blue noise is tile-able so a good
 #' suggestion is to try tiling e.g. a 64x64 texture to the desired dimensions
 #' and see if that suffices.
 #'

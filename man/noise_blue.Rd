@@ -9,6 +9,12 @@ noise_blue(dim, sd = 10, seed_frac = 0.1)
 \arguments{
 \item{dim}{The dimensions (height, width, (and depth, (and time))) of the
 noise to be generated. The length determines the dimensionality of the noise.}
+
+\item{sd}{The standard deviation of the gaussian filter to apply during the
+search for clusters and voids.}
+
+\item{seed_frac}{The fraction of pixels to seed the algorithm with during
+start}
 }
 \value{
 For \code{noise_white()} a vector if \code{length(dim) == 1}, matrix if

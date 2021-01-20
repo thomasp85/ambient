@@ -12,6 +12,10 @@
 #' and see if that suffices.
 #'
 #' @inheritParams noise_simplex
+#' @param sd The standard deviation of the gaussian filter to apply during the
+#' search for clusters and voids.
+#' @param seed_frac The fraction of pixels to seed the algorithm with during
+#' start
 #'
 #' @return For `noise_white()` a vector if `length(dim) == 1`, matrix if
 #' `length(dim) == 2` or an array if `length(dim) >= 3`.
@@ -77,6 +81,7 @@ create_kernel <- function(dim, sd) {
   array(v, dim)
 }
 
+#' @importFrom stats fft
 find_voidest_cluster <- function(pattern, kernel) {
   if (sum(pattern) * 2 >= length(pattern)) {
     pattern <- abs(pattern - 1)
@@ -85,6 +90,7 @@ find_voidest_cluster <- function(pattern, kernel) {
   which.min(ifelse(pattern, 2, filtered))
 }
 
+#' @importFrom stats fft
 find_tightest_cluster <- function(pattern, kernel) {
   if (sum(pattern) * 2 >= length(pattern)) {
     pattern <- abs(pattern - 1)

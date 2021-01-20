@@ -27,7 +27,8 @@ Imports:
     Rcpp (>= 0.12.18),
     rlang,
     grDevices,
-    graphics
+    graphics,
+    stats
 LinkingTo: Rcpp
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)

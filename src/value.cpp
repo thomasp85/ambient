@@ -19,8 +19,8 @@ FastNoise value_c(int seed, double freq, int interp, int fractal, int octaves, d
 }
 
 [[cpp11::register]]
-cpp11::writable::doubles_matrix value_2d_c(int height, int width, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
-  cpp11::writable::doubles_matrix noise(height, width);
+cpp11::writable::doubles_matrix<> value_2d_c(int height, int width, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix<> noise(height, width);
   int i,j;
   double new_i, new_j;
   FastNoise noise_gen = value_c(seed, freq, interp, fractal, octaves, lacunarity, gain, pertube, pertube_amp);
@@ -47,8 +47,8 @@ cpp11::writable::doubles_matrix value_2d_c(int height, int width, int seed, doub
 }
 
 [[cpp11::register]]
-cpp11::writable::doubles_matrix value_3d_c(int height, int width, int depth, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
-  cpp11::writable::doubles_matrix noise(height, width * depth);
+cpp11::writable::doubles_matrix<> value_3d_c(int height, int width, int depth, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix<> noise(height, width * depth);
   int i,j,k;
   double new_i, new_j, new_k;
 

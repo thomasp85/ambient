@@ -25,8 +25,8 @@ FastNoise worley_c(int seed, double freq, int fractal, int octaves, double lacun
 }
 
 [[cpp11::register]]
-cpp11::writable::doubles_matrix worley_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int dist, int value, cpp11::integers dist2ind, double jitter, int pertube, double pertube_amp) {
-  cpp11::writable::doubles_matrix noise(height, width);
+cpp11::writable::doubles_matrix<> worley_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int dist, int value, cpp11::integers dist2ind, double jitter, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix<> noise(height, width);
   int i,j;
   double new_i, new_j;
   FastNoise noise_gen = worley_c(seed, freq, fractal, octaves, lacunarity, gain, dist, value, dist2ind, jitter, pertube, pertube_amp);
@@ -54,8 +54,8 @@ cpp11::writable::doubles_matrix worley_2d_c(int height, int width, int seed, dou
 }
 
 [[cpp11::register]]
-cpp11::writable::doubles_matrix worley_3d_c(int height, int width, int depth, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int dist, int value, cpp11::integers dist2ind, double jitter, int pertube, double pertube_amp) {
-  cpp11::writable::doubles_matrix noise(height, width * depth);
+cpp11::writable::doubles_matrix<> worley_3d_c(int height, int width, int depth, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int dist, int value, cpp11::integers dist2ind, double jitter, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix<> noise(height, width * depth);
   int i,j,k;
   double new_i, new_j, new_k;
 

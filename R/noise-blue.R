@@ -75,6 +75,15 @@ noise_blue <- function(dim, sd = 10, seed_frac = 0.1) {
   }
 }
 
+noise_blue2 <- function(dim, sd = 10, seed_frac = 0.1) {
+  n_pixels <- prod(dim)
+  n_seeds <- floor(max(1, min((n_pixels - 1) / 2, n_pixels * seed_frac)));
+  seed_texture <- noise_white(dim)
+  seed_texture[] <- ifelse(order(seed_texture) <= n_seeds, 1, 0)
+  kernel <- create_kernel(dim, sd)
+  blue_c(as.integer(dim), n_seeds, seed_texture, kernel)
+}
+
 create_kernel <- function(dim, sd) {
   i <- do.call(expand.grid, lapply(dim, function(d) c(seq(0, d/2), seq(-floor((d - 1)/2), -1))))
   v <- exp(-rowSums(i^2) / (2 * sd^2)) / (sd * sqrt(2 * pi))^length(dim)

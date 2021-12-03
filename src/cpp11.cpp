@@ -4,6 +4,13 @@
 
 #include "cpp11/declarations.hpp"
 
+// blue.cpp
+cpp11::writable::doubles blue_c(cpp11::integers dim, int n_seeds, SEXP seed, cpp11::doubles kernel);
+extern "C" SEXP _ambient_blue_c(SEXP dim, SEXP n_seeds, SEXP seed, SEXP kernel) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(blue_c(cpp11::as_cpp<cpp11::decay_t<cpp11::integers>>(dim), cpp11::as_cpp<cpp11::decay_t<int>>(n_seeds), cpp11::as_cpp<cpp11::decay_t<SEXP>>(seed), cpp11::as_cpp<cpp11::decay_t<cpp11::doubles>>(kernel)));
+  END_CPP11
+}
 // cubic.cpp
 cpp11::writable::doubles_matrix cubic_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
 extern "C" SEXP _ambient_cubic_2d_c(SEXP height, SEXP width, SEXP seed, SEXP freq, SEXP fractal, SEXP octaves, SEXP lacunarity, SEXP gain, SEXP pertube, SEXP pertube_amp) {
@@ -203,6 +210,7 @@ extern "C" SEXP _ambient_gen_worley3d_c(SEXP x, SEXP y, SEXP z, SEXP freq, SEXP 
 
 extern "C" {
 /* .Call calls */
+extern SEXP _ambient_blue_c(SEXP, SEXP, SEXP, SEXP);
 extern SEXP _ambient_cubic_2d_c(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP _ambient_cubic_3d_c(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP _ambient_gen_cubic2d_c(SEXP, SEXP, SEXP, SEXP);
@@ -233,6 +241,7 @@ extern SEXP _ambient_worley_2d_c(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP,
 extern SEXP _ambient_worley_3d_c(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_ambient_blue_c",          (DL_FUNC) &_ambient_blue_c,           4},
     {"_ambient_cubic_2d_c",      (DL_FUNC) &_ambient_cubic_2d_c,      10},
     {"_ambient_cubic_3d_c",      (DL_FUNC) &_ambient_cubic_3d_c,      11},
     {"_ambient_gen_cubic2d_c",   (DL_FUNC) &_ambient_gen_cubic2d_c,    4},

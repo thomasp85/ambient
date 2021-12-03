@@ -92,7 +92,7 @@ selection of handy functions to compliment these" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
+    <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -115,7 +115,7 @@ selection of handy functions to compliment these" />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/thomasp85/ambient">
-    <span class="fas fa-github fa-lg"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -180,19 +180,21 @@ selection of handy functions to compliment these</p>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>grid</span> <span class='op'>&lt;-</span> <span class='fu'><a href='long_grid.html'>long_grid</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>10</span>, length.out <span class='op'>=</span> <span class='fl'>1000</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>10</span>, length.out <span class='op'>=</span> <span class='fl'>1000</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>grid</span><span class='op'>$</span><span class='va'>chess</span> <span class='op'>&lt;-</span> <span class='fu'><a href='gen_checkerboard.html'>gen_checkerboard</a></span><span class='op'>(</span><span class='va'>grid</span><span class='op'>$</span><span class='va'>x</span>, <span class='va'>grid</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span>
-<span class='va'>grid</span><span class='op'>$</span><span class='va'>noise</span> <span class='op'>&lt;-</span> <span class='fu'><a href='noise_perlin.html'>gen_perlin</a></span><span class='op'>(</span><span class='va'>grid</span><span class='op'>$</span><span class='va'>x</span>, <span class='va'>grid</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span>
-<span class='va'>grid</span><span class='op'>$</span><span class='va'>ripple</span> <span class='op'>&lt;-</span> <span class='fu'><a href='gen_waves.html'>gen_waves</a></span><span class='op'>(</span><span class='va'>grid</span><span class='op'>$</span><span class='va'>x</span>, <span class='va'>grid</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span>
-
-<span class='co'># Blend two values based on a third</span>
-<span class='va'>grid</span><span class='op'>$</span><span class='va'>mix</span> <span class='op'>&lt;-</span> <span class='fu'>blend</span><span class='op'>(</span><span class='va'>grid</span><span class='op'>$</span><span class='va'>noise</span>, <span class='va'>grid</span><span class='op'>$</span><span class='va'>ripple</span>, <span class='va'>grid</span><span class='op'>$</span><span class='va'>chess</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>grid</span>, <span class='va'>mix</span><span class='op'>)</span>
-</div><div class='img'><img src='modifications-1.png' alt='' width='960' height='960' /></div><div class='input'>
-<span class='co'># Cap values between 0 and 1</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>grid</span>, <span class='fu'>cap</span><span class='op'>(</span><span class='va'>noise</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='modifications-2.png' alt='' width='960' height='960' /></div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>grid</span> <span class='op'>&lt;-</span> <span class='fu'><a href='long_grid.html'>long_grid</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>10</span>, length.out <span class='op'>=</span> <span class='fl'>1000</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>10</span>, length.out <span class='op'>=</span> <span class='fl'>1000</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>grid</span><span class='op'>$</span><span class='va'>chess</span> <span class='op'>&lt;-</span> <span class='fu'><a href='gen_checkerboard.html'>gen_checkerboard</a></span><span class='op'>(</span><span class='va'>grid</span><span class='op'>$</span><span class='va'>x</span>, <span class='va'>grid</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>grid</span><span class='op'>$</span><span class='va'>noise</span> <span class='op'>&lt;-</span> <span class='fu'><a href='noise_perlin.html'>gen_perlin</a></span><span class='op'>(</span><span class='va'>grid</span><span class='op'>$</span><span class='va'>x</span>, <span class='va'>grid</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>grid</span><span class='op'>$</span><span class='va'>ripple</span> <span class='op'>&lt;-</span> <span class='fu'><a href='gen_waves.html'>gen_waves</a></span><span class='op'>(</span><span class='va'>grid</span><span class='op'>$</span><span class='va'>x</span>, <span class='va'>grid</span><span class='op'>$</span><span class='va'>y</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Blend two values based on a third</span></span>
+<span class='r-in'><span class='va'>grid</span><span class='op'>$</span><span class='va'>mix</span> <span class='op'>&lt;-</span> <span class='fu'>blend</span><span class='op'>(</span><span class='va'>grid</span><span class='op'>$</span><span class='va'>noise</span>, <span class='va'>grid</span><span class='op'>$</span><span class='va'>ripple</span>, <span class='va'>grid</span><span class='op'>$</span><span class='va'>chess</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>grid</span>, <span class='va'>mix</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='modifications-1.png' alt='' width='960' height='960' /></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># Cap values between 0 and 1</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>grid</span>, <span class='fu'>cap</span><span class='op'>(</span><span class='va'>noise</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='modifications-2.png' alt='' width='960' height='960' /></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

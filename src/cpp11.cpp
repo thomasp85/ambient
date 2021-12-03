@@ -5,14 +5,14 @@
 #include "cpp11/declarations.hpp"
 
 // cubic.cpp
-cpp11::writable::doubles_matrix cubic_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
+cpp11::writable::doubles_matrix<> cubic_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
 extern "C" SEXP _ambient_cubic_2d_c(SEXP height, SEXP width, SEXP seed, SEXP freq, SEXP fractal, SEXP octaves, SEXP lacunarity, SEXP gain, SEXP pertube, SEXP pertube_amp) {
   BEGIN_CPP11
     return cpp11::as_sexp(cubic_2d_c(cpp11::as_cpp<cpp11::decay_t<int>>(height), cpp11::as_cpp<cpp11::decay_t<int>>(width), cpp11::as_cpp<cpp11::decay_t<int>>(seed), cpp11::as_cpp<cpp11::decay_t<double>>(freq), cpp11::as_cpp<cpp11::decay_t<int>>(fractal), cpp11::as_cpp<cpp11::decay_t<int>>(octaves), cpp11::as_cpp<cpp11::decay_t<double>>(lacunarity), cpp11::as_cpp<cpp11::decay_t<double>>(gain), cpp11::as_cpp<cpp11::decay_t<int>>(pertube), cpp11::as_cpp<cpp11::decay_t<double>>(pertube_amp)));
   END_CPP11
 }
 // cubic.cpp
-cpp11::writable::doubles_matrix cubic_3d_c(int height, int width, int depth, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
+cpp11::writable::doubles_matrix<> cubic_3d_c(int height, int width, int depth, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
 extern "C" SEXP _ambient_cubic_3d_c(SEXP height, SEXP width, SEXP depth, SEXP seed, SEXP freq, SEXP fractal, SEXP octaves, SEXP lacunarity, SEXP gain, SEXP pertube, SEXP pertube_amp) {
   BEGIN_CPP11
     return cpp11::as_sexp(cubic_3d_c(cpp11::as_cpp<cpp11::decay_t<int>>(height), cpp11::as_cpp<cpp11::decay_t<int>>(width), cpp11::as_cpp<cpp11::decay_t<int>>(depth), cpp11::as_cpp<cpp11::decay_t<int>>(seed), cpp11::as_cpp<cpp11::decay_t<double>>(freq), cpp11::as_cpp<cpp11::decay_t<int>>(fractal), cpp11::as_cpp<cpp11::decay_t<int>>(octaves), cpp11::as_cpp<cpp11::decay_t<double>>(lacunarity), cpp11::as_cpp<cpp11::decay_t<double>>(gain), cpp11::as_cpp<cpp11::decay_t<int>>(pertube), cpp11::as_cpp<cpp11::decay_t<double>>(pertube_amp)));
@@ -33,14 +33,14 @@ extern "C" SEXP _ambient_gen_cubic3d_c(SEXP x, SEXP y, SEXP z, SEXP freq, SEXP s
   END_CPP11
 }
 // perlin.cpp
-cpp11::writable::doubles_matrix perlin_2d_c(int height, int width, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
+cpp11::writable::doubles_matrix<> perlin_2d_c(int height, int width, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
 extern "C" SEXP _ambient_perlin_2d_c(SEXP height, SEXP width, SEXP seed, SEXP freq, SEXP interp, SEXP fractal, SEXP octaves, SEXP lacunarity, SEXP gain, SEXP pertube, SEXP pertube_amp) {
   BEGIN_CPP11
     return cpp11::as_sexp(perlin_2d_c(cpp11::as_cpp<cpp11::decay_t<int>>(height), cpp11::as_cpp<cpp11::decay_t<int>>(width), cpp11::as_cpp<cpp11::decay_t<int>>(seed), cpp11::as_cpp<cpp11::decay_t<double>>(freq), cpp11::as_cpp<cpp11::decay_t<int>>(interp), cpp11::as_cpp<cpp11::decay_t<int>>(fractal), cpp11::as_cpp<cpp11::decay_t<int>>(octaves), cpp11::as_cpp<cpp11::decay_t<double>>(lacunarity), cpp11::as_cpp<cpp11::decay_t<double>>(gain), cpp11::as_cpp<cpp11::decay_t<int>>(pertube), cpp11::as_cpp<cpp11::decay_t<double>>(pertube_amp)));
   END_CPP11
 }
 // perlin.cpp
-cpp11::writable::doubles_matrix perlin_3d_c(int height, int width, int depth, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
+cpp11::writable::doubles_matrix<> perlin_3d_c(int height, int width, int depth, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
 extern "C" SEXP _ambient_perlin_3d_c(SEXP height, SEXP width, SEXP depth, SEXP seed, SEXP freq, SEXP interp, SEXP fractal, SEXP octaves, SEXP lacunarity, SEXP gain, SEXP pertube, SEXP pertube_amp) {
   BEGIN_CPP11
     return cpp11::as_sexp(perlin_3d_c(cpp11::as_cpp<cpp11::decay_t<int>>(height), cpp11::as_cpp<cpp11::decay_t<int>>(width), cpp11::as_cpp<cpp11::decay_t<int>>(depth), cpp11::as_cpp<cpp11::decay_t<int>>(seed), cpp11::as_cpp<cpp11::decay_t<double>>(freq), cpp11::as_cpp<cpp11::decay_t<int>>(interp), cpp11::as_cpp<cpp11::decay_t<int>>(fractal), cpp11::as_cpp<cpp11::decay_t<int>>(octaves), cpp11::as_cpp<cpp11::decay_t<double>>(lacunarity), cpp11::as_cpp<cpp11::decay_t<double>>(gain), cpp11::as_cpp<cpp11::decay_t<int>>(pertube), cpp11::as_cpp<cpp11::decay_t<double>>(pertube_amp)));
@@ -61,21 +61,21 @@ extern "C" SEXP _ambient_gen_perlin3d_c(SEXP x, SEXP y, SEXP z, SEXP freq, SEXP 
   END_CPP11
 }
 // simplex.cpp
-cpp11::writable::doubles_matrix simplex_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
+cpp11::writable::doubles_matrix<> simplex_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
 extern "C" SEXP _ambient_simplex_2d_c(SEXP height, SEXP width, SEXP seed, SEXP freq, SEXP fractal, SEXP octaves, SEXP lacunarity, SEXP gain, SEXP pertube, SEXP pertube_amp) {
   BEGIN_CPP11
     return cpp11::as_sexp(simplex_2d_c(cpp11::as_cpp<cpp11::decay_t<int>>(height), cpp11::as_cpp<cpp11::decay_t<int>>(width), cpp11::as_cpp<cpp11::decay_t<int>>(seed), cpp11::as_cpp<cpp11::decay_t<double>>(freq), cpp11::as_cpp<cpp11::decay_t<int>>(fractal), cpp11::as_cpp<cpp11::decay_t<int>>(octaves), cpp11::as_cpp<cpp11::decay_t<double>>(lacunarity), cpp11::as_cpp<cpp11::decay_t<double>>(gain), cpp11::as_cpp<cpp11::decay_t<int>>(pertube), cpp11::as_cpp<cpp11::decay_t<double>>(pertube_amp)));
   END_CPP11
 }
 // simplex.cpp
-cpp11::writable::doubles_matrix simplex_3d_c(int height, int width, int depth, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
+cpp11::writable::doubles_matrix<> simplex_3d_c(int height, int width, int depth, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
 extern "C" SEXP _ambient_simplex_3d_c(SEXP height, SEXP width, SEXP depth, SEXP seed, SEXP freq, SEXP fractal, SEXP octaves, SEXP lacunarity, SEXP gain, SEXP pertube, SEXP pertube_amp) {
   BEGIN_CPP11
     return cpp11::as_sexp(simplex_3d_c(cpp11::as_cpp<cpp11::decay_t<int>>(height), cpp11::as_cpp<cpp11::decay_t<int>>(width), cpp11::as_cpp<cpp11::decay_t<int>>(depth), cpp11::as_cpp<cpp11::decay_t<int>>(seed), cpp11::as_cpp<cpp11::decay_t<double>>(freq), cpp11::as_cpp<cpp11::decay_t<int>>(fractal), cpp11::as_cpp<cpp11::decay_t<int>>(octaves), cpp11::as_cpp<cpp11::decay_t<double>>(lacunarity), cpp11::as_cpp<cpp11::decay_t<double>>(gain), cpp11::as_cpp<cpp11::decay_t<int>>(pertube), cpp11::as_cpp<cpp11::decay_t<double>>(pertube_amp)));
   END_CPP11
 }
 // simplex.cpp
-cpp11::writable::doubles_matrix simplex_4d_c(int height, int width, int depth, int time, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
+cpp11::writable::doubles_matrix<> simplex_4d_c(int height, int width, int depth, int time, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
 extern "C" SEXP _ambient_simplex_4d_c(SEXP height, SEXP width, SEXP depth, SEXP time, SEXP seed, SEXP freq, SEXP fractal, SEXP octaves, SEXP lacunarity, SEXP gain, SEXP pertube, SEXP pertube_amp) {
   BEGIN_CPP11
     return cpp11::as_sexp(simplex_4d_c(cpp11::as_cpp<cpp11::decay_t<int>>(height), cpp11::as_cpp<cpp11::decay_t<int>>(width), cpp11::as_cpp<cpp11::decay_t<int>>(depth), cpp11::as_cpp<cpp11::decay_t<int>>(time), cpp11::as_cpp<cpp11::decay_t<int>>(seed), cpp11::as_cpp<cpp11::decay_t<double>>(freq), cpp11::as_cpp<cpp11::decay_t<int>>(fractal), cpp11::as_cpp<cpp11::decay_t<int>>(octaves), cpp11::as_cpp<cpp11::decay_t<double>>(lacunarity), cpp11::as_cpp<cpp11::decay_t<double>>(gain), cpp11::as_cpp<cpp11::decay_t<int>>(pertube), cpp11::as_cpp<cpp11::decay_t<double>>(pertube_amp)));
@@ -103,14 +103,14 @@ extern "C" SEXP _ambient_gen_simplex4d_c(SEXP x, SEXP y, SEXP z, SEXP t, SEXP fr
   END_CPP11
 }
 // value.cpp
-cpp11::writable::doubles_matrix value_2d_c(int height, int width, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
+cpp11::writable::doubles_matrix<> value_2d_c(int height, int width, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
 extern "C" SEXP _ambient_value_2d_c(SEXP height, SEXP width, SEXP seed, SEXP freq, SEXP interp, SEXP fractal, SEXP octaves, SEXP lacunarity, SEXP gain, SEXP pertube, SEXP pertube_amp) {
   BEGIN_CPP11
     return cpp11::as_sexp(value_2d_c(cpp11::as_cpp<cpp11::decay_t<int>>(height), cpp11::as_cpp<cpp11::decay_t<int>>(width), cpp11::as_cpp<cpp11::decay_t<int>>(seed), cpp11::as_cpp<cpp11::decay_t<double>>(freq), cpp11::as_cpp<cpp11::decay_t<int>>(interp), cpp11::as_cpp<cpp11::decay_t<int>>(fractal), cpp11::as_cpp<cpp11::decay_t<int>>(octaves), cpp11::as_cpp<cpp11::decay_t<double>>(lacunarity), cpp11::as_cpp<cpp11::decay_t<double>>(gain), cpp11::as_cpp<cpp11::decay_t<int>>(pertube), cpp11::as_cpp<cpp11::decay_t<double>>(pertube_amp)));
   END_CPP11
 }
 // value.cpp
-cpp11::writable::doubles_matrix value_3d_c(int height, int width, int depth, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
+cpp11::writable::doubles_matrix<> value_3d_c(int height, int width, int depth, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp);
 extern "C" SEXP _ambient_value_3d_c(SEXP height, SEXP width, SEXP depth, SEXP seed, SEXP freq, SEXP interp, SEXP fractal, SEXP octaves, SEXP lacunarity, SEXP gain, SEXP pertube, SEXP pertube_amp) {
   BEGIN_CPP11
     return cpp11::as_sexp(value_3d_c(cpp11::as_cpp<cpp11::decay_t<int>>(height), cpp11::as_cpp<cpp11::decay_t<int>>(width), cpp11::as_cpp<cpp11::decay_t<int>>(depth), cpp11::as_cpp<cpp11::decay_t<int>>(seed), cpp11::as_cpp<cpp11::decay_t<double>>(freq), cpp11::as_cpp<cpp11::decay_t<int>>(interp), cpp11::as_cpp<cpp11::decay_t<int>>(fractal), cpp11::as_cpp<cpp11::decay_t<int>>(octaves), cpp11::as_cpp<cpp11::decay_t<double>>(lacunarity), cpp11::as_cpp<cpp11::decay_t<double>>(gain), cpp11::as_cpp<cpp11::decay_t<int>>(pertube), cpp11::as_cpp<cpp11::decay_t<double>>(pertube_amp)));
@@ -131,21 +131,21 @@ extern "C" SEXP _ambient_gen_value3d_c(SEXP x, SEXP y, SEXP z, SEXP freq, SEXP s
   END_CPP11
 }
 // white.cpp
-cpp11::writable::doubles_matrix white_2d_c(int height, int width, int seed, double freq, int pertube, double pertube_amp);
+cpp11::writable::doubles_matrix<> white_2d_c(int height, int width, int seed, double freq, int pertube, double pertube_amp);
 extern "C" SEXP _ambient_white_2d_c(SEXP height, SEXP width, SEXP seed, SEXP freq, SEXP pertube, SEXP pertube_amp) {
   BEGIN_CPP11
     return cpp11::as_sexp(white_2d_c(cpp11::as_cpp<cpp11::decay_t<int>>(height), cpp11::as_cpp<cpp11::decay_t<int>>(width), cpp11::as_cpp<cpp11::decay_t<int>>(seed), cpp11::as_cpp<cpp11::decay_t<double>>(freq), cpp11::as_cpp<cpp11::decay_t<int>>(pertube), cpp11::as_cpp<cpp11::decay_t<double>>(pertube_amp)));
   END_CPP11
 }
 // white.cpp
-cpp11::writable::doubles_matrix white_3d_c(int height, int width, int depth, int seed, double freq, int pertube, double pertube_amp);
+cpp11::writable::doubles_matrix<> white_3d_c(int height, int width, int depth, int seed, double freq, int pertube, double pertube_amp);
 extern "C" SEXP _ambient_white_3d_c(SEXP height, SEXP width, SEXP depth, SEXP seed, SEXP freq, SEXP pertube, SEXP pertube_amp) {
   BEGIN_CPP11
     return cpp11::as_sexp(white_3d_c(cpp11::as_cpp<cpp11::decay_t<int>>(height), cpp11::as_cpp<cpp11::decay_t<int>>(width), cpp11::as_cpp<cpp11::decay_t<int>>(depth), cpp11::as_cpp<cpp11::decay_t<int>>(seed), cpp11::as_cpp<cpp11::decay_t<double>>(freq), cpp11::as_cpp<cpp11::decay_t<int>>(pertube), cpp11::as_cpp<cpp11::decay_t<double>>(pertube_amp)));
   END_CPP11
 }
 // white.cpp
-cpp11::writable::doubles_matrix white_4d_c(int height, int width, int depth, int time, int seed, double freq, int pertube, double pertube_amp);
+cpp11::writable::doubles_matrix<> white_4d_c(int height, int width, int depth, int time, int seed, double freq, int pertube, double pertube_amp);
 extern "C" SEXP _ambient_white_4d_c(SEXP height, SEXP width, SEXP depth, SEXP time, SEXP seed, SEXP freq, SEXP pertube, SEXP pertube_amp) {
   BEGIN_CPP11
     return cpp11::as_sexp(white_4d_c(cpp11::as_cpp<cpp11::decay_t<int>>(height), cpp11::as_cpp<cpp11::decay_t<int>>(width), cpp11::as_cpp<cpp11::decay_t<int>>(depth), cpp11::as_cpp<cpp11::decay_t<int>>(time), cpp11::as_cpp<cpp11::decay_t<int>>(seed), cpp11::as_cpp<cpp11::decay_t<double>>(freq), cpp11::as_cpp<cpp11::decay_t<int>>(pertube), cpp11::as_cpp<cpp11::decay_t<double>>(pertube_amp)));
@@ -173,14 +173,14 @@ extern "C" SEXP _ambient_gen_white4d_c(SEXP x, SEXP y, SEXP z, SEXP t, SEXP freq
   END_CPP11
 }
 // worley.cpp
-cpp11::writable::doubles_matrix worley_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int dist, int value, cpp11::integers dist2ind, double jitter, int pertube, double pertube_amp);
+cpp11::writable::doubles_matrix<> worley_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int dist, int value, cpp11::integers dist2ind, double jitter, int pertube, double pertube_amp);
 extern "C" SEXP _ambient_worley_2d_c(SEXP height, SEXP width, SEXP seed, SEXP freq, SEXP fractal, SEXP octaves, SEXP lacunarity, SEXP gain, SEXP dist, SEXP value, SEXP dist2ind, SEXP jitter, SEXP pertube, SEXP pertube_amp) {
   BEGIN_CPP11
     return cpp11::as_sexp(worley_2d_c(cpp11::as_cpp<cpp11::decay_t<int>>(height), cpp11::as_cpp<cpp11::decay_t<int>>(width), cpp11::as_cpp<cpp11::decay_t<int>>(seed), cpp11::as_cpp<cpp11::decay_t<double>>(freq), cpp11::as_cpp<cpp11::decay_t<int>>(fractal), cpp11::as_cpp<cpp11::decay_t<int>>(octaves), cpp11::as_cpp<cpp11::decay_t<double>>(lacunarity), cpp11::as_cpp<cpp11::decay_t<double>>(gain), cpp11::as_cpp<cpp11::decay_t<int>>(dist), cpp11::as_cpp<cpp11::decay_t<int>>(value), cpp11::as_cpp<cpp11::decay_t<cpp11::integers>>(dist2ind), cpp11::as_cpp<cpp11::decay_t<double>>(jitter), cpp11::as_cpp<cpp11::decay_t<int>>(pertube), cpp11::as_cpp<cpp11::decay_t<double>>(pertube_amp)));
   END_CPP11
 }
 // worley.cpp
-cpp11::writable::doubles_matrix worley_3d_c(int height, int width, int depth, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int dist, int value, cpp11::integers dist2ind, double jitter, int pertube, double pertube_amp);
+cpp11::writable::doubles_matrix<> worley_3d_c(int height, int width, int depth, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int dist, int value, cpp11::integers dist2ind, double jitter, int pertube, double pertube_amp);
 extern "C" SEXP _ambient_worley_3d_c(SEXP height, SEXP width, SEXP depth, SEXP seed, SEXP freq, SEXP fractal, SEXP octaves, SEXP lacunarity, SEXP gain, SEXP dist, SEXP value, SEXP dist2ind, SEXP jitter, SEXP pertube, SEXP pertube_amp) {
   BEGIN_CPP11
     return cpp11::as_sexp(worley_3d_c(cpp11::as_cpp<cpp11::decay_t<int>>(height), cpp11::as_cpp<cpp11::decay_t<int>>(width), cpp11::as_cpp<cpp11::decay_t<int>>(depth), cpp11::as_cpp<cpp11::decay_t<int>>(seed), cpp11::as_cpp<cpp11::decay_t<double>>(freq), cpp11::as_cpp<cpp11::decay_t<int>>(fractal), cpp11::as_cpp<cpp11::decay_t<int>>(octaves), cpp11::as_cpp<cpp11::decay_t<double>>(lacunarity), cpp11::as_cpp<cpp11::decay_t<double>>(gain), cpp11::as_cpp<cpp11::decay_t<int>>(dist), cpp11::as_cpp<cpp11::decay_t<int>>(value), cpp11::as_cpp<cpp11::decay_t<cpp11::integers>>(dist2ind), cpp11::as_cpp<cpp11::decay_t<double>>(jitter), cpp11::as_cpp<cpp11::decay_t<int>>(pertube), cpp11::as_cpp<cpp11::decay_t<double>>(pertube_amp)));

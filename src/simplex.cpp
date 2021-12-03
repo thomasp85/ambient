@@ -18,8 +18,8 @@ FastNoise simplex_c(int seed, double freq, int fractal, int octaves, double lacu
 }
 
 [[cpp11::register]]
-cpp11::writable::doubles_matrix simplex_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
-  cpp11::writable::doubles_matrix noise(height, width);
+cpp11::writable::doubles_matrix<> simplex_2d_c(int height, int width, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix<> noise(height, width);
   int i,j;
   double new_i, new_j;
   FastNoise noise_gen = simplex_c(seed, freq, fractal, octaves, lacunarity, gain, pertube, pertube_amp);
@@ -46,8 +46,8 @@ cpp11::writable::doubles_matrix simplex_2d_c(int height, int width, int seed, do
 }
 
 [[cpp11::register]]
-cpp11::writable::doubles_matrix simplex_3d_c(int height, int width, int depth, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
-  cpp11::writable::doubles_matrix noise(height, width * depth);
+cpp11::writable::doubles_matrix<> simplex_3d_c(int height, int width, int depth, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix<> noise(height, width * depth);
   int i,j,k;
   double new_i, new_j, new_k;
 
@@ -78,8 +78,8 @@ cpp11::writable::doubles_matrix simplex_3d_c(int height, int width, int depth, i
 }
 
 [[cpp11::register]]
-cpp11::writable::doubles_matrix simplex_4d_c(int height, int width, int depth, int time, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
-  cpp11::writable::doubles_matrix noise(height, width * depth * time);
+cpp11::writable::doubles_matrix<> simplex_4d_c(int height, int width, int depth, int time, int seed, double freq, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix<> noise(height, width * depth * time);
   int i,j,k,l;
   double new_i, new_j, new_k, new_l;
 

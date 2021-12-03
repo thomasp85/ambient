@@ -19,8 +19,8 @@ FastNoise perlin_c(int seed, double freq, int interp, int fractal, int octaves, 
 }
 
 [[cpp11::register]]
-cpp11::writable::doubles_matrix perlin_2d_c(int height, int width, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
-  cpp11::writable::doubles_matrix noise(height, width);
+cpp11::writable::doubles_matrix<> perlin_2d_c(int height, int width, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix<> noise(height, width);
   int i,j;
   double new_i, new_j;
 
@@ -48,8 +48,8 @@ cpp11::writable::doubles_matrix perlin_2d_c(int height, int width, int seed, dou
 }
 
 [[cpp11::register]]
-cpp11::writable::doubles_matrix perlin_3d_c(int height, int width, int depth, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
-  cpp11::writable::doubles_matrix noise(height, width * depth);
+cpp11::writable::doubles_matrix<> perlin_3d_c(int height, int width, int depth, int seed, double freq, int interp, int fractal, int octaves, double lacunarity, double gain, int pertube, double pertube_amp) {
+  cpp11::writable::doubles_matrix<> noise(height, width * depth);
   int i,j,k;
   double new_i, new_j, new_k;
 

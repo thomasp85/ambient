@@ -90,6 +90,8 @@ gen_worley <- function(x, y = NULL, z = NULL, frequency = 1, seed = NULL,
   value <- match.arg(value, values)
   value <- match(value, values) - 1L
   if (is.null(seed)) seed <- random_seed()
+  frequency <- as.numeric(frequency)
+  seed <- as.integer(seed)
   if (is.null(z)) {
     gen_worley2d_c(dims$x, dims$y, frequency, seed, distance, value,
                    distance_ind, jitter)

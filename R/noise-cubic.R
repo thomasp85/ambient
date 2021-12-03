@@ -55,6 +55,8 @@ noise_cubic <- function(dim, frequency = 0.01, fractal = 'fbm', octaves = 3,
 gen_cubic <- function(x, y = NULL, z = NULL, frequency = 1, seed = NULL, ...) {
   dims <- check_dims(x, y, z)
   if (is.null(seed)) seed <- random_seed()
+  frequency <- as.numeric(frequency)
+  seed <- as.integer(seed)
   if (is.null(z)) {
     gen_cubic2d_c(dims$x, dims$y, frequency, seed)
   } else {

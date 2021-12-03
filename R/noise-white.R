@@ -54,6 +54,8 @@ noise_white <- function(dim, frequency = 0.01, pertubation = 'none', pertubation
 gen_white <- function(x, y = NULL, z = NULL, t = NULL, frequency = 1, seed = NULL, ...) {
   dims <- check_dims(x, y, z, t)
   if (is.null(seed)) seed <- random_seed()
+  frequency <- as.numeric(frequency)
+  seed <- as.integer(seed)
   if (is.null(t)) {
     if (is.null(z)) {
       gen_white2d_c(dims$x, dims$y, frequency, seed)

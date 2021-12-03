@@ -68,6 +68,8 @@ noise_simplex <- function(dim, frequency = 0.01, interpolator = 'quintic',
 gen_simplex <- function(x, y = NULL, z = NULL, t = NULL, frequency = 1, seed = NULL, ...) {
   dims <- check_dims(x, y, z, t)
   if (is.null(seed)) seed <- random_seed()
+  frequency <- as.numeric(frequency)
+  seed <- as.integer(seed)
   if (is.null(t)) {
     if (is.null(z)) {
       gen_simplex2d_c(dims$x, dims$y, frequency, seed)

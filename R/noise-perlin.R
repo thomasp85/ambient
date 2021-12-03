@@ -88,6 +88,8 @@ gen_perlin <- function(x, y = NULL, z = NULL, frequency = 1, seed = NULL,
   interpolator <- match.arg(interpolator, interpolators)
   interpolator <- match(interpolator, interpolators) - 1
   if (is.null(seed)) seed <- random_seed()
+  frequency <- as.numeric(frequency)
+  seed <- as.integer(seed)
   if (is.null(z)) {
     gen_perlin2d_c(dims$x, dims$y, frequency, seed, interpolator)
   } else {

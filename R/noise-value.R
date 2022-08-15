@@ -59,9 +59,9 @@ gen_value <- function(x, y = NULL, z = NULL, frequency = 1, seed = NULL,
   dims <- check_dims(x, y, z)
   interpolator <- match.arg(interpolator, interpolators)
   interpolator <- match(interpolator, interpolators) - 1
+  if (is.null(seed)) seed <- random_seed()
   frequency <- as.numeric(frequency)
   seed <- as.integer(seed)
-  if (is.null(seed)) seed <- random_seed()
   if (is.null(z)) {
     gen_value2d_c(dims$x, dims$y, frequency, seed, interpolator)
   } else {

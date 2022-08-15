@@ -1,3 +1,5 @@
+# ambient (development version)
+
 # ambient 1.0.1
 
 * Added `noise_blue()` for generating blue noise texture based on 

@@ -1,8 +1,8 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2021-12-03T14:12Z
+last_built: 2022-08-15T09:59Z
 urls:
   reference: https://ambient.data-imaginist.com/reference
   article: https://ambient.data-imaginist.com/articles

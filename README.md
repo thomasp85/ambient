@@ -9,11 +9,11 @@
 [![CRAN_Release_Badge](http://www.r-pkg.org/badges/version-ago/ambient)](https://CRAN.R-project.org/package=ambient)
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/ambient)](https://CRAN.R-project.org/package=ambient)
 [![Codecov test
-coverage](https://codecov.io/gh/thomasp85/ambient/branch/main/graph/badge.svg)](https://codecov.io/gh/thomasp85/ambient?branch=main)
+coverage](https://codecov.io/gh/thomasp85/ambient/branch/main/graph/badge.svg)](https://app.codecov.io/gh/thomasp85/ambient?branch=main)
 <!-- badges: end -->
 
 `ambient` is a an R package that provides access to the
-[FastNoise](https://github.com/Auburns/FastNoise) C++ library for
+[FastNoise](https://github.com/Auburn/FastNoiseLite) C++ library for
 generating noise. As such it provides fast generation of perlin, value,
 cubic, and worley noise in 2 and 3 dimensions, as well as simplex and
 white noise in 2, 3, and 4 dimensions. Further, it provides pattern

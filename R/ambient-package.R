@@ -1,4 +1,4 @@
-#' @references <https://github.com/Auburns/FastNoise>
+#' @references <https://github.com/Auburn/FastNoiseLite>
 #'
 '_PACKAGE'
 

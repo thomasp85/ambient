@@ -29,7 +29,7 @@ Imports:
     graphics,
     stats
 LinkingTo: 
-    cpp11
+    cpp11 (>= 0.4.2)
 RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
 URL: https://ambient.data-imaginist.com, https://github.com/thomasp85/ambient

@@ -30,7 +30,7 @@ Imports:
     stats
 LinkingTo: 
     cpp11
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
 URL: https://ambient.data-imaginist.com, https://github.com/thomasp85/ambient
 BugReports: https://github.com/thomasp85/ambient/issues

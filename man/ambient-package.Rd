@@ -6,14 +6,9 @@
 \alias{ambient-package}
 \title{ambient: A Generator of Multidimensional Noise}
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Generation of natural looking noise has many application within 
-    simulation, procedural generation, and art, to name a few. The 'ambient' 
-    package provides an interface to the 'FastNoise' C++ library and allows for
-    efficient generation of perlin, simplex, worley, cubic, value, and white 
-    noise with optional pertubation in either 2, 3, or 4 (in case of simplex and
-    white noise) dimensions.
+Generation of natural looking noise has many application within simulation, procedural generation, and art, to name a few. The 'ambient' package provides an interface to the 'FastNoise' C++ library and allows for efficient generation of perlin, simplex, worley, cubic, value, and white noise with optional pertubation in either 2, 3, or 4 (in case of simplex and white noise) dimensions.
 }
 \references{
 \url{https://github.com/Auburns/FastNoise}

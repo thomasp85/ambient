@@ -22,7 +22,8 @@ Description: Generation of natural looking noise has many application within
 License: MIT + file LICENSE
 Encoding: UTF-8
 SystemRequirements: C++11
-LazyData: true
+Depends:
+    R (>= 3.0.2)
 Imports: 
     rlang,
     grDevices,

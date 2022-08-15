@@ -12,3 +12,5 @@
 ^CRAN-RELEASE$
 ^codecov\.yml$
 ^\.github$
+^revdep$
+^CRAN-SUBMISSION$

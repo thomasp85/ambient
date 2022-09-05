@@ -280,10 +280,10 @@ unsigned char FastNoise::Index4D_256(unsigned char offset, int x, int y, int z, 
 }
 
 // Hashing
-#define X_PRIME 1619
-#define Y_PRIME 31337
-#define Z_PRIME 6971
-#define W_PRIME 1013
+#define X_PRIME 1619L
+#define Y_PRIME 31337L
+#define Z_PRIME 6971L
+#define W_PRIME 1013L
 
 static FN_DECIMAL ValCoord2D(int seed, int x, int y)
 {
@@ -291,7 +291,7 @@ static FN_DECIMAL ValCoord2D(int seed, int x, int y)
   n ^= X_PRIME * x;
   n ^= Y_PRIME * y;
 
-  return (n * n * n * 60493) / FN_DECIMAL(2147483648);
+  return (FN_DECIMAL(n) * n * n * 60493) / FN_DECIMAL(2147483648);
 }
 static FN_DECIMAL ValCoord3D(int seed, int x, int y, int z)
 {
@@ -300,7 +300,7 @@ static FN_DECIMAL ValCoord3D(int seed, int x, int y, int z)
   n ^= Y_PRIME * y;
   n ^= Z_PRIME * z;
 
-  return (n * n * n * 60493) / FN_DECIMAL(2147483648);
+  return (FN_DECIMAL(n) * n * n * 60493) / FN_DECIMAL(2147483648);
 }
 static FN_DECIMAL ValCoord4D(int seed, int x, int y, int z, int w)
 {
@@ -310,7 +310,7 @@ static FN_DECIMAL ValCoord4D(int seed, int x, int y, int z, int w)
   n ^= Z_PRIME * z;
   n ^= W_PRIME * w;
 
-  return (n * n * n * 60493) / FN_DECIMAL(2147483648);
+  return (FN_DECIMAL(n) * n * n * 60493) / FN_DECIMAL(2147483648);
 }
 
 FN_DECIMAL FastNoise::ValCoord2DFast(unsigned char offset, int x, int y) const

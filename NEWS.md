@@ -1,5 +1,7 @@
 # ambient (development version)
 
+* Fixed an integer overflow in the white noise generator
+
 # ambient 1.0.1
 
 * Added `noise_blue()` for generating blue noise texture based on 

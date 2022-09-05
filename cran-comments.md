@@ -1,4 +1,4 @@
-Small patch release fixing the issues related to the HTML5 move
+Fixed an integer overflow issue as reported by CRAN
 
 ## revdepcheck results
 

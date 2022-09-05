@@ -1,7 +1,7 @@
 Package: ambient
 Type: Package
 Title: A Generator of Multidimensional Noise
-Version: 1.0.1.9000
+Version: 1.0.2
 Authors@R:
     c(person(given = "Thomas Lin",
              family = "Pedersen",

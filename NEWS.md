@@ -1,3 +1,5 @@
+# ambient (development version)
+
 # ambient 1.0.2
 
 * Fixed an integer overflow in the white noise generator

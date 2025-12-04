@@ -1,41 +1,37 @@
-Package: ambient
 Type: Package
+Package: ambient
 Title: A Generator of Multidimensional Noise
 Version: 1.0.2.9000
-Authors@R:
-    c(person(given = "Thomas Lin",
-             family = "Pedersen",
-             role = c("cre", "aut"),
-             email = "thomasp85@gmail.com",
-             comment = c(ORCID = "0000-0002-5147-4711")),
-      person(given = "Jordan",
-             family = "Peck",
-             role = "aut",
-             comment = "Developer of FastNoise"))
-Maintainer: Thomas Lin Pedersen <thomasp85@gmail.com>
-Description: Generation of natural looking noise has many application within
-    simulation, procedural generation, and art, to name a few. The 'ambient'
-    package provides an interface to the 'FastNoise' C++ library and allows for
-    efficient generation of perlin, simplex, worley, cubic, value, and white
-    noise with optional perturbation in either 2, 3, or 4 (in case of simplex and
-    white noise) dimensions.
+Authors@R:c(
+    person("Thomas Lin", "Pedersen", , "thomasp85@gmail.com", role = c("cre", "aut"),
+           comment = c(ORCID = "0000-0002-5147-4711")),
+    person("Jordan", "Peck", role = "aut",
+           comment = "Developer of FastNoise")
+  )
+Description: Generation of natural looking noise has many application
+    within simulation, procedural generation, and art, to name a few. The
+    'ambient' package provides an interface to the 'FastNoise' C++ library
+    and allows for efficient generation of perlin, simplex, worley, cubic,
+    value, and white noise with optional perturbation in either 2, 3, or 4
+    (in case of simplex and white noise) dimensions.
 License: MIT + file LICENSE
-Encoding: UTF-8
+URL: https://ambient.data-imaginist.com,
+    https://github.com/thomasp85/ambient
+BugReports: https://github.com/thomasp85/ambient/issues
 Depends:
     R (>= 3.0.2)
 Imports:
-    rlang (>= 1.1.0),
-    grDevices,
+    cli,
     graphics,
-    stats,
-    cli
-LinkingTo:
-    cpp11 (>= 0.4.2)
-RoxygenNote: 7.3.3
-Roxygen: list(markdown = TRUE)
-URL: https://ambient.data-imaginist.com, https://github.com/thomasp85/ambient
-BugReports: https://github.com/thomasp85/ambient/issues
+    grDevices,
+    rlang (>= 1.1.0),
+    stats
 Suggests:
     covr
-Config/usethis/last-upkeep: 2025-12-04
+LinkingTo:
+    cpp11 (>= 0.4.2)
 Config/build/compilation-database: true
+Config/usethis/last-upkeep: 2025-12-04
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3

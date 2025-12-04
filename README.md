@@ -9,7 +9,7 @@
 [![CRAN_Release_Badge](http://www.r-pkg.org/badges/version-ago/ambient)](https://CRAN.R-project.org/package=ambient)
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/ambient)](https://CRAN.R-project.org/package=ambient)
 [![Codecov test
-coverage](https://codecov.io/gh/thomasp85/ambient/branch/main/graph/badge.svg)](https://app.codecov.io/gh/thomasp85/ambient?branch=main)
+coverage](https://codecov.io/gh/thomasp85/ambient/graph/badge.svg)](https://app.codecov.io/gh/thomasp85/ambient)
 <!-- badges: end -->
 
 `ambient` is a an R package that provides access to the
@@ -33,8 +33,8 @@ ambient can be installed from CRAN using `install.packages('ambient')`,
 or you may get the development version from github using devtools:
 
 ``` r
-# install.packages('devtools')
-devtools::install_github('thomasp85/ambient')
+# install.packages('pak')
+pak::pak("thomasp85/ambient")
 ```
 
 ## Examples
@@ -72,10 +72,3 @@ long_grid(x = seq(0, 10, length.out = 1000),
 ```
 
 ![](man/figures/README-unnamed-chunk-4-1.png)<!-- -->
-
-## Code of Conduct
-
-Please note that the ‘ambient’ project is released with a [Contributor
-Code of
-Conduct](https://ambient.data-imaginist.com/CODE_OF_CONDUCT.html). By
-contributing to this project, you agree to abide by its terms.

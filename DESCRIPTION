@@ -1,8 +1,8 @@
 Type: Package
 Package: ambient
 Title: A Generator of Multidimensional Noise
-Version: 1.0.2.9000
-Authors@R:c(
+Version: 1.0.3
+Authors@R: c(
     person("Thomas Lin", "Pedersen", , "thomasp85@gmail.com", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0002-5147-4711")),
     person("Jordan", "Peck", role = "aut",

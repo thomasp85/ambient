@@ -24,27 +24,51 @@
 #' grid$noise <- gen_cubic(grid$x, grid$y)
 #' plot(grid, noise)
 #'
-noise_cubic <- function(dim, frequency = 0.01, fractal = 'fbm', octaves = 3,
-                        lacunarity = 2, gain = 0.5, pertubation = 'none',
-                        pertubation_amplitude = 1) {
-  fractal <- match.arg(fractal, fractals)
+noise_cubic <- function(
+  dim,
+  frequency = 0.01,
+  fractal = 'fbm',
+  octaves = 3,
+  lacunarity = 2,
+  gain = 0.5,
+  pertubation = 'none',
+  pertubation_amplitude = 1
+) {
+  fractal <- arg_match0(fractal, fractals)
   fractal <- match(fractal, fractals) - 1L
-  pertubation <- match.arg(pertubation, pertubations)
+  pertubation <- arg_match0(pertubation, pertubations)
   pertubation <- match(pertubation, pertubations) - 1L
 
   if (length(dim) == 2) {
-    noise <- cubic_2d_c(dim[1], dim[2], seed = sample(.Machine$integer.max, size = 1),
-                        freq = frequency, fractal = fractal,
-                        octaves = octaves, lacunarity = lacunarity, gain = gain,
-                        pertube = pertubation, pertube_amp = pertubation_amplitude)
+    noise <- cubic_2d_c(
+      dim[1],
+      dim[2],
+      seed = sample(.Machine$integer.max, size = 1),
+      freq = frequency,
+      fractal = fractal,
+      octaves = octaves,
+      lacunarity = lacunarity,
+      gain = gain,
+      pertube = pertubation,
+      pertube_amp = pertubation_amplitude
+    )
   } else if (length(dim) == 3) {
-    noise <- cubic_3d_c(dim[1], dim[2], dim[3], seed = sample(.Machine$integer.max, size = 1),
-                        freq = frequency, fractal = fractal,
-                        octaves = octaves, lacunarity = lacunarity, gain = gain,
-                        pertube = pertubation, pertube_amp = pertubation_amplitude)
+    noise <- cubic_3d_c(
+      dim[1],
+      dim[2],
+      dim[3],
+      seed = sample(.Machine$integer.max, size = 1),
+      freq = frequency,
+      fractal = fractal,
+      octaves = octaves,
+      lacunarity = lacunarity,
+      gain = gain,
+      pertube = pertubation,
+      pertube_amp = pertubation_amplitude
+    )
     noise <- array(noise, dim)
   } else {
-    stop('Cubic noise only supports two or three dimensions', call. = FALSE)
+    cli::cli_abort('Cubic noise only supports two or three dimensions')
   }
   noise
 }
@@ -54,7 +78,9 @@ noise_cubic <- function(dim, frequency = 0.01, fractal = 'fbm', octaves = 3,
 #' @export
 gen_cubic <- function(x, y = NULL, z = NULL, frequency = 1, seed = NULL, ...) {
   dims <- check_dims(x, y, z)
-  if (is.null(seed)) seed <- random_seed()
+  if (is.null(seed)) {
+    seed <- random_seed()
+  }
   frequency <- as.numeric(frequency)
   seed <- as.integer(seed)
   if (is.null(z)) {

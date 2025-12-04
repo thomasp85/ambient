@@ -44,35 +44,68 @@
 #' grid$noise <- gen_worley(grid$x, grid$y, value = 'distance')
 #' plot(grid, noise)
 #'
-noise_worley <- function(dim, frequency = 0.01, distance = 'euclidean',
-                         fractal = 'none', octaves = 3, lacunarity = 2, gain = 0.5,
-                   value = 'cell', distance_ind = c(1, 2), jitter = 0.45,
-                   pertubation = 'none', pertubation_amplitude = 1) {
-  distance <- match.arg(distance, distances)
+noise_worley <- function(
+  dim,
+  frequency = 0.01,
+  distance = 'euclidean',
+  fractal = 'none',
+  octaves = 3,
+  lacunarity = 2,
+  gain = 0.5,
+  value = 'cell',
+  distance_ind = c(1, 2),
+  jitter = 0.45,
+  pertubation = 'none',
+  pertubation_amplitude = 1
+) {
+  distance <- arg_match0(distance, distances)
   distance <- match(distance, distances) - 1L
   distance_ind <- as.integer(distance_ind) - 1L
-  value <- match.arg(value, values)
+  value <- arg_match0(value, values)
   value <- match(value, values) - 1L
-  fractal <- match.arg(fractal, fractals)
+  fractal <- arg_match0(fractal, fractals)
   fractal <- match(fractal, fractals) - 1L
-  pertubation <- match.arg(pertubation, pertubations)
+  pertubation <- arg_match0(pertubation, pertubations)
   pertubation <- match(pertubation, pertubations) - 1L
 
   if (length(dim) == 2) {
-    noise <- worley_2d_c(dim[1], dim[2], seed = sample(.Machine$integer.max, size = 1),
-                         freq = frequency, fractal = fractal, octaves = octaves,
-                         lacunarity = lacunarity, gain = gain,dist = distance,
-                         value = value, dist2ind = distance_ind, jitter = jitter,
-                         pertube = pertubation, pertube_amp = pertubation_amplitude)
+    noise <- worley_2d_c(
+      dim[1],
+      dim[2],
+      seed = sample(.Machine$integer.max, size = 1),
+      freq = frequency,
+      fractal = fractal,
+      octaves = octaves,
+      lacunarity = lacunarity,
+      gain = gain,
+      dist = distance,
+      value = value,
+      dist2ind = distance_ind,
+      jitter = jitter,
+      pertube = pertubation,
+      pertube_amp = pertubation_amplitude
+    )
   } else if (length(dim) == 3) {
-    noise <- worley_3d_c(dim[1], dim[2], dim[3], seed = sample(.Machine$integer.max, size = 1),
-                         freq = frequency, fractal = fractal, octaves = octaves,
-                         lacunarity = lacunarity, gain = gain,dist = distance,
-                         value = value, dist2ind = distance_ind, jitter = jitter,
-                         pertube = pertubation, pertube_amp = pertubation_amplitude)
+    noise <- worley_3d_c(
+      dim[1],
+      dim[2],
+      dim[3],
+      seed = sample(.Machine$integer.max, size = 1),
+      freq = frequency,
+      fractal = fractal,
+      octaves = octaves,
+      lacunarity = lacunarity,
+      gain = gain,
+      dist = distance,
+      value = value,
+      dist2ind = distance_ind,
+      jitter = jitter,
+      pertube = pertubation,
+      pertube_amp = pertubation_amplitude
+    )
     noise <- array(noise, dim)
   } else {
-    stop('Worley noise only supports two or three dimensions', call. = FALSE)
+    cli::cli_abort('Worley noise only supports two or three dimensions')
   }
   noise
 }
@@ -80,23 +113,51 @@ noise_worley <- function(dim, frequency = 0.01, distance = 'euclidean',
 #' @rdname noise_worley
 #' @param x,y,z Coordinates to get noise value from
 #' @export
-gen_worley <- function(x, y = NULL, z = NULL, frequency = 1, seed = NULL,
-                       distance = 'euclidean', value = 'cell',
-                       distance_ind = c(1, 2), jitter = 0.45, ...) {
+gen_worley <- function(
+  x,
+  y = NULL,
+  z = NULL,
+  frequency = 1,
+  seed = NULL,
+  distance = 'euclidean',
+  value = 'cell',
+  distance_ind = c(1, 2),
+  jitter = 0.45,
+  ...
+) {
   dims <- check_dims(x, y, z)
-  distance <- match.arg(distance, distances)
+  distance <- arg_match0(distance, distances)
   distance <- match(distance, distances) - 1L
   distance_ind <- as.integer(distance_ind) - 1L
-  value <- match.arg(value, values)
+  value <- arg_match0(value, values)
   value <- match(value, values) - 1L
-  if (is.null(seed)) seed <- random_seed()
+  if (is.null(seed)) {
+    seed <- random_seed()
+  }
   frequency <- as.numeric(frequency)
   seed <- as.integer(seed)
   if (is.null(z)) {
-    gen_worley2d_c(dims$x, dims$y, frequency, seed, distance, value,
-                   distance_ind, jitter)
+    gen_worley2d_c(
+      dims$x,
+      dims$y,
+      frequency,
+      seed,
+      distance,
+      value,
+      distance_ind,
+      jitter
+    )
   } else {
-    gen_worley3d_c(dims$x, dims$y, dims$z, frequency, seed, distance, value,
-                   distance_ind, jitter)
+    gen_worley3d_c(
+      dims$x,
+      dims$y,
+      dims$z,
+      frequency,
+      seed,
+      distance,
+      value,
+      distance_ind,
+      jitter
+    )
   }
 }

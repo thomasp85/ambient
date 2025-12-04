@@ -1,1 +1,1 @@
-Fixed an integer overflow issue as reported by CRAN
+Upkeep and removal of C++11 requirements as requested by CRAN

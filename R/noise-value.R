@@ -27,11 +27,11 @@
 noise_value <- function(dim, frequency = 0.01, interpolator = 'quintic',
                    fractal = 'fbm', octaves = 3, lacunarity = 2, gain = 0.5,
                    pertubation = 'none', pertubation_amplitude = 1) {
-  interpolator <- match.arg(interpolator, interpolators)
+  interpolator <- arg_match0(interpolator, interpolators)
   interpolator <- match(interpolator, interpolators) - 1L
-  fractal <- match.arg(fractal, fractals)
+  fractal <- arg_match0(fractal, fractals)
   fractal <- match(fractal, fractals) - 1L
-  pertubation <- match.arg(pertubation, pertubations)
+  pertubation <- arg_match0(pertubation, pertubations)
   pertubation <- match(pertubation, pertubations) - 1L
 
   if (length(dim) == 2) {
@@ -46,7 +46,7 @@ noise_value <- function(dim, frequency = 0.01, interpolator = 'quintic',
                         pertube = pertubation, pertube_amp = pertubation_amplitude)
     noise <- array(noise, dim)
   } else {
-    stop('Value noise only supports two or three dimensions', call. = FALSE)
+    cli::cli_abort('Value noise only supports two or three dimensions')
   }
   noise
 }
@@ -57,7 +57,7 @@ noise_value <- function(dim, frequency = 0.01, interpolator = 'quintic',
 gen_value <- function(x, y = NULL, z = NULL, frequency = 1, seed = NULL,
                       interpolator = 'quintic', ...) {
   dims <- check_dims(x, y, z)
-  interpolator <- match.arg(interpolator, interpolators)
+  interpolator <- arg_match0(interpolator, interpolators)
   interpolator <- match(interpolator, interpolators) - 1
   if (is.null(seed)) seed <- random_seed()
   frequency <- as.numeric(frequency)

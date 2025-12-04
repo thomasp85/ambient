@@ -30,9 +30,9 @@ check_dims <- function(x, y = NULL, z = NULL, t = NULL) {
   if (!is.null(z)) z <- as.numeric(z)
   if (!is.null(t)) t <- as.numeric(t)
 
-  if (l != length(x)) stop('x must either be of length 1, or match the total length', call. = FALSE)
-  if (!is.null(y) && l != length(y)) stop('y must either be of length 1, or match the total length', call. = FALSE)
-  if (!is.null(z) && l != length(z)) stop('z must either be of length 1, or match the total length', call. = FALSE)
-  if (!is.null(t) && l != length(t)) stop('t must either be of length 1, or match the total length', call. = FALSE)
+  if (l != length(x)) cli::cli_abort('{.arg x} must either be of length 1, or match the total length')
+  if (!is.null(y) && l != length(y)) cli::cli_abort('{.arg y} must either be of length 1, or match the total length', call. = FALSE)
+  if (!is.null(z) && l != length(z)) cli::cli_abort('{.arg z} must either be of length 1, or match the total length', call. = FALSE)
+  if (!is.null(t) && l != length(t)) cli::cli_abort('{.arg t} must either be of length 1, or match the total length', call. = FALSE)
   list(x = x, y = y, z = z, t = t)
 }

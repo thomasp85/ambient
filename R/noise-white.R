@@ -24,7 +24,7 @@
 #' plot(grid, noise)
 #'
 noise_white <- function(dim, frequency = 0.01, pertubation = 'none', pertubation_amplitude = 1) {
-  pertubation <- match.arg(pertubation, pertubations)
+  pertubation <- arg_match0(pertubation, pertubations)
   pertubation <- match(pertubation, pertubations) - 1L
 
   white_2d_c(dim[1], dim[2], seed = sample(.Machine$integer.max, size = 1),
@@ -37,13 +37,13 @@ noise_white <- function(dim, frequency = 0.01, pertubation = 'none', pertubation
                         freq = frequency, pertube = pertubation, pertube_amp = pertubation_amplitude)
     noise <- array(noise, dim)
   } else if (length(dim) == 4) {
-    if (pertubation != 0) stop('4D white noise does not support pertubation', call. = FALSE)
+    if (pertubation != 0) cli::cli_abort('4D white noise does not support pertubation')
 
     noise <- white_4d_c(dim[1], dim[2], dim[3], dim[4], seed = sample(.Machine$integer.max, size = 1),
                         freq = frequency, pertube = pertubation, pertube_amp = pertubation_amplitude)
     noise <- array(noise, dim)
   } else {
-    stop('White noise only supports two, three, or four dimensions', call. = FALSE)
+    cli::cli_abort('White noise only supports two, three, or four dimensions')
   }
   noise
 }

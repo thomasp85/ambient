@@ -8,3 +8,5 @@ src/*.dll
 ambient.Rproj
 docs/
 .DS_Store
+compile_commands.json
+.cache

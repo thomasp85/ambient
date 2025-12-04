@@ -31,9 +31,9 @@
 noise_simplex <- function(dim, frequency = 0.01, interpolator = 'quintic',
                    fractal = 'fbm', octaves = 3, lacunarity = 2, gain = 0.5,
                    pertubation = 'none', pertubation_amplitude = 1) {
-  fractal <- match.arg(fractal, fractals)
+  fractal <- arg_match0(fractal, fractals)
   fractal <- match(fractal, fractals) - 1L
-  pertubation <- match.arg(pertubation, pertubations)
+  pertubation <- arg_match0(pertubation, pertubations)
   pertubation <- match(pertubation, pertubations) - 1L
 
   if (length(dim) == 2) {
@@ -48,8 +48,8 @@ noise_simplex <- function(dim, frequency = 0.01, interpolator = 'quintic',
                           pertube = pertubation, pertube_amp = pertubation_amplitude)
     noise <- array(noise, dim)
   } else if (length(dim) == 4) {
-    if (fractal != 0) stop('4D Simplex noise does not support fractals', call. = FALSE)
-    if (pertubation != 0) stop('4D Simplex noise does not support pertubation', call. = FALSE)
+    if (fractal != 0) cli::cli_abort('4D Simplex noise does not support fractals')
+    if (pertubation != 0) cli::cli_abort('4D Simplex noise does not support pertubation')
 
     noise <- simplex_4d_c(dim[1], dim[2], dim[3], dim[4], seed = sample(.Machine$integer.max, size = 1),
                           freq = frequency, fractal = fractal,
@@ -57,7 +57,7 @@ noise_simplex <- function(dim, frequency = 0.01, interpolator = 'quintic',
                           pertube = pertubation, pertube_amp = pertubation_amplitude)
     noise <- array(noise, dim)
   } else {
-    stop('Simplex noise only supports two, three, or four dimensions', call. = FALSE)
+    cli::cli_abort('Simplex noise only supports two, three, or four dimensions')
   }
   noise
 }

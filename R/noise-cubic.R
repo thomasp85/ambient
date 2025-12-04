@@ -27,9 +27,9 @@
 noise_cubic <- function(dim, frequency = 0.01, fractal = 'fbm', octaves = 3,
                         lacunarity = 2, gain = 0.5, pertubation = 'none',
                         pertubation_amplitude = 1) {
-  fractal <- match.arg(fractal, fractals)
+  fractal <- arg_match0(fractal, fractals)
   fractal <- match(fractal, fractals) - 1L
-  pertubation <- match.arg(pertubation, pertubations)
+  pertubation <- arg_match0(pertubation, pertubations)
   pertubation <- match(pertubation, pertubations) - 1L
 
   if (length(dim) == 2) {
@@ -44,7 +44,7 @@ noise_cubic <- function(dim, frequency = 0.01, fractal = 'fbm', octaves = 3,
                         pertube = pertubation, pertube_amp = pertubation_amplitude)
     noise <- array(noise, dim)
   } else {
-    stop('Cubic noise only supports two or three dimensions', call. = FALSE)
+    cli::cli_abort('Cubic noise only supports two or three dimensions')
   }
   noise
 }

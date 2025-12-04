@@ -13,27 +13,29 @@ Authors@R:
              role = "aut",
              comment = "Developer of FastNoise"))
 Maintainer: Thomas Lin Pedersen <thomasp85@gmail.com>
-Description: Generation of natural looking noise has many application within 
-    simulation, procedural generation, and art, to name a few. The 'ambient' 
+Description: Generation of natural looking noise has many application within
+    simulation, procedural generation, and art, to name a few. The 'ambient'
     package provides an interface to the 'FastNoise' C++ library and allows for
-    efficient generation of perlin, simplex, worley, cubic, value, and white 
+    efficient generation of perlin, simplex, worley, cubic, value, and white
     noise with optional perturbation in either 2, 3, or 4 (in case of simplex and
     white noise) dimensions.
 License: MIT + file LICENSE
 Encoding: UTF-8
-SystemRequirements: C++11
 Depends:
     R (>= 3.0.2)
-Imports: 
-    rlang,
+Imports:
+    rlang (>= 1.1.0),
     grDevices,
     graphics,
-    stats
-LinkingTo: 
+    stats,
+    cli
+LinkingTo:
     cpp11 (>= 0.4.2)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
 URL: https://ambient.data-imaginist.com, https://github.com/thomasp85/ambient
 BugReports: https://github.com/thomasp85/ambient/issues
-Suggests: 
+Suggests:
     covr
+Config/usethis/last-upkeep: 2025-12-04
+Config/build/compilation-database: true

@@ -17,18 +17,18 @@ select.long_grid <- function(.data, ...) {
 }
 
 arrange.long_grid <- function(.data, ...) {
-  stop('long_grid objects cannot be rearranged', call. = FALSE)
+  cli::cli_abort('{.cls long_grid} objects cannot be rearranged')
 }
 
 filter.long_grid <- function(.data, ...) {
-  stop('long_grid objects cannot be filtered', call. = FALSE)
+  cli::cli_abort('{.cls long_grid} objects cannot be filtered')
 }
 
 summarise.long_grid <- function(.data, ...) {
-  stop('long_grid objects cannot be summarised', call. = FALSE)
+  cli::cli_abort('{.cls long_grid} objects cannot be summarised')
 }
 summarize.long_grid <- summarise.long_grid
 
 slice.long_grid <- function(.data, ...) {
-  stop('long_grid objects cannot be sliced. Use slice_at to slice dimensions', call. = FALSE)
+  cli::cli_abort('{.cls long_grid} objects cannot be sliced. Use slice_at to slice dimensions')
 }

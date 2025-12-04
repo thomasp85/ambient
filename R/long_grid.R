@@ -37,7 +37,7 @@
 long_grid <- function(x, y = NULL, z = NULL, t = NULL) {
   dims <- c(length(x), length(y), length(z), length(t))
   if (any(diff(dims == 0) < 0)) {
-    stop('A zero-length dimension cannot be followed by a non-zero-length dimension', call. = FALSE)
+    cli::cli_abort('A zero-length dimension cannot be followed by a non-zero-length dimension')
   }
 
   len <- prod(dims[dims != 0])
@@ -72,7 +72,7 @@ grid_cell <- function(grid, dim, ...) {
 grid_cell.long_grid <- function(grid, dim, ...) {
   if (is.character(dim)) dim <- match(tolower(dim), c('x', 'y', 'z', 't'), nomatch = -1L)
   if (dim <= 0) {
-    stop('dim must be positive or match x, y, z, or t', call. = FALSE)
+    cli::cli_abort("{.arg dim} must be positive or match {.or {.val {c('x', 'y', 'z', 't')}}}")
   }
   dims <- attr(grid, 'grid_dims')
   if (dim > length(dims)) {
@@ -98,7 +98,7 @@ as.matrix.long_grid <- function(x, value, ...) {
   val <- eval_tidy(enquo(value), x)
   dims <- attr(x, 'grid_dims')
   if (sum(dims > 1) > 2) {
-    stop('as.matrix can only be applied to 2-dimensional grids', call. = FALSE)
+    cli::cli_abort('{.fun as.matrix} can only be applied to 2-dimensional grids')
   }
   use_dims <- which(dims > 1)
   if (length(use_dims) < 2) {

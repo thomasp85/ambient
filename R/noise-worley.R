@@ -48,14 +48,14 @@ noise_worley <- function(dim, frequency = 0.01, distance = 'euclidean',
                          fractal = 'none', octaves = 3, lacunarity = 2, gain = 0.5,
                    value = 'cell', distance_ind = c(1, 2), jitter = 0.45,
                    pertubation = 'none', pertubation_amplitude = 1) {
-  distance <- match.arg(distance, distances)
+  distance <- arg_match0(distance, distances)
   distance <- match(distance, distances) - 1L
   distance_ind <- as.integer(distance_ind) - 1L
-  value <- match.arg(value, values)
+  value <- arg_match0(value, values)
   value <- match(value, values) - 1L
-  fractal <- match.arg(fractal, fractals)
+  fractal <- arg_match0(fractal, fractals)
   fractal <- match(fractal, fractals) - 1L
-  pertubation <- match.arg(pertubation, pertubations)
+  pertubation <- arg_match0(pertubation, pertubations)
   pertubation <- match(pertubation, pertubations) - 1L
 
   if (length(dim) == 2) {
@@ -72,7 +72,7 @@ noise_worley <- function(dim, frequency = 0.01, distance = 'euclidean',
                          pertube = pertubation, pertube_amp = pertubation_amplitude)
     noise <- array(noise, dim)
   } else {
-    stop('Worley noise only supports two or three dimensions', call. = FALSE)
+    cli::cli_abort('Worley noise only supports two or three dimensions')
   }
   noise
 }
@@ -84,10 +84,10 @@ gen_worley <- function(x, y = NULL, z = NULL, frequency = 1, seed = NULL,
                        distance = 'euclidean', value = 'cell',
                        distance_ind = c(1, 2), jitter = 0.45, ...) {
   dims <- check_dims(x, y, z)
-  distance <- match.arg(distance, distances)
+  distance <- arg_match0(distance, distances)
   distance <- match(distance, distances) - 1L
   distance_ind <- as.integer(distance_ind) - 1L
-  value <- match.arg(value, values)
+  value <- arg_match0(value, values)
   value <- match(value, values) - 1L
   if (is.null(seed)) seed <- random_seed()
   frequency <- as.numeric(frequency)

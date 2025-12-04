@@ -30,5 +30,7 @@ summarise.long_grid <- function(.data, ...) {
 summarize.long_grid <- summarise.long_grid
 
 slice.long_grid <- function(.data, ...) {
-  cli::cli_abort('{.cls long_grid} objects cannot be sliced. Use slice_at to slice dimensions')
+  cli::cli_abort(
+    '{.cls long_grid} objects cannot be sliced. Use slice_at to slice dimensions'
+  )
 }

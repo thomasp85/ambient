@@ -24,22 +24,47 @@
 #' plot(grid$x, grid$y, type = 'n')
 #' segments(grid$x, grid$y, grid$x + grid$gradient$x / 100, grid$y + grid$gradient$y / 100)
 #'
-gradient_noise <- function(generator, x, y, z = NULL, t = NULL, ..., seed = NULL, delta = NULL) {
-  if (is.null(seed)) seed <- random_seed()
+gradient_noise <- function(
+  generator,
+  x,
+  y,
+  z = NULL,
+  t = NULL,
+  ...,
+  seed = NULL,
+  delta = NULL
+) {
+  if (is.null(seed)) {
+    seed <- random_seed()
+  }
   if (is.null(delta)) {
-    delta <- max(diff(range(x)), diff(range(y %||% 0)), diff(range(z %||% 0)), diff(range(t %||% 0))) * 1e-4
+    delta <- max(
+      diff(range(x)),
+      diff(range(y %||% 0)),
+      diff(range(z %||% 0)),
+      diff(range(t %||% 0))
+    ) *
+      1e-4
   }
   gradient <- list(
-    x = (generator(x + delta, y, z, t, seed = seed, ...) - generator(x - delta, y, z, t, seed = seed, ...)) / (2 * delta)
+    x = (generator(x + delta, y, z, t, seed = seed, ...) -
+      generator(x - delta, y, z, t, seed = seed, ...)) /
+      (2 * delta)
   )
   if (!is.null(y)) {
-    gradient$y <- (generator(x, y + delta, z, t, seed = seed, ...) - generator(x, y - delta, z, t, seed = seed, ...)) / (2 * delta)
+    gradient$y <- (generator(x, y + delta, z, t, seed = seed, ...) -
+      generator(x, y - delta, z, t, seed = seed, ...)) /
+      (2 * delta)
   }
   if (!is.null(z)) {
-    gradient$z <- (generator(x, y, z + delta, t, seed = seed, ...) - generator(x, y, z - delta, t, seed = seed, ...)) / (2 * delta)
+    gradient$z <- (generator(x, y, z + delta, t, seed = seed, ...) -
+      generator(x, y, z - delta, t, seed = seed, ...)) /
+      (2 * delta)
   }
   if (!is.null(t)) {
-    gradient$t <- (generator(x, y, z, t + delta, seed = seed, ...) - generator(x, y, z, t - delta, seed = seed, ...)) / (2 * delta)
+    gradient$t <- (generator(x, y, z, t + delta, seed = seed, ...) -
+      generator(x, y, z, t - delta, seed = seed, ...)) /
+      (2 * delta)
   }
   as.data.frame(gradient)
 }

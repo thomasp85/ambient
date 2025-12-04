@@ -32,7 +32,7 @@
 #'
 noise_blue <- function(dim, sd = 10, seed_frac = 0.1) {
   n_pixels <- prod(dim)
-  n_seeds <- floor(max(1, min((n_pixels - 1) / 2, n_pixels * seed_frac)));
+  n_seeds <- floor(max(1, min((n_pixels - 1) / 2, n_pixels * seed_frac)))
   seed_texture <- noise_white(dim)
   seed_texture[] <- ifelse(order(seed_texture) <= n_seeds, 1, 0)
   kernel <- create_kernel(dim, sd)
@@ -55,12 +55,12 @@ noise_blue <- function(dim, sd = 10, seed_frac = 0.1) {
     dither[tightest] <- i
   }
   pattern <- seed_texture
-  for (i in seq(n_seeds, floor(n_pixels/2) - 1)) {
+  for (i in seq(n_seeds, floor(n_pixels / 2) - 1)) {
     voidest <- find_voidest_cluster(pattern, kernel)
     pattern[voidest] <- 1
     dither[voidest] <- i
   }
-  for (i in seq(floor(n_pixels/2), n_pixels - 1)) {
+  for (i in seq(floor(n_pixels / 2), n_pixels - 1)) {
     tightest <- find_tightest_cluster(pattern, kernel)
     pattern[tightest] <- 1
     dither[tightest] <- i
@@ -76,7 +76,10 @@ noise_blue <- function(dim, sd = 10, seed_frac = 0.1) {
 }
 
 create_kernel <- function(dim, sd) {
-  i <- do.call(expand.grid, lapply(dim, function(d) c(seq(0, d/2), seq(-floor((d - 1)/2), -1))))
+  i <- do.call(
+    expand.grid,
+    lapply(dim, function(d) c(seq(0, d / 2), seq(-floor((d - 1) / 2), -1)))
+  )
   v <- exp(-rowSums(i^2) / (2 * sd^2)) / (sd * sqrt(2 * pi))^length(dim)
   array(v, dim)
 }

@@ -50,18 +50,37 @@
 #'                                 x = grid$x, y = grid$y)
 #' plot(grid, fractal_perlin)
 #'
-fracture <- function(noise, fractal, octaves, gain = ~ . / 2,
-                     frequency = ~ . * 2, seed = NULL, ..., fractal_args = list(),
-                     gain_init = 1, freq_init = 1) {
+fracture <- function(
+  noise,
+  fractal,
+  octaves,
+  gain = ~ . / 2,
+  frequency = ~ . * 2,
+  seed = NULL,
+  ...,
+  fractal_args = list(),
+  gain_init = 1,
+  freq_init = 1
+) {
   if (is.function(gain) || is_formula(gain)) {
     gain <- as_function(gain)
-    gain <- Reduce(function(l, r) gain(l), seq_len(octaves), accumulate = TRUE, init = gain_init)
+    gain <- Reduce(
+      function(l, r) gain(l),
+      seq_len(octaves),
+      accumulate = TRUE,
+      init = gain_init
+    )
   } else {
     gain <- rep_len(gain, octaves)
   }
   if (is.function(frequency) || is_formula(frequency)) {
     frequency <- as_function(frequency)
-    frequency <- Reduce(function(l, r) frequency(l), seq_len(octaves), accumulate = TRUE, init = freq_init)
+    frequency <- Reduce(
+      function(l, r) frequency(l),
+      seq_len(octaves),
+      accumulate = TRUE,
+      init = freq_init
+    )
   } else {
     frequency <- rep_len(frequency, octaves)
   }

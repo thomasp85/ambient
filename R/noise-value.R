@@ -24,9 +24,17 @@
 #' grid$noise <- gen_value(grid$x, grid$y)
 #' plot(grid, noise)
 #'
-noise_value <- function(dim, frequency = 0.01, interpolator = 'quintic',
-                   fractal = 'fbm', octaves = 3, lacunarity = 2, gain = 0.5,
-                   pertubation = 'none', pertubation_amplitude = 1) {
+noise_value <- function(
+  dim,
+  frequency = 0.01,
+  interpolator = 'quintic',
+  fractal = 'fbm',
+  octaves = 3,
+  lacunarity = 2,
+  gain = 0.5,
+  pertubation = 'none',
+  pertubation_amplitude = 1
+) {
   interpolator <- arg_match0(interpolator, interpolators)
   interpolator <- match(interpolator, interpolators) - 1L
   fractal <- arg_match0(fractal, fractals)
@@ -35,15 +43,34 @@ noise_value <- function(dim, frequency = 0.01, interpolator = 'quintic',
   pertubation <- match(pertubation, pertubations) - 1L
 
   if (length(dim) == 2) {
-    noise <- value_2d_c(dim[1], dim[2], seed = sample(.Machine$integer.max, size = 1),
-                        freq = frequency, interp = interpolator, fractal = fractal,
-                        octaves = octaves, lacunarity = lacunarity, gain = gain,
-                        pertube = pertubation, pertube_amp = pertubation_amplitude)
+    noise <- value_2d_c(
+      dim[1],
+      dim[2],
+      seed = sample(.Machine$integer.max, size = 1),
+      freq = frequency,
+      interp = interpolator,
+      fractal = fractal,
+      octaves = octaves,
+      lacunarity = lacunarity,
+      gain = gain,
+      pertube = pertubation,
+      pertube_amp = pertubation_amplitude
+    )
   } else if (length(dim) == 3) {
-    noise <- value_3d_c(dim[1], dim[2], dim[3], seed = sample(.Machine$integer.max, size = 1),
-                        freq = frequency, interp = interpolator, fractal = fractal,
-                        octaves = octaves, lacunarity = lacunarity, gain = gain,
-                        pertube = pertubation, pertube_amp = pertubation_amplitude)
+    noise <- value_3d_c(
+      dim[1],
+      dim[2],
+      dim[3],
+      seed = sample(.Machine$integer.max, size = 1),
+      freq = frequency,
+      interp = interpolator,
+      fractal = fractal,
+      octaves = octaves,
+      lacunarity = lacunarity,
+      gain = gain,
+      pertube = pertubation,
+      pertube_amp = pertubation_amplitude
+    )
     noise <- array(noise, dim)
   } else {
     cli::cli_abort('Value noise only supports two or three dimensions')
@@ -54,12 +81,21 @@ noise_value <- function(dim, frequency = 0.01, interpolator = 'quintic',
 #' @rdname noise_value
 #' @param x,y,z Coordinates to get noise value from
 #' @export
-gen_value <- function(x, y = NULL, z = NULL, frequency = 1, seed = NULL,
-                      interpolator = 'quintic', ...) {
+gen_value <- function(
+  x,
+  y = NULL,
+  z = NULL,
+  frequency = 1,
+  seed = NULL,
+  interpolator = 'quintic',
+  ...
+) {
   dims <- check_dims(x, y, z)
   interpolator <- arg_match0(interpolator, interpolators)
   interpolator <- match(interpolator, interpolators) - 1
-  if (is.null(seed)) seed <- random_seed()
+  if (is.null(seed)) {
+    seed <- random_seed()
+  }
   frequency <- as.numeric(frequency)
   seed <- as.integer(seed)
   if (is.null(z)) {

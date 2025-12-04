@@ -34,15 +34,17 @@
 trans_affine <- function(x, y, ...) {
   trans_mat <- Reduce(function(l, r) r %*% l, list(...))
   trans <- trans_mat %*% rbind(x, y, z = 1)
-  data.frame(x = trans[1,], y = trans[2,])
+  data.frame(x = trans[1, ], y = trans[2, ])
 }
 
 #' @rdname trans_affine
 #' @param angle An angle in radians
 #' @export
 rotate <- function(angle = 0) {
-  matrix(c(cos(angle), -sin(angle), 0, sin(angle), cos(angle), 0, 0, 0, 1),
-         ncol = 3)
+  matrix(
+    c(cos(angle), -sin(angle), 0, sin(angle), cos(angle), 0, 0, 0, 1),
+    ncol = 3
+  )
 }
 #' @rdname trans_affine
 #' @param x0 the transformation magnitude in the x-direction

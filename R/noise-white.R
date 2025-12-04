@@ -23,24 +23,58 @@
 #' grid$noise <- gen_white(grid$x, grid$y)
 #' plot(grid, noise)
 #'
-noise_white <- function(dim, frequency = 0.01, pertubation = 'none', pertubation_amplitude = 1) {
+noise_white <- function(
+  dim,
+  frequency = 0.01,
+  pertubation = 'none',
+  pertubation_amplitude = 1
+) {
   pertubation <- arg_match0(pertubation, pertubations)
   pertubation <- match(pertubation, pertubations) - 1L
 
-  white_2d_c(dim[1], dim[2], seed = sample(.Machine$integer.max, size = 1),
-             freq = frequency, pertube = pertubation, pertube_amp = pertubation_amplitude)
+  white_2d_c(
+    dim[1],
+    dim[2],
+    seed = sample(.Machine$integer.max, size = 1),
+    freq = frequency,
+    pertube = pertubation,
+    pertube_amp = pertubation_amplitude
+  )
   if (length(dim) == 2) {
-    noise <- white_2d_c(dim[1], dim[2], seed = sample(.Machine$integer.max, size = 1),
-                        freq = frequency, pertube = pertubation, pertube_amp = pertubation_amplitude)
+    noise <- white_2d_c(
+      dim[1],
+      dim[2],
+      seed = sample(.Machine$integer.max, size = 1),
+      freq = frequency,
+      pertube = pertubation,
+      pertube_amp = pertubation_amplitude
+    )
   } else if (length(dim) == 3) {
-    noise <- white_3d_c(dim[1], dim[2], dim[3], seed = sample(.Machine$integer.max, size = 1),
-                        freq = frequency, pertube = pertubation, pertube_amp = pertubation_amplitude)
+    noise <- white_3d_c(
+      dim[1],
+      dim[2],
+      dim[3],
+      seed = sample(.Machine$integer.max, size = 1),
+      freq = frequency,
+      pertube = pertubation,
+      pertube_amp = pertubation_amplitude
+    )
     noise <- array(noise, dim)
   } else if (length(dim) == 4) {
-    if (pertubation != 0) cli::cli_abort('4D white noise does not support pertubation')
+    if (pertubation != 0) {
+      cli::cli_abort('4D white noise does not support pertubation')
+    }
 
-    noise <- white_4d_c(dim[1], dim[2], dim[3], dim[4], seed = sample(.Machine$integer.max, size = 1),
-                        freq = frequency, pertube = pertubation, pertube_amp = pertubation_amplitude)
+    noise <- white_4d_c(
+      dim[1],
+      dim[2],
+      dim[3],
+      dim[4],
+      seed = sample(.Machine$integer.max, size = 1),
+      freq = frequency,
+      pertube = pertubation,
+      pertube_amp = pertubation_amplitude
+    )
     noise <- array(noise, dim)
   } else {
     cli::cli_abort('White noise only supports two, three, or four dimensions')
@@ -51,9 +85,19 @@ noise_white <- function(dim, frequency = 0.01, pertubation = 'none', pertubation
 #' @rdname noise_white
 #' @param x,y,z,t Coordinates to get noise value from
 #' @export
-gen_white <- function(x, y = NULL, z = NULL, t = NULL, frequency = 1, seed = NULL, ...) {
+gen_white <- function(
+  x,
+  y = NULL,
+  z = NULL,
+  t = NULL,
+  frequency = 1,
+  seed = NULL,
+  ...
+) {
   dims <- check_dims(x, y, z, t)
-  if (is.null(seed)) seed <- random_seed()
+  if (is.null(seed)) {
+    seed <- random_seed()
+  }
   frequency <- as.numeric(frequency)
   seed <- as.integer(seed)
   if (is.null(t)) {
